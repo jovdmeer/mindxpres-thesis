@@ -2,8 +2,74 @@
 
 \usepackage{xspace}
 
+\usepackage{listings}
+\usepackage{color}
+
 \newcommand\code{\texttt}
 \newcommand\ppt{Microsoft PowerPoint\xspace}
 \newcommand\mxp{MindXpres\xspace}
 \newcommand\latex{\LaTeX\xspace}
+\newcommand\lstref[1]{Listing \ref{lst:#1}}
+\newcommand\figref[1]{Figure \ref{fig:#1}}
+\newcommand\fig[2]{
+ \begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\textwidth]{#2.png}
+  \caption{#1}
+  \label{fig:#2}
+ \end{figure}
+}
 
+\lstloadlanguages{C}
+
+\definecolor{maroon}{rgb}{0.6,0,0}
+\definecolor{darkgreen}{rgb}{0,0.65,0.1}
+\definecolor{darkblue}{rgb}{0,0,0.7}
+\definecolor{grey}{rgb}{0.90,0.90,0.90}
+\lstdefinelanguage{XML} {
+  morestring=[s]{"}{"},
+  morecomment=[s]{<?}{?>},
+  morecomment=[s]{<!--}{-->},
+  commentstyle=\color{blue},
+  moredelim=[s][\color{black}]{>}{<},
+  moredelim=[s][\color{maroon}]{\ }{=},
+  stringstyle=\color{darkgreen},
+  identifierstyle=\color{darkblue}
+}
+
+\lstnewenvironment{java}
+    {
+      \csname lst@SetFirstLabel\endcsname
+    }
+    {
+      \csname lst@SaveFirstLabel\endcsname
+    }
+
+\lstnewenvironment{lstxml}[2]
+{
+  \csname lst@SetFirstLabel\endcsname
+  \lstset{language=XML}
+}
+{
+  \csname lst@SaveFirstLabel\endcsname
+  \centering
+  \renewcommand{\figurename}{Listing}
+  \caption{#2}
+  \label{lst:#1}
+}
+
+\lstset{
+         basicstyle=\ttfamily\scriptsize,
+         numbers=left,                   % where to put the line-numbers
+         numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+         stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+         numbersep=1em,                  % how far the line-numbers are from the code
+         backgroundcolor=\color{grey},   % choose the background color. You must add \usepackage{color}
+         showspaces=false,               % show spaces adding particular underscores
+         showstringspaces=false,         % underline spaces within strings
+         showtabs=false,                 % show tabs within strings adding particular underscores
+         frame=single,           % adds a frame around the code
+         frameround=tttt,
+         flexiblecolumns=false,
+         basewidth={0.5em,0.45em}
+         }

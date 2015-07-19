@@ -6,7 +6,8 @@
 % The following makes latex use nicer postscript fonts.
 %\usepackage{times}
 \usepackage[english]{babel}
-\usepackage{subfig}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
 \usepackage[usenames]{color}
 \usepackage{multicol}
 %\usepackage[colorlinks,urlcolor=blue,linkcolor=blue]{hyperref}
@@ -459,13 +460,14 @@
       post-presentation phase via a content discussion mechanism.
 
    \subsection{\mxp Platform}
+    \label{mxp-platform}
 
     In this section, we present the general architecture of our
     \mxp\footnote{http://mindxpres.com} crossmedia presentation platform which
-    is outlined in TODO(ref fig 1) and addresses the requirements presented in
-    the previous section.
+    is outlined in \figref{roels-1-fig-1} and addresses the requirements
+    presented in the previous section.
 
-    TODO(ref fig 1): \mxp architecture
+     \fig{\mxp architecture}{roels-1-fig-1}
 
     \subsubsection{Document Format and Authoring Language}
 
@@ -519,18 +521,18 @@
      offline viewing.
 
      A presentation bundle's core runtime engine consists of the three modules
-     shown in TODO(ref fig 1). The \emph{content engine} is responsible for
-     processing the content and linking it to the corresponding visualisation
-     plug-ins. The \emph{graphics engine} abstracts all rendering-related
-     functionality. For instance, certain presenters prefer a zoomable user
-     interface in order to provide a better overview of their content
-     \citep{reuss-1}. This graphical functionality is also exposed to the plug-ins,
-     which can make use of the provided abstractions. The \emph{communication
-     engine} exposes a communication API that can be used by plug-ins. It provides
-     some basic functionality for fetching external content but also offers the
-     possibility to form networks between multiple \mxp presentation instances as
-     well as to connect to third-party hardware such as digital pens or clicker
-     systems.
+     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
+     for processing the content and linking it to the corresponding
+     visualisation plug-ins. The \emph{graphics engine} abstracts all
+     rendering-related functionality. For instance, certain presenters prefer a
+     zoomable user interface in order to provide a better overview of their
+     content \citep{reuss-1}. This graphical functionality is also exposed to
+     the plug-ins, which can make use of the provided abstractions. The
+     \emph{communication engine} exposes a communication API that can be used
+     by plug-ins. It provides some basic functionality for fetching external
+     content but also offers the possibility to form networks between multiple
+     \mxp presentation instances as well as to connect to third-party hardware
+     such as digital pens or clicker systems.
 
      In addition to the presentation content and core modules, the presentation
      bundle contains a set of \emph{themes} and \emph{plug-ins} that are referenced
@@ -541,7 +543,7 @@
 
     \subsubsection{Plug-in Types}
 
-     TODO(ref fig 2): Structure plug-in examples
+     \fig{Structure plug-in examples}{roels-1-fig-2}
 
      In order to provide the necessary flexibility, all non-core modules are
      implemented as plug-ins. Even the basic content types such as text, images or
@@ -569,7 +571,7 @@
       graph-like structure or it can be clearly grouped in sections like in a book.
       Both are radically different ways of visualising and navigating content but by
       abstracting them as plug-ins, the user can easily switch between different
-      presentation styles as the ones shown in TODO(ref fig 2). Structures differ
+      presentation styles as the ones shown in \figref{roels-1-fig-2}. Structures differ
       from containers by the fact that they do not impose restrictions on the media
       types of their child elements and may also influence the default navigational
       path through the content.
@@ -593,11 +595,23 @@
      The \mxp document format which allows us to easily express a
      presentation's content, structure and references is based on the
      eXtensible Markup Language (XML). A simple example of a presentation
-     defined in our XML-based authoring language is shown in TODO(ref list
-     1.1). The set of valid tags and their structure, except the $presentation$
+     defined in our XML-based authoring language is shown in \lstref{xml-1}.
+     The set of valid tags and their structure, except the \code{presentation}
      root tag, is defined by the available plug-ins.
 
-     TODO(ref list 1.1): Authoring a simple \mxp presentation
+     \begin{figure}[h!]
+      \begin{lstxml}{xml-1}{Authoring a simple \mxp presentation}
+<presentation>
+  <slide title="Vannevar Bush">
+    <bulletlist>
+      <item>March 11, 1890 - June 28, 1974</item>
+      <item>American Engineer, founder of Raytheon</item>
+    </bulletlist>
+    <image source="bush.jpg"/>
+  </slide>
+</presentation>
+      \end{lstxml}
+     \end{figure}
 
     \subsubsection{Compiler}
 
@@ -620,34 +634,34 @@
      the extraction of data from referenced legacy document formats (e.g.
      PowerPoint or Excel) or the conversion of an unsupported video format. The
      tag is then converted to HTML5 by simply encoding the information in the
-     attributes of a $div$ element. The HTML5 standard allows custom attributes
-     if they start with a $data-$ prefix. TODO(ref list 1.2) shows parts of the
-     transformed XML document shown in TODO(ref list 1.1). Note that the
-     transformation does not include visualisation-specific information but
+     attributes of a \code{div} element. The HTML5 standard allows custom
+     attributes if they start with a \code{data-} prefix. TODOreflist12 shows
+     parts of the transformed XML document shown in \lstref{xml-1}. Note that
+     the transformation does not include visualisation-specific information but
      merely results in a valid HTML5 document which is bundled into a
      self-contained package together with the presentation engine.
 
-     TODO(ref list 1.2): Transformed HTML5 presentation content
+     TODOreflist12: Transformed HTML5 presentation content
 
     \subsubsection{Presentation Engine}
 
      The presentation engine's task is to turn the compiled HTML content into a
      visually appealing and interactive presentation. As highlighted in
-     TODO(ref fig 1), the presentation engine consists of several smaller
-     components which help plug-ins to implement powerful features with minimal
-     effort. The combination of these components enables the rapid prototyping
-     and evaluation of innovative visualisation ideas. A resulting \mxp
-     presentation combining various structure, container and component plug-ins
-     is shown in TODO(ref fig 3).
+     \figref{roels-1-fig-1}, the presentation engine consists of several
+     smaller components which help plug-ins to implement powerful features with
+     minimal effort. The combination of these components enables the rapid
+     prototyping and evaluation of innovative visualisation ideas. A resulting
+     \mxp presentation combining various structure, container and component
+     plug-ins is shown in \figref{roels-1-fig-3}.
 
-     TODO(ref fig 3): A \mxp presentation
+     \fig{A \mxp presentation}{roels-1-fig-3}
 
      \paragraph{Content Engine} When a presentation is loaded, the content
       engine is the first component that is activated. It processes the content
       of the HTML presentation by making use of the well-known jQuery
-      JavaScript library. Whenever a $div$ element is discovered, the
-      $data-type$ attribute is read and the corresponding plug-ins are notified
-      in order to visualise the content.
+      JavaScript library. Whenever a \code{div} element is discovered, the
+      \code{data-type} attribute is read and the corresponding plug-ins are
+      notified in order to visualise the content.
 
      \paragraph{Graphics Engine} The graphics engine provides support for
       interesting new visualisation and navigation styles. Next to some basic
@@ -683,14 +697,14 @@
       unique ownership for these tags and is in charge for their visualisation
       if they are encountered by the content engine. As a second convention, a
       plug-in must provide at least one JavaScript file implementing certain
-      methods, one of them being the $init()$ method which is called when the
-      plug-in is loaded by the presentation engine. It is up to the plug-in to
-      load additional JavaScript or CSS via the provided dependency injection
-      functionality. A second method to be implemented is the $visualise()$
-      method which is invoked with a pointer to the corresponding DOM node as a
-      parameter when the content engine encounters a tag to be visualised. A
-      plug-in is free to modify the DOM tree and may also register callbacks to
-      handle future interaction with the content.
+      methods, one of them being the \code{init()} method which is called when
+      the plug-in is loaded by the presentation engine. It is up to the plug-in
+      to load additional JavaScript or CSS via the provided dependency
+      injection functionality. A second method to be implemented is the
+      \code{visualise()} method which is invoked with a pointer to the
+      corresponding DOM node as a parameter when the content engine encounters
+      a tag to be visualised. A plug-in is free to modify the DOM tree and may
+      also register callbacks to handle future interaction with the content.
 
      \paragraph{Themes} We currently use CSS to provide a basic templating
       system. These themes offer styling either on a global or on a plug-in
@@ -709,14 +723,15 @@
 
     \subsubsection{Structured Overview Plug-in}
 
-     In TODO(ref section "mxp platform") we have explained how structure
-     plug-ins may change the way presentations are visualised and navigated. In
-     order to illustrate this, we have implemented a structure plug-in called
+     In Section \ref{mxp-platform} we have explained how structure plug-ins may
+     change the way presentations are visualised and navigated. In order to
+     illustrate this, we have implemented a structure plug-in called
      \emph{structured layout} which combines a zoomable user interface with the
      ability to group content into sections. The resulting visualisation of the
-     \emph{structured layout} plug-in is shown in TODO(ref fig 3). Whenever a
-     new section is reached, the view is zoomed out to provide an overview of
-     the content within the section and communicate a sense of progress.
+     \emph{structured layout} plug-in is shown in \figref{roels-1-fig-3}.
+     Whenever a new section is reached, the view is zoomed out to provide an
+     overview of the content within the section and communicate a sense of
+     progress.
 
     \subsubsection{Slide Plug-in}
 
@@ -730,20 +745,20 @@
      and easy layout mechanism which allows the presenter to partition the
      slide into rows and columns. Content is then assigned to these slots in
      the order that it is discovered. The use of the slide plug-in together
-     with the resulting visualisation is exemplified in TODO(ref fig 4). It
+     with the resulting visualisation is exemplified in \figref{roels-1-fig-4}. It
      also shows the use of the image plug-in (a component plug-in) which
      enables a simple form of cross-media transclusion. A visualised external
      image can be cropped and filters (e.g. colour correction) may be applied
      without duplicating or modifying the original source.
 
-     TODO(ref fig 4): Slide plug-in
+     \fig{Slide plug-in}{roels-1-fig-4}
 
     \subsubsection{Enhanced Video Plug-in}
 
      When videos are used in educational settings, we often need more
      functionality than what is offered by the average video player
      \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     TODO(ref fig 5) with the possibility to overlay a video with text or
+     \figref{roels-1-fig-5} with the possibility to overlay a video with text or
      arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
@@ -754,26 +769,26 @@
      of time. Additional features include the bookmarking of certain positions
      in a video for direct access or the possibility to display multiple videos
      in a synchronised manner. Our enhanced video plug-in injects the default
-     HTML5 video player and overlays it with a transparent $div$ element for
-     augmentation. Currently we make use of the HTML5 video API to synchronise
-     the creation and removal of overlays but a SMIL-based implementation might
-     be used in the future.
+     HTML5 video player and overlays it with a transparent \code{div} element
+     for augmentation. Currently we make use of the HTML5 video API to
+     synchronise the creation and removal of overlays but a SMIL-based
+     implementation might be used in the future.
 
-     TODO(ref fig 5): Enhanced video plug-in
+     \fig{Enhanced video plug-in}{roels-1-fig-5}
 
     \subsubsection{Source Code Visualisation Plug-in}
 
      Earlier, we mentioned the difficulty of visualising complex resources such
-     as source code. Our \mxp source code plug-in exports a $code$ tag which
-     allows the presenter to paste their code into a presentation and have \mxp
-     visualise it nicely by making use of syntax highlighting via the
+     as source code. Our \mxp source code plug-in exports a \code{code} tag
+     which allows the presenter to paste their code into a presentation and
+     have \mxp visualise it nicely by making use of syntax highlighting via the
      SyntaxHighlighter\footnote{http://alexgorbatchev.com/SyntaxHighlighter/}
-     JavaScript library. Whenever the content engine encounters a $code$ tag,
-     it invokes the code plug-in to beautify the code and automatically adds
-     vertical scrollbars for larger pieces of source code as shown in TODO(ref
-     fig 6).
+     JavaScript library. Whenever the content engine encounters a \code{code}
+     tag, it invokes the code plug-in to beautify the code and automatically
+     adds vertical scrollbars for larger pieces of source code as shown in
+     \figref{roels-1-fig-6}.
 
-     TODO(ref fig 6): Source code visualisation
+     \fig{Source code visualisation}{roels-1-fig-6}
 
    \subsection{Discussion and Future Work}
 
