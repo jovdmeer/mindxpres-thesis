@@ -21,6 +21,8 @@ clean:
 
 edit:
 	vim $(FILES) -p
+	clear
+	grep --colour=always TODO $(FILES)
 
 file:
 	vim Makefile
