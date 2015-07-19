@@ -1,0 +1,97 @@
+% vim:ts=1:et:nospell:spelllang=en_gb:ft=tex
+
+ \chapter{Approach}
+
+  \section{Compilation process}
+
+   The first part of the approach is fairly straightforward in its basic
+   explanation: we had to convert \ppt presentations into \mxp presentations.
+   This involves finding out how \ppt presentations are structured, getting the
+   parts wee need out of that structure, and then putting those parts together
+   in de \mxp structure. Since the author of this thesis has a small background
+   in compilers \citep{vandermeersch-1} it did not take long to see the
+   resemblance of this process to that of a compiler.
+
+   A compiler takes source code and transforms it into a working program with
+   the semantics described by that source code. The compilation process
+   consists of several steps. First the source code is tokenized, which means
+   the symbols in the code are identified one by one and classified in certain
+   categories.
+
+   Then the tokens are processed by a parser into an intermediary form called a
+   parse tree. A parser looks for certain predefined patterns in the source
+   code. These patterns are part of the source code's language syntax. As such,
+   these two steps analyse and validate the source code's syntax. If part of
+   the code does not match any pattern, the parser and the compilation process
+   stop and the user gets a message saying the code's syntax is invalid.
+
+   When a parse tree is constructed, the compilation process can alter it, to
+   improve it. Certain patterns in the parse tree may be replaceable by
+   different patterns with the same outcome, but with more optimal execution.
+   This part of the compilation process is optional, and is called compiler
+   optimization. Optimizations can consist of many things, depending on the
+   language. For example, some languages guarantee tail call optimization,
+   where infinite loops can be constructed by letting a function call itself as
+   its last statement without causing a stack overflow. This is something the
+   compiler (or interpreter) can optimize during this part of the compilation
+   process.
+
+   After this, the parse tree can be written out to produce the desired output.
+   Every node in the tree has a well-defined equivalent in the target
+   language's syntax. The target language can be Assembly, which consists of
+   the exact instructions a CPU needs to carry out a program, or it can be
+   another programming language. Many compilers of higher-level languages
+   translate their language into C, for several reasons: the C compilers that
+   translate C into Assembly have been optimized so much that it is easier to
+   rely on them than to put an enormous amount of effort into optimizing
+   another language; C compilers exist for most --- if not all --- CPU
+   architectures, which means translating a language into C makes it compatible
+   with all those architectures, while it would cost a lot more effort to write
+   different compilers for every architecture you would want to make your
+   language available on.
+
+   The conversion tool that is the purpose of this thesis, can be described in
+   a similar succession of steps. First, we take a \ppt presentation and
+   tokenize and parse it into an intermediary structure that allows us to
+   perform other operations, or `optimizations', on it. The intermediary form
+   consists of a `parse tree' containing the components of the original
+   presentation --- a component tree, if you will.
+
+   With this structure, we can construct a \mxp presentation containing the
+   same components in the same place, essentially creating a `program' with the
+   same semantic meaning as the original `source'.
+
+  \section{Compiler optimizations}
+
+   Since the conversion process resembles that of a compiler, it seemed logical
+   at first to make automatic layout a part of that process, as some kind of
+   `compiler optimization'.
+
+   At first, we tried to traverse the component tree, giving its objects new
+   coordinates and sizes so that they would fit together on every slide as well
+   as possible. This seemed an easy solution, but the results were sub-optimal.
+   On top of that, we soon realised that we were in essence creating another
+   template out of which a presentation would be made, which was exactly the
+   opposite of what we were trying to do. As such, we abandoned this approach.
+
+   We then switched to a different method: defining constraints for every
+   component, in the form of margins, maximum sizes and other limits, and then
+   calculating a way to satisfy all constraints while fitting content together
+   on each slide. While this is clearly a better method, it turned out the
+   compiler optimization phase was not the best place in the process to take
+   care of this.
+
+   In the end, we decided to take a different approach, relying on the layout
+   engine of \mxp itself and enhancing that engine to create the automatic
+   layout we wanteD.
+
+  \section{Using \mxp}
+
+   \mxp already takes care of layout for you, since that is one of its primary
+   goals. The way it does this currently is however heavily based on templates,
+   while we wanted a layout engine that could take any content and put in in an
+   appropriate layout without any directions from the user. As such, we had to
+   enhance \mxp's layout engine to use constraints, based on the size of the
+   content, and try to find an optimal position for every component it is
+   given.
+

@@ -1,0 +1,80 @@
+% vim:ts=1:et:nospell:spelllang=en_gb:ft=tex
+
+ \chapter{Introduction}
+
+  For over 25 years, \ppt has been the market leader in digital prsentations.
+  Admittedly, it was a revolutionary software package when it was first
+  introduced, and its ease-of-use combined with its supreme graphical
+  capabilities --- at least compared to other software in the same era --
+  quickly made it one of the most popular software packages in history. 25
+  years later, \ppt can claim over 90\% market share in presentation software,
+  and on average 30 million \ppt presentations are created every day.
+
+  In this time, \ppt has gotten many new features, and certainly improved and
+  grew with every new version, but it never really changed its core approach.
+  It started out mimicking the then-popular and widespread use of dia and
+  overhead projection slides, which was at the time a good way to convince
+  people of its purpose, allowing them to feel comfortable with a familiar
+  format instead of alienating potential customers with a new and potentially
+  confusing interface.
+
+  However, this interface is quite restricting, and in recent years different
+  approaches have seen the light of day. The zoomable user interface of Prezi
+  is probably the most well-known, but apart from abandoning the traditional
+  slide format it does little to improve or extend the concept of presenting
+  information to an audience.
+
+  This is where \mxp comes in. Its extensible plugin system allows anyone with
+  some knowledge of programming to create new functionality to use in
+  presentations. Examples are interactivity with the audiencer through various
+  means, controlling the presentation from another device --- or several! ---
+  and (re)modelling data while presenting it, based on feedback from the
+  audience.
+
+  While this is obviously a big improvement on the traditional presentation
+  model of \ppt and the likes, it remains hard to convince the general public
+  of its merits. People are generally afraid of change, and it is important to
+  make the transition as smooth as possible. On top of that, people are often
+  worried that the work they did in the past may be lost --- or worse,
+  irrelevant --- after switching to something new. This alone may be a huge
+  factor in deciding wether or not to start using new software, or to stick
+  with what they know.
+
+  That is where the subject of this thesis comes in. We aim to provide a way
+  for people to convert their existing \ppt presentations into \mxp
+  presentations, allowing them to take their previous work with them in their
+  switch to \mxp. This way, we lower the treshold for them to make the decision
+  to start using \mxp as their presentation software of choice. Once all their
+  existing \ppt content is available, usable and editable in \mxp, it should be
+  obvious to anyone why \mxp is the better option for their presentations.
+
+  Another common problem with \ppt presentations is the way they look. This is
+  not necessarily the fault of the software; most people just are not trained
+  in graphical design, and as such they know very little about proper layout,
+  color choices, or slide content limits. Everyone has probably encountered
+  slides with full paragraphs of text, too small to read and / or too much to
+  process in the short time the slide is visible --- (too) many people have
+  made those slides themselves.
+
+  When we say this is not the fault of the software, that is mostly true, as
+  the creators of these slides obviously made a conscious choice to make their
+  content appear like that. It could be said however that \ppt and other
+  presentation tools are guilty through inaction. We believe it is possible to
+  have software either warn its users against these choices and practices, or
+  --- even better --- have the software fix these problems automatically.
+
+  One of the primary goals of \mxp is to provide automatic layout, much like
+  \latex does, ensuring that the content creator only has to worry about the
+  actual content, while the software takes care of layout. In practice, both
+  \latex and \mxp currently use template-based layouts, where the contents'
+  position is predefined in the template and not related to or based on its
+  size, shape or nature. In the end, everyone who has ever used \latex knows
+  that sooner or later you will struggle to get a certain image incorporated in
+  the text correctly, ending up doing the layout yourself anyway, because the
+  predefined template just doesn't work properly for you specific content.
+
+  As such, the second part of this thesis focuses on implementing true
+  automatic layout in \mxp. Again primarily to convince \ppt users to switch,
+  showing that their presentations actually could look better in \mxp, while
+  thus also providing new functionality to existing \mxp users.
+

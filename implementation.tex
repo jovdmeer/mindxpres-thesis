@@ -1,0 +1,42 @@
+% vim:ts=1:et:nospell:spelllang=en_gb:ft=tex
+
+ \chapter{Implementation}
+
+  \section{Taking \ppt apart}
+
+   We found Apache POI library very helpful in this part of the implementation.
+   The POI Library --- formerly ''Poor Obfuscation Implementation''
+   \citep{sundaram-1} --- is a Java library that provides an API to access
+   Microsoft document formats. The most mature (and most popular) part of it is
+   HSSF, which stands for Horrible SpreadSheet Format, and which is used by
+   Java developers worldwide to access Microsoft Excel spreadsheet data. 
+
+   For our purposes, we relied on HSLF (''Horrible SLideshow Format''), which
+   gave us access to a \ppt presentation's contents in many ways. We could
+   access all images at once, or every bit of text from the whole presentation,
+   but the most interesting to us was the ability to access contents on a
+   per-slide basis.
+
+   This allowed us to loop over the presentation's slides, converting them one
+   by one, by placing the contents of each slide in a \mxp slide equivalent.
+
+  \section{Generating \mxp}
+
+   \subsection{Plain HTML5}
+
+    Since the \mxp compiler was not functional during most of this thesis'
+    implementation, we decided to generate an html file much like the \mxp
+    compiler would, including the \mxp JavaScript library and plugins. This
+    required us to first find out how \mxp works on the inside, which proved to
+    be a steep learning curve but gave us more insight into the software than
+    we would've gotten if we only had to generate \mxp XML and leave the rest
+    to the compiler.
+
+   \subsection{\mxp XML}
+
+  \section{Creating layouts}
+
+   \subsection{Using constraints}
+
+   \subsection{Other ways}
+
