@@ -189,14 +189,12 @@
 
 TODO rework below
 
-  \section{\mxp}
+  \section{New solutions}
 
-   \subsection{Requirements}
-
-    We now introduce a number of requirements to support a broad range of
-    presentation styles and visualisations which have been compiled based on a
-    review of the more recent presentation solutions presented in the previous
-    section.
+   We now introduce a number of requirements to support a broad range of
+   presentation styles and visualisations which have been compiled based on a
+   review of the more recent presentation solutions presented in the previous
+   section.
 
      \paragraph{Non-linear Navigation} As outlined earlier, the linear
       traversal of slides is a concept that has been taken over from early
@@ -281,129 +279,131 @@ TODO rework below
       the Web 2.0, we see potential for the social aspect in a
       post-presentation phase via a content discussion mechanism.
 
-   \subsection{\mxp Platform}
-    \label{mxp-platform}
+  \section{\mxp Platform}
+   \label{mxp-platform}
 
-    In this section, we present the general architecture of our
-    \mxp\footnote{http://mindxpres.com} crossmedia presentation platform which
-    is outlined in \figref{roels-1-fig-1} and addresses the requirements
-    presented in the previous section.
+   In this section, we present the general architecture of our
+   \mxp\footnote{http://mindxpres.com} crossmedia presentation platform which
+   is outlined in \figref{roels-1-fig-1} and addresses the requirements
+   presented in the previous section.
 
-    \fig{roels-1-fig-1}{\mxp architecture}
+   \fig{roels-1-fig-1}{\mxp architecture}
 
-    \subsubsection{Document Format and Authoring Language}
+   \subsection{Document Format and Authoring Language}
 
-     Content is stored, structured and referenced in a dedicated \mxp document
-     format. An individual \mxp document contains the content itself and may
-     also refer to some external content to be included. A new \mxp document
-     can be written manually similar to the \latex approach introduced earlier
-     or in the near future it can also be generated via a graphical authoring
-     tool. In contrast to other presentation formats such as Slidy, S5 or
-     OOXML, the authoring language eliminates unnecessary HTML and XML
-     specifics and focusses on a semantically more meaningful vocabulary. The
-     vocabulary of the authoring language is almost completely defined by
-     plug-ins that provide support for various media types and structures. In
-     order to give users some freedom in the way they present their
-     information, the core \mxp presentation engine only plays a supporting
-     role for plug-ins and lets them define the media types (e.g. video or
-     source code) as well as structures (e.g. slides or graph-based content
-     layouts).
+    Content is stored, structured and referenced in a dedicated \mxp document
+    format. An individual \mxp document contains the content itself and may
+    also refer to some external content to be included. A new \mxp document can
+    be written manually similar to the \latex approach introduced earlier or in
+    the near future it can also be generated via a graphical authoring tool. In
+    contrast to other presentation formats such as Slidy, S5 or OOXML, the
+    authoring language eliminates unnecessary HTML and XML specifics and
+    focusses on a semantically more meaningful vocabulary. The vocabulary of
+    the authoring language is almost completely defined by plug-ins that
+    provide support for various media types and structures. In order to give
+    users some freedom in the way they present their information, the core \mxp
+    presentation engine only plays a supporting role for plug-ins and lets them
+    define the media types (e.g. video or source code) as well as structures
+    (e.g. slides or graph-based content layouts).
 
-     This is also reflected in the document format as each plug-in extends the
-     vocabulary that can be used. Any visual styling including different fonts,
-     colours or backgrounds is achieved by applying specific themes to the
-     underlying content.
+    This is also reflected in the document format as each plug-in extends the
+    vocabulary that can be used. Any visual styling including different fonts,
+    colours or backgrounds is achieved by applying specific themes to the
+    underlying content.
 
-    \subsubsection{Compiler}
+   \subsection{Compiler}
 
-     The compiler transforms a \mxp document into a self-contained portable
-     \mxp presentation bundle. While a \mxp document could be directly interpreted
-     at visualisation time, for a number of reasons we decided to have this
-     intermediary step. First, the compiler allows different types of presentations
-     to be created from the same \mxp document instance. This means that we can not
-     only create dynamic and interactive presentations but also more static output
-     formats such as PDF documents for printing. Similarly, we cannot always expect
-     that there will be an Internet connection while giving a presentation. For this
-     case, the compiler might create an offline version of a presentation with all
-     necessary content pre-downloaded and included in the \mxp presentation bundle.
-     Last but not least, the compiler might resolve incompatibility issues by, for
-     instance, converting unsupported video formats.
+    The compiler transforms a \mxp document into a self-contained portable \mxp
+    presentation bundle. While a \mxp document could be directly interpreted at
+    visualisation time, for a number of reasons we decided to have this
+    intermediary step. First, the compiler allows different types of
+    presentations to be created from the same \mxp document instance. This
+    means that we can not only create dynamic and interactive presentations but
+    also more static output formats such as PDF documents for printing.
+    Similarly, we cannot always expect that there will be an Internet
+    connection while giving a presentation. For this case, the compiler might
+    create an offline version of a presentation with all necessary content
+    pre-downloaded and included in the \mxp presentation bundle.  Last but not
+    least, the compiler might resolve incompatibility issues by, for instance,
+    converting unsupported video formats.
 
-    \subsubsection{\mxp Presentation Bundle}
+   \subsection{\mxp Presentation Bundle}
 
-     The dynamic \mxp presentation bundle consists of the compiled content
-     together with a portable cross-platform presentation runtime engine which
-     allows more interactive and networked presentations. Similar to the original
-     document, the compiled presentation content still consists of both, integrated
-     content and references to external resources such as online content that will
-     be retrieved when the presentation is visualised. Note that the content might
-     have been modified by the compiler and, for example, been converted or
-     extracted from other document formats that the runtime engine cannot process.
-     References to external content may have been dereferenced by the compiler for
-     offline viewing.
+    The dynamic \mxp presentation bundle consists of the compiled content
+    together with a portable cross-platform presentation runtime engine which
+    allows more interactive and networked presentations. Similar to the
+    original document, the compiled presentation content still consists of
+    both, integrated content and references to external resources such as
+    online content that will be retrieved when the presentation is visualised.
+    Note that the content might have been modified by the compiler and, for
+    example, been converted or extracted from other document formats that the
+    runtime engine cannot process.  References to external content may have
+    been dereferenced by the compiler for offline viewing.
 
-     A presentation bundle's core runtime engine consists of the three modules
-     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
-     for processing the content and linking it to the corresponding
-     visualisation plug-ins. The \emph{graphics engine} abstracts all
-     rendering-related functionality. For instance, certain presenters prefer a
-     zoomable user interface in order to provide a better overview of their
-     content \citep{reuss-1}. This graphical functionality is also exposed to
-     the plug-ins, which can make use of the provided abstractions. The
-     \emph{communication engine} exposes a communication API that can be used
-     by plug-ins. It provides some basic functionality for fetching external
-     content but also offers the possibility to form networks between multiple
-     \mxp presentation instances as well as to connect to third-party hardware
-     such as digital pens or clicker systems.
+    A presentation bundle's core runtime engine consists of the three modules
+    shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
+    for processing the content and linking it to the corresponding
+    visualisation plug-ins. The \emph{graphics engine} abstracts all
+    rendering-related functionality. For instance, certain presenters prefer a
+    zoomable user interface in order to provide a better overview of their
+    content \citep{reuss-1}. This graphical functionality is also exposed to
+    the plug-ins, which can make use of the provided abstractions. The
+    \emph{communication engine} exposes a communication API that can be used by
+    plug-ins. It provides some basic functionality for fetching external
+    content but also offers the possibility to form networks between multiple
+    \mxp presentation instances as well as to connect to third-party hardware
+    such as digital pens or clicker systems.
 
-     In addition to the presentation content and core modules, the presentation
-     bundle contains a set of \emph{themes} and \emph{plug-ins} that are referenced
-     by the content. Themes may contain visual styling on a global as well as on a
-     plug-in level. When the content engine encounters different content types, they
-     are handed over to the specific plug-in which uses the graphics engine to
+    In addition to the presentation content and core modules, the presentation
+    bundle contains a set of \emph{themes} and \emph{plug-ins} that are
+    referenced by the content. Themes may contain visual styling on a global as
+    well as on a plug-in level. When the content engine encounters different
+    content types, they are handed over to the specific plug-in which uses the
+    graphics engine to visualise the content.
+
+   \subsection{Plug-in Types}
+
+    \fig{roels-1-fig-2}{Structure plug-in examples}
+
+    In order to provide the necessary flexibility, all non-core modules are
+    implemented as plug-ins. Even the basic content types such as text, images
+    or bullet lists have been realised via plug-ins and three major categories
+    of plug-ins have to be distinguished:
+
+    \begin{itemize}
+
+     \item \emph{Components} form the basic building blocks of a presentation.
+     They are represented by plug-ins that handle the visualisation for
+     specific content types such as text, images, bullet lists, graphs or
+     videos. The content engine invokes the corresponding plug-ins in order to
      visualise the content.
 
-    \subsubsection{Plug-in Types}
+     \item \emph{Containers} are responsible for grouping and organising
+     components of a specific type. An example of such a container is a slide
+     with each slide containing different content but also some reoccurring
+     elements.  Every slide of a presentation may for example contain elements
+     such as a title, a slide number and the author's name, which can be
+     abstracted in a higher level container. Another example is an image
+     container that visualises its content as a horizontally scrollable list of
+     images. Note that we are not restricted to the slide format and content
+     can be laid out in alternative ways.
 
-     \fig{roels-1-fig-2}{Structure plug-in examples}
+     \item \emph{Structures} are high-level structures and layouts for
+     components and containers. For example, content can be scattered in a
+     graph-like structure or it can be clearly grouped in sections like in a
+     book.  Both are radically different ways of visualising and navigating
+     content but by abstracting them as plug-ins, the user can easily switch
+     between different presentation styles as the ones shown in
+     \figref{roels-1-fig-2}. Structures differ from containers by the fact that
+     they do not impose restrictions on the media types of their child elements
+     and may also influence the default navigational path through the content.
 
-     In order to provide the necessary flexibility, all non-core modules are
-     implemented as plug-ins. Even the basic content types such as text, images or
-     bullet lists have been realised via plug-ins and three major categories of
-     plug-ins have to be distinguished:
-
-     \begin{itemize}
-
-      \item \emph{Components} form the basic building blocks of a presentation.
-      They are represented by plug-ins that handle the visualisation for specific
-      content types such as text, images, bullet lists, graphs or videos. The content
-      engine invokes the corresponding plug-ins in order to visualise the content.
-
-      \item \emph{Containers} are responsible for grouping and organising
-      components of a specific type. An example of such a container is a slide with
-      each slide containing different content but also some reoccurring elements.
-      Every slide of a presentation may for example contain elements such as a title,
-      a slide number and the author's name, which can be abstracted in a higher level
-      container. Another example is an image container that visualises its content as
-      a horizontally scrollable list of images. Note that we are not restricted to
-      the slide format and content can be laid out in alternative ways.
-
-      \item \emph{Structures} are high-level structures and layouts for
-      components and containers. For example, content can be scattered in a
-      graph-like structure or it can be clearly grouped in sections like in a book.
-      Both are radically different ways of visualising and navigating content but by
-      abstracting them as plug-ins, the user can easily switch between different
-      presentation styles as the ones shown in \figref{roels-1-fig-2}. Structures differ
-      from containers by the fact that they do not impose restrictions on the media
-      types of their child elements and may also influence the default navigational
-      path through the content.
-
-     \end{itemize}
+    \end{itemize}
 
    \subsection{Implementation}
 
-    We have chosen HTML5 and its related web technologies as the backbone for
-    our \mxp presentation platform. Other options such as JavaFX, Flash or game
+    HTML5 and its related web technologies were chosen as the backbone for
+    the \mxp presentation platform. Other options such as JavaFX, Flash or game
     engines have also been investigated, but HTML5 seemed to be the best choice.
     The widely accepted HTML5 standard makes \mxp presentations highly portable and
     runnable on any device with a recent web browser, including smartphones and
@@ -730,6 +730,8 @@ TODO rework below
 
    \subsection{Conclusion}
 
+    TODO do we need this?
+   
     We have presented \mxp, an HTML5 and web technology-based presentation
     platform addressing the lacking extensibility of existing slideware
     solutions. The extensibility of the \mxp platform heavily relies on a
@@ -747,9 +749,8 @@ TODO rework below
     prototyping and investigation of new ideas for next generation cross-media
     presentation solutions.
 
-% --- END Reinout's awesome stuff
-
 % --- BEGIN my crappy stuff
+    TODO ... or this?
 
     \mxp tries to be an alternative unlike other alternatives, stepping away
     from the classic slide format and introducing a plugin system to allow
