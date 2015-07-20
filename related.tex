@@ -2,6 +2,169 @@
 
  \chapter{Related work}
 
+  \emph{This chapter's content is largely based on ``MindXpres: An Extensible
+  Content-driven Cross-Media Presentation Platform'' \citep{roels-1}.}
+
+  \section{Background}
+
+   The importance of digital presentations in this day and age cannot be
+   understated. Millions of presentations are created every day, supporting the
+   oral transfer of knowledge and playing an important role in educational
+   settings. Their origins as tools for creating physical media such as
+   photographic slides or transparencies for overhead projectors are still
+   reflected in the underlying concepts and principles of slide-based
+   presentation tools. The rectangular boundaries of a slide, and the linear
+   navigation between slides, are still restrictions we face today in digital
+   presentations. Tufte argues that these concepts of slideware have a negative
+   impact on the effectiveness of knowledge transfer \citep{tufte-1}.  While
+   the presenter is compelled to squeeze complex ideas into a linear sequence
+   of slides, those ideas are rarely sequential by nature, resulting in a loss
+   of relations, overview and details. An initial approach to address these
+   issues might involve creating minimalistic presentations or introducing some
+   structure via a table of contents. Sadly, when complex knowledge or other
+   pieces of rich information need to be presented “as is” \citep{farkas-1} ---
+   as in the domain of learning --- this does not work.
+
+   One of the main issues with traditional slideware presentations is their
+   monolithic nature, especially when content is spread over many
+   self-contained presentation files. ``Reusing'' previous work involves either
+   switching between files while giving a presentation or duplicating some
+   slides in the new presentation. It should be noted that this issue is not
+   limited to the reuse of single slides: there is an ever increasing wealth of
+   resources available for reuse, spread over a wide spectrum of distribution
+   channels and formats. The possibility to include content by reference or
+   transclusion \citep{nelson-1} may contribute in crossing the boundaries
+   between different types of media and prove beneficial in the context of
+   modern cross-media presentation tools.
+
+   The difference in functionality between the authoring of content and its
+   visualisation is striking as well. The primary editors consist of mostly
+   toolbars and buttons used for selecting and specifying the way content
+   should be visualised, while support for authoring the content itself is not
+   quite as extensive. Modern slideware has grown to include basic multimedia
+   types such as videos, but most content is still rather static. It is, for
+   example, not possible during a presentation to easily switch from a bar
+   chart to a pie chart data visualisation, or to dynamically change some
+   values in the represented data and immediately see the effect in the graph,
+   which could be beneficial for knowledge transfer \citep{holzinger-1}. The
+   audience could also be more actively involved in the presentation, through
+   audience response and classroom connectivity systems providing multi-device
+   interfaces allowing to share knowledge and results during as well as after a
+   presentation. The evolution of presentations is reminiscent of the Web2.0
+   movements where users have switched roles from purely consuming content to
+   contributing as well, content has become more dynamic and interactive, and
+   service-oriented architectures (``The Cloud'') have ensured decentralisation
+   of content.
+
+   In order to move a step towards the next generation of cross-media
+   presentation tools, it is essential to allow the rapid prototyping and
+   evaluation of new concepts for the representation, visualisation and
+   interaction with content.
+   
+   TODO
+   After
+   introducing existing slideware solutions, we discuss the requirements for
+   next generation presentation tools. This is followed by a description of the
+   extensible \mxp architecture and its plug-in mechanism. The web
+   technology-based implementation of \mxp is validated based on a number of
+   use cases and \mxp plug-ins and followed by a discussion of future work.
+   TODO
+
+  \section{Existing solutions}
+
+   The impact, benefits and issues of slideware have been studied ever since
+   digital slideware has been introduced. While some studies acknowledge
+   slideware as a teaching aid \citep{holzinger-1}, Tufte \citep{tufte-1}
+   heavily criticises slideware for sticking to outdated concepts. He addresses
+   the many consequences of spatial limitations or linear navigation and
+   relates them to the human mind which works differently. One of Tufte's
+   conclusions, which is also confirmed by Adams \citep{adams-1}, is that
+   slide-based presentations are not suitable for all kinds of knowledge
+   transfer and in particular not in scientific settings. Recent work shows
+   that it is important for the learning process that content is well
+   integrated in the greater whole, both structurally and visually
+   \citep{gross-1}, which is influenced by the navigation and visualisation.
+   There have been a number of different approaches to offer non-linear
+   navigation. Zoomable User Interfaces (ZUIs) as used by CounterPoint
+   \citep{good-1}, Fly \citep{lichtschlag-1} or Prezi, offer virtually
+   unlimited space. Also Microsoft has experimented with zoomable interfaces in
+   pptPlex. While ZUIs are one way to escape the boundaries of the slide, we
+   have seen other approaches such as MultiPresenter \citep{lanir-1} or tiling
+   slideshows \citep{chen-1}. PaperPoint \citep{signer-1} and Palette
+   \citep{nelson-2} further enable the non-linear navigation of digital
+   presentations based on a slide selection via augmented paper-based
+   interfaces. Finally, there is a category of authoring tools that use
+   hypermedia to enable different paths through a set of slides.
+   NextSlidePlease \citep{spicer-1} allows users to create a weighted graph of
+   slides and may suggest navigational paths based on the link weights and the
+   remaining presentation time. Microsoft follows this trend with their
+   HyperSlides \citep{edge-1} project. The potential of \ppt as an authoring
+   tool for hypermedia-based presentations has further been investigated by
+   Garcia \citep{garcia-1}.
+
+   Existing presentation tools require content to be duplicated for reuse,
+   resulting in multiple redundant copies that need to be kept up to date.
+   Even though some attempts have been made to address this issue, there is
+   room for improvement. When it comes to document formats for more general
+   educational purposes, there are formats such as the Learning Material Markup
+   Language (LMML) \citep{suss-1}, the Connexions Markup Language (CNXML) and
+   the eLesson Markup Language (eLML) \citep{fisler-1}. The common factor of
+   these formats is their focus on the reuse of content, but always at a
+   relatively high granularity level. Content is organised in lessons or
+   modules and users are encouraged to use these, as a whole, in their
+   teaching. When we examined the formats in more detail, we noticed that they
+   support outgoing links to external content but not the inclusion of content
+   via references (transclusion). In the context of presentations, Microsoft's
+   Slide Libraries are central repositories for the storage of slides in order
+   to facilitate slide sharing and reuse within a company. However, one needs
+   to set up a SharePoint server which might represent a hurdle for some users.
+   Slides still need to be searched and manually copied into presentations.
+   Furthermore, users are responsible to push back updates to the repository or
+   update slides when they have been modified on the server side. Other
+   commercial tools with similar intentions and functionality for content reuse
+   are SlideRocket or SlideShare. The SliDL \citep{canos-1} research framework
+   provides a service-oriented architecture for storing and tagging slides in a
+   database for reuse. However, it shares some of the shortcomings of
+   Microsoft's Slide Libraries. The ALOCOM \citep{verbert-1} framework for
+   flexible content reuse consists of a content ontology and a (de)composition
+   framework for legacy documents including \ppt documents, Wikipedia pages and
+   SCORM content packages. While ALOCOM succeeds in the decomposition of legacy
+   documents, it might be too rigid for evolving presentation formats and the
+   tool is furthermore only supporting the authoring phase.
+
+   There is not only a similarity in the evolution of the Web and presentation
+   environments, but a number of the issues presented in this section have
+   solutions in the setting of the Web. It is therefore not surprising that
+   more recently we see the use of web technologies for realising presentation
+   solutions. The Simple Standards-based Slide Show System
+   (S5)\footnote{http://meyerweb.com/eric/tools/s5/} is an XHTML-based file
+   format for slideshows which enforces the classical slideware model. The
+   Slidy \citep{raggett-1} initiative by the W3C introduces another
+   presentation format which is based on the standard slideware model. While
+   these two formats are too limited for our needs, they have some interesting
+   properties. Both formats show a clean separation of content and presentation
+   via CSS themes. The visualisation is resolution independent and the layout
+   and font size are adapted to the available screen real estate. Finally, we
+   would like to mention recent HTML5-based presentation solutions, including
+   projects such as impress.js, deck.js, Shower or reveal.js. A major benefit
+   of applying a widely used open standard such as HTML is the cross-device
+   support. Nevertheless, also these solutions show some restrictions in terms
+   of visualisation, navigation and cross-media support.
+
+   Most of the tools and projects presented in this section focus on specific
+   novel ideas for presentations. However, there is no interoperability between
+   the concepts introduced in different tools. While one project might focus on
+   the authoring, another one focusses on novel content types and a third
+   solution introduces radically new navigation mechanisms. Some slideware
+   tools can be extended via third-party plug-ins but the functionality that is
+   exposed to the developers is often limited by the tool's underlying model.
+   For example, \ppt allows plug-ins to interact with the presentation model,
+   but the model dictates that a presentation must consist of a sequence of
+   slides. This lack of freedom is also a shortcoming of existing web-based
+   presentation formats. We therefore see a need for an open presentation
+   platform such as \mxp which supports innovation by providing the necessary
+   modularity and interoperability \citep{bush-1}.
+
   \section{\ppt}
 
    \ppt was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
@@ -24,173 +187,9 @@
 
    TODO this probably needs more content.
 
+TODO rework below
+
   \section{\mxp}
-
-   \emph{This chapter's content is largely based on ``MindXpres: An Extensible
-   Content-driven Cross-Media Presentation Platform'' \citep{roels-1}.}
-
-   \subsection{Introduction}
-
-% --- BEGIN Reinout's awesome stuff
-
-    The importance of digital presentations in this day and age cannot be
-    understated. Millions of presentations are created every day, supporting
-    the oral transfer of knowledge and playing an important role in educational
-    settings. Their origins as tools for creating physical media such as
-    photographic slides or transparencies for overhead projectors are still
-    reflected in the underlying concepts and principles of slide-based
-    presentation tools. The rectangular boundaries of a slide, and the linear
-    navigation between slides, are still restrictions we face today in digital
-    presentations. Tufte argues that these concepts of slideware have a
-    negative impact on the effectiveness of knowledge transfer \citep{tufte-1}.
-    While the presenter is compelled to squeeze complex ideas into a linear
-    sequence of slides, those ideas are rarely sequential by nature, resulting
-    in a loss of relations, overview and details. An initial approach to
-    address these issues might involve creating minimalistic presentations or
-    introducing some structure via a table of contents. Sadly, when complex
-    knowledge or other pieces of rich information need to be presented “as is”
-    \citep{farkas-1} --- as in the domain of learning --- this does not work.
-
-    One of the main issues with traditional slideware presentations is their
-    monolithic nature, especially when content is spread over many
-    self-contained presentation files. ``Reusing'' previous work involves
-    either switching between files while giving a presentation or duplicating
-    some slides in the new presentation. It should be noted that this issue is
-    not limited to the reuse of single slides: there is an ever increasing
-    wealth of resources available for reuse, spread over a wide spectrum of
-    distribution channels and formats. The possibility to include content by
-    reference or transclusion \citep{nelson-1} may contribute in crossing the
-    boundaries between different types of media and prove beneficial in the
-    context of modern cross-media presentation tools.
-
-    The difference in functionality between the authoring of content and its
-    visualisation is striking as well. The primary editors consist of mostly
-    toolbars and buttons used for selecting and specifying the way content
-    should be visualised, while support for authoring the content itself is not
-    quite as extensive. Modern slideware has grown to include basic multimedia
-    types such as videos, but most content is still rather static. It is, for
-    example, not possible during a presentation to easily switch from a bar
-    chart to a pie chart data visualisation, or to dynamically change some
-    values in the represented data and immediately see the effect in the graph,
-    which could be beneficial for knowledge transfer \citep{holzinger-1}. The
-    audience could also be more actively involved in the presentation, through
-    audience response and classroom connectivity systems providing multi-device
-    interfaces allowing to share knowledge and results during as well as after
-    a presentation. The evolution of presentations is reminiscent of the Web2.0
-    movements where users have switched roles from purely consuming content to
-    contributing as well, content has become more dynamic and interactive, and
-    service-oriented architectures (``The Cloud'') have ensured
-    decentralisation of content.
-
-%## TODO rework this ##
-
-    The rapid prototyping and evaluation of new concepts for the
-    representation, visualisation and interaction with content is essential in
-    order to move a step towards the next generation of cross-media
-    presentation tools. After introducing existing slideware solutions, we
-    discuss the requirements for next generation presentation tools. This is
-    followed by a description of the extensible \mxp architecture and its
-    plug-in mechanism. The web technology-based implementation of \mxp is
-    validated based on a number of use cases and \mxp plug-ins and followed by
-    a discussion of future work.
-
-   \subsection{Background}
-
-    The impact, benefits and issues of slideware have been studied ever since
-    digital slideware has been introduced. While some studies acknowledge
-    slideware as a teaching aid \citep{holzinger-1}, Tufte \citep{tufte-1}
-    heavily criticises slideware for sticking to outdated concepts. He
-    addresses the many consequences of spatial limitations or linear navigation
-    and relates them to the human mind which works differently. One of Tufte's
-    conclusions, which is also confirmed by Adams \citep{adams-1}, is that
-    slide-based presentations are not suitable for all kinds of knowledge
-    transfer and in particular not in scientific settings. Recent work shows
-    that it is important for the learning process that content is well
-    integrated in the greater whole, both structurally and visually
-    \citep{gross-1}, which is influenced by the navigation and visualisation.
-    There have been a number of different approaches to offer non-linear
-    navigation. Zoomable User Interfaces (ZUIs) as used by CounterPoint
-    \citep{good-1}, Fly \citep{lichtschlag-1} or Prezi, offer virtually
-    unlimited space. Also Microsoft has experimented with zoomable interfaces
-    in pptPlex. While ZUIs are one way to escape the boundaries of the slide,
-    we have seen other approaches such as MultiPresenter \citep{lanir-1} or
-    tiling slideshows \citep{chen-1}. PaperPoint \citep{signer-1} and Palette
-    \citep{nelson-2} further enable the non-linear navigation of digital
-    presentations based on a slide selection via augmented paper-based
-    interfaces. Finally, there is a category of authoring tools that use
-    hypermedia to enable different paths through a set of slides.
-    NextSlidePlease \citep{spicer-1} allows users to create a weighted graph of
-    slides and may suggest navigational paths based on the link weights and the
-    remaining presentation time. Microsoft follows this trend with their
-    HyperSlides \citep{edge-1} project. The potential of PowerPoint as an
-    authoring tool for hypermedia-based presentations has further been
-    investigated by Garcia \citep{garcia-1}.
-
-    Existing presentation tools require content to be duplicated for reuse,
-    resulting in multiple redundant copies that need to be kept up to date.
-    Even though some attempts have been made to address this issue, there is
-    room for improvement. When it comes to document formats for more general
-    educational purposes, there are formats such as the Learning Material
-    Markup Language (LMML) \citep{suss-1}, the Connexions Markup Language
-    (CNXML) and the eLesson Markup Language (eLML) \citep{fisler-1}. The common
-    factor of these formats is their focus on the reuse of content, but always
-    at a relatively high granularity level. Content is organised in lessons or
-    modules and users are encouraged to use these, as a whole, in their
-    teaching. When we examined the formats in more detail, we noticed that they
-    support outgoing links to external content but not the inclusion of content
-    via references (transclusion). In the context of presentations, Microsoft's
-    Slide Libraries are central repositories for the storage of slides in order
-    to facilitate slide sharing and reuse within a company. However, one needs
-    to set up a SharePoint server which might represent a hurdle for some
-    users. Slides still need to be searched and manually copied into
-    presentations. Furthermore, users are responsible to push back updates to
-    the repository or update slides when they have been modified on the server
-    side. Other commercial tools with similar intentions and functionality for
-    content reuse are SlideRocket or SlideShare. The SliDL \citep{canos-1}
-    research framework provides a service-oriented architecture for storing and
-    tagging slides in a database for reuse. However, it shares some of the
-    shortcomings of Microsoft's Slide Libraries. The ALOCOM \citep{verbert-1}
-    framework for flexible content reuse consists of a content ontology and a
-    (de)composition framework for legacy documents including PowerPoint
-    documents, Wikipedia pages and SCORM content packages. While ALOCOM
-    succeeds in the decomposition of legacy documents, it might be too rigid
-    for evolving presentation formats and the tool is furthermore only
-    supporting the authoring phase.
-
-    There is not only a similarity in the evolution of the Web and presentation
-    environments, but a number of the issues presented in this section have
-    solutions in the setting of the Web. It is therefore not surprising that
-    more recently we see the use of web technologies for realising presentation
-    solutions. The Simple Standards-based Slide Show System
-    (S5)\footnote{http://meyerweb.com/eric/tools/s5/} is an XHTML-based file
-    format for slideshows which enforces the classical slideware model. The
-    Slidy \citep{raggett-1} initiative by the W3C introduces another
-    presentation format which is based on the standard slideware model. While
-    these two formats are too limited for our needs, they have some interesting
-    properties. Both formats show a clean separation of content and
-    presentation via CSS themes. The visualisation is resolution independent
-    and the layout and font size are adapted to the available screen real
-    estate. Finally, we would like to mention recent HTML5-based presentation
-    solutions, including projects such as impress.js, deck.js, Shower or
-    reveal.js. A major benefit of applying a widely used open standard such as
-    HTML is the cross-device support. Nevertheless, also these solutions show
-    some restrictions in terms of visualisation, navigation and cross-media
-    support.
-
-    Most of the tools and projects presented in this section focus on specific
-    novel ideas for presentations. However, there is no interoperability
-    between the concepts introduced in different tools. While one project might
-    focus on the authoring, another one focusses on novel content types and a
-    third solution introduces radically new navigation mechanisms. Some
-    slideware tools can be extended via third-party plug-ins but the
-    functionality that is exposed to the developers is often limited by the
-    tool's underlying model. For example, PowerPoint allows plug-ins to
-    interact with the presentation model, but the model dictates that a
-    presentation must consist of a sequence of slides. This lack of freedom is
-    also a shortcoming of existing web-based presentation formats. We therefore
-    see a need for an open presentation platform such as \mxp which supports
-    innovation by providing the necessary modularity and interoperability
-    \citep{bush-1}.
 
    \subsection{Requirements}
 
@@ -455,7 +454,7 @@
      provided by the plug-ins. After validation, the document is parsed and
      discovered tags might trigger preprocessor actions by the plug-ins such as
      the extraction of data from referenced legacy document formats (e.g.
-     PowerPoint or Excel) or the conversion of an unsupported video format. The
+     \ppt or Excel) or the conversion of an unsupported video format. The
      tag is then converted to HTML5 by simply encoding the information in the
      attributes of a \code{div} element. The HTML5 standard allows custom
      attributes if they start with a \code{data-} prefix. \lstref{xml-2} shows
@@ -707,7 +706,7 @@
     plug-in level. For instance, the image or video plug-in can visualise (and
     enhance) external resources, a dictionary plug-in might retrieve
     definitions on demand via a web service or we might create a plug-in that
-    allows us to import content (e.g. PowerPoint slides) from legacy documents
+    allows us to import content (e.g. \ppt slides) from legacy documents
     at compile time. Nevertheless, we are currently investigating the
     introduction of generic reuse tags in our document format which would allow
     the presenter to transclude arbitrary parts of other \mxp presentations.
