@@ -14,9 +14,9 @@
 \newcommand\fig[2]{
  \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.85\textwidth]{#2.png}
-  \caption{#1}
-  \label{fig:#2}
+  \includegraphics[width=0.85\textwidth]{img/#1.png}
+  \caption{#2}
+  \label{fig:#1}
  \end{figure}
 }
 
@@ -31,8 +31,9 @@
   morecomment=[s]{<?}{?>},
   morecomment=[s]{<!--}{-->},
   commentstyle=\color{blue},
-  moredelim=[s][\color{black}]{>}{<},
   moredelim=[s][\color{maroon}]{\ }{=},
+  moredelim=[s][\color{black}]{>}{<},
+  moredelim=[s][\color{black}]{\ />}{<},
   stringstyle=\color{darkgreen},
   identifierstyle=\color{darkblue}
 }
@@ -54,15 +55,37 @@
   \csname lst@SaveFirstLabel\endcsname
   \centering
   \renewcommand{\figurename}{Listing}
-%  \renewcommand{\figureshortname}{Lst.}
+  \renewcommand{\figureshortname}{Lst.}
   \caption{#2}
   \label{lst:#1}
 }
 
+\lstnewenvironment{lstxml*}
+{
+ \csname lst@SetFirstLabel\endcsname
+ \lstset{language=XML,
+         xrightmargin=0pt
+         }
+}
+{
+ \csname lst@SaveFirstLabel\endcsname
+}
+
+\newcommand\fignl[1]{
+ \centering
+ \includegraphics[width=\textwidth]{img/#1.png}
+}
+
+\newcommand\cl[2]{
+ \centering
+ \caption{#2}
+ \label{lst:#1}
+}
+
 \lstset{
-         basicstyle=\ttfamily\scriptsize,
+         basicstyle=\ttfamily\fontsize{7pt}{8pt}\selectfont,
          numbers=left,                   % where to put the line-numbers
-         numberstyle=\scriptsize,      % the size of the fonts that are used for the line-numbers
+         numberstyle=\fontsize{7pt}{8pt}\selectfont,      % the size of the fonts that are used for the line-numbers
          stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
          numbersep=1em,                  % how far the line-numbers are from the code
          backgroundcolor=\color{grey},   % choose the background color. You must add \usepackage{color}
@@ -72,5 +95,8 @@
          frame=single,           % adds a frame around the code
          frameround=tttt,
          flexiblecolumns=false,
-         basewidth={0.5em,0.45em}
+         basewidth={0.5em,0.45em},
+         linewidth=\textwidth,
+         xleftmargin=2em,
+         xrightmargin=1em
          }

@@ -288,7 +288,7 @@
     is outlined in \figref{roels-1-fig-1} and addresses the requirements
     presented in the previous section.
 
-    \fig{\mxp architecture}{roels-1-fig-1}
+    \fig{roels-1-fig-1}{\mxp architecture}
 
     \subsubsection{Document Format and Authoring Language}
 
@@ -364,7 +364,7 @@
 
     \subsubsection{Plug-in Types}
 
-     \fig{Structure plug-in examples}{roels-1-fig-2}
+     \fig{roels-1-fig-2}{Structure plug-in examples}
 
      In order to provide the necessary flexibility, all non-core modules are
      implemented as plug-ins. Even the basic content types such as text, images or
@@ -482,7 +482,7 @@
      \mxp presentation combining various structure, container and component
      plug-ins is shown in \figref{roels-1-fig-3}.
 
-     \fig{A \mxp presentation}{roels-1-fig-3}
+     \fig{roels-1-fig-3}{A \mxp presentation}
 
      \paragraph{Content Engine} When a presentation is loaded, the content
       engine is the first component that is activated. It processes the content
@@ -573,20 +573,47 @@
      and easy layout mechanism which allows the presenter to partition the
      slide into rows and columns. Content is then assigned to these slots in
      the order that it is discovered. The use of the slide plug-in together
-     with the resulting visualisation is exemplified in \figref{roels-1-fig-4}. It
-     also shows the use of the image plug-in (a component plug-in) which
+     with the resulting visualisation is exemplified in \lstref{roels-1-fig-4}.
+     It also shows the use of the image plug-in (a component plug-in) which
      enables a simple form of cross-media transclusion. A visualised external
      image can be cropped and filters (e.g. colour correction) may be applied
      without duplicating or modifying the original source.
 
-     \fig{Slide plug-in}{roels-1-fig-4}
+     \begin{figure}[h!]
+      \begin{subfigure}{0.53\textwidth}
+       \vspace{-1em}
+       \begin{lstxml*}
+<slide layout="\60\40" title="Vannevar Bush">
+ <bulletlist>
+  <item>About
+   <item>March 11, 1890 - June 28, 1974</item>
+   <item>American Engineer</item>
+   <item>Founder of Raytheon</item>
+  </item>
+  <item>...
+  </item>
+ </bulletlist>
+ <image source="http://example.com/bush.jpg">
+  <crop bounds="10%, 5%, -10%, -20%" />
+ </image>
+</slide>
+       \end{lstxml*}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}{0.43\textwidth}
+       \fignl{roels-1-fig-4}
+      \end{subfigure}
+      \renewcommand{\figurename}{Listing}
+      \renewcommand{\figureshortname}{Lst.}
+      \cl{roels-1-fig-4}{Slide plug-in}
+     \end{figure}
 
     \subsubsection{Enhanced Video Plug-in}
 
      When videos are used in educational settings, we often need more
      functionality than what is offered by the average video player
      \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     \figref{roels-1-fig-5} with the possibility to overlay a video with text or
+     \lstref{roels-1-fig-5} with the possibility to overlay a video with text or
      arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
@@ -602,7 +629,34 @@
      synchronise the creation and removal of overlays but a SMIL-based
      implementation might be used in the future.
 
-     \fig{Enhanced video plug-in}{roels-1-fig-5}
+     \begin{figure}[h!]
+      \begin{subfigure}{0.53\textwidth}
+       \vspace{-1em}
+       \begin{lstxml*}
+<video source="vid.mp4">
+ <caption start="0:00" duration="1500ms">
+  Lecture 3 - Butterfly Species
+ </caption>
+ <pause start="0:43" duration="5s">
+  <caption>
+   The peacock butterfly (aglais io) ...
+  </caption>
+  <highlight x="30%" y="9%"
+             width="35%" height="40%" />
+ </pause>
+</video>
+       \end{lstxml*}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}{0.43\textwidth}
+       \fignl{roels-1-fig-5}
+      \end{subfigure}
+      \renewcommand{\figurename}{Listing}
+      \renewcommand{\figureshortname}{Lst.}
+      \cl{roels-1-fig-5}{Enhanced video plug-in}
+     \end{figure}
+
+ \newpage
 
     \subsubsection{Source Code Visualisation Plug-in}
 
@@ -614,9 +668,36 @@
      JavaScript library. Whenever the content engine encounters a \code{code}
      tag, it invokes the code plug-in to beautify the code and automatically
      adds vertical scrollbars for larger pieces of source code as shown in
-     \figref{roels-1-fig-6}.
+     \lstref{roels-1-fig-6}.
 
-     \fig{Source code visualisation}{roels-1-fig-6}
+     \begin{figure}[h!]
+      \begin{subfigure}{0.53\textwidth}
+       \vspace{-1em}
+       \begin{lstxml*}
+<code>
+ <publications>
+  <publication type="inproceedings">
+   <title>An Architecture for Open Cross-Media
+          Annotation Services</title>
+   <author>
+     <surname>Signer</surname>
+     <forename>Beat</forename>
+   </author>
+   <author>
+     <surname>Norrie</surname>
+     <forename>Moira</forename>
+   ...
+</code>
+       \end{lstxml*}
+      \end{subfigure}
+      \hfill
+      \begin{subfigure}{0.43\textwidth}
+       \fignl{roels-1-fig-6}
+      \end{subfigure}
+      \renewcommand{\figurename}{Listing}
+      \renewcommand{\figureshortname}{Lst.}
+      \cl{roels-1-fig-6}{Source code visualisation}
+     \end{figure}
 
    \subsection{Discussion and Future Work}
 
