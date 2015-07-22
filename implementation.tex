@@ -50,21 +50,61 @@
   \section{Taking \ppt apart}
    \label{poi}
 
+   When converting one file format into another, the first part of the process
+   involves getting the data you need out of the original file. This can be
+   very complicated, as some --- usually proprietary --- file formats are
+   deliberately designed to discourage this. They obfuscate data, encrypt it,
+   and structure it in illogical and unexpected ways, amongst other techniques.
+   The \ppt file format unfortunately is such a format, as Microsoft wouldn't
+   want to risk other companies making software that would work with \ppt
+   files. Of course, over the years people have managed to crack the format,
+   enabling the conversion of \ppt presentations into other formats, although
+   the conversion does not usually guarantee to yield results that mimic the
+   original version perfectly. Luckily, we don't want a perfect conversion, we
+   want a better one.
+
    We found Apache POI library very helpful in this part of the implementation.
    The POI Library --- formerly ''Poor Obfuscation Implementation''
    \citep{sundaram-1} --- is a Java library that provides an API to access
    Microsoft document formats. The most mature (and most popular) part of it is
    HSSF, which stands for Horrible SpreadSheet Format, and which is used by
-   Java developers worldwide to access Microsoft Excel spreadsheet data. 
+   Java developers worldwide to access Microsoft Excel spreadsheet data, as
+   well as export data into Excel spreadsheets.
 
    For our purposes, we relied on HSLF (''Horrible SLideshow Format''), which
    gave us access to a \ppt presentation's contents in many ways. We could
    access all images at once, or every bit of text from the whole presentation,
    but the most interesting to us was the ability to access contents on a
-   per-slide basis.
+   per-slide basis. This allowed us to loop over the presentation's slides,
+   converting them one by one, by placing the contents of each slide in a \mxp
+   slide equivalent.
 
-   This allowed us to loop over the presentation's slides, converting them one
-   by one, by placing the contents of each slide in a \mxp slide equivalent.
+   That was sadly not the end of it. While HSLF does give us access to all the
+   text in a presentation, or per slide, it does not distinguish between
+   'normal' text and bullet lists, for example. This was a difference we had to
+   detect ourselves somehow. TODO find out and explain how we do this.
+
+   Another challenge was dealing with animations and other ways people managed
+   to put way more content on one slide than would be advisable. The animations
+   could not be transferred to \mxp since \mxp has its own set of transitions.
+   It would technically be possible to implement additional animations as a
+   separate plugin for \mxp to provide the equivalents of the animations in
+   \ppt, but that is beyond the scope of this thesis. So we could not provide
+   the same animations, but some people use those animations not just to show
+   off but to actually show multiple pictures and blocks of text, one after the
+   other, on the same slide. Without animations, this content would either not
+   be visible or it would become a serious layout issue in \mxp. Our solution
+   proposes to limit the amount of objects one slide can contain, and any
+   additional content should be put on extra slides automatically. A downside
+   of this is that we currently have no way of guessing the correct order in
+   which the content should appear, so what may have been an intrinsic
+   choreography of pictures in \ppt may become an incoherent jumble of images
+   in \mxp. Another solution would be to scale all content until it all fits
+   next to each other on one slide, and then rely on the zoomable interface to
+   show the pictures one by one, but in this case the same problem with order
+   of appearance manifests itself. In the end, we decided it would be best to
+   accept that no conversion algorithm is going to be perfect, and the author
+   can always manually change the order around after the conversion is done.
 
   \section{Generating \mxp}
 
