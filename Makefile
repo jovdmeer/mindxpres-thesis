@@ -38,6 +38,8 @@ edit:
 	vim $(files) -p
 	clear
 	grep --colour=always TODO $(files)
+	@echo "number of TODOs: "
+	@grep --colour=always TODO $(files) | wc -l
 
 file:
 	vim Makefile
