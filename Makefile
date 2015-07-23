@@ -6,13 +6,17 @@ latexopts = -file-line-error
 
 default: view
 
-full: clean
+full: clean $(project).bbl pdflatex view
+
+$(project).bbl: db.bib
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
 	bibtex $(project)
 	bibtex $(project)
 	bibtex $(project)
+
+pdflatex:
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
@@ -44,4 +48,4 @@ edit:
 file:
 	vim Makefile
 
-.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full
+.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex
