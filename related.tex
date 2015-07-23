@@ -61,17 +61,34 @@
    evaluation of new concepts for the representation, visualisation and
    interaction with content.
    
-   TODO
+   %<TODO rework>
    After
    introducing existing slideware solutions, we discuss the requirements for
    next generation presentation tools. This is followed by a description of the
    extensible \mxp architecture and its plug-in mechanism. The web
    technology-based implementation of \mxp is validated based on a number of
    use cases and \mxp plug-ins and followed by a discussion of future work.
-   TODO
+   %</TODO rework>
+
+   A specific issue with slideware we'd like to solve in this thesis, is the
+   trouble with layout in presentations. It can be hard to display the content
+   you want in a way that's clear, informative and nice to look at. Layout is
+   mostly done by hand. Most software offers some templates, allowing you to
+   drop pictures and text into predefined slots and places on a slide, but then
+   those templates have been defined by someone else too. Computer-generated
+   layout is rare and usually not quite up to the task. \mxp is among the
+   software packages offering templates, in that layout is handled by whichever
+   plugin you choose, but so far no plugins have defined dynamic layout
+   algorithms, rather sticking to predefined ways to put text and pictures on
+   slides. But as \mxp does not constrain us to the limits of slides, this
+   should be seen as an opportunity to offer dynamic layout as well. After all,
+   if we're not limited to a certain area within which our content should fit,
+   it should be much easier to put content next to each other in a way that
+   makes sense.
 
   \section{Existing solutions}
 
+   %<TODO rework>
    The impact, benefits and issues of slideware have been studied ever since
    digital slideware has been introduced. While some studies acknowledge
    slideware as a teaching aid \citep{holzinger-1}, Tufte \citep{tufte-1}
@@ -164,6 +181,19 @@
    presentation formats. We therefore see a need for an open presentation
    platform such as \mxp which supports innovation by providing the necessary
    modularity and interoperability \citep{bush-1}.
+   %</TODO rework>
+
+   It is perhaps surprising that, to our knowledge, currently no tools exist to
+   calculate dynamic layouts of content in slideware. Existing solutions
+   include template systems, sometimes very fine-grained like \latex allowing
+   you to define templates for every single layout choice, usually more coarse
+   like \ppt* or Apple Keynote using Master Slides to define different layouts
+   on a per-slide basis, and always with the option of letting the user
+   customize the layout by hand, literally manually moving the content to the
+   exact place where we want it, unhindered by style guides, good practices or
+   common sense. This has resulted in mindboggling layout choices involving
+   enormous amounts of tiny text crammed onto one slide, or pictures strewn
+   across a slide overwhelming the audience with too much information at once. 
 
   \section{\ppt*}
 
@@ -187,10 +217,9 @@
 
    TODO this probably needs more content.
 
-TODO rework below
-
   \section{New solutions}
 
+   %<TODO rework>
    We now introduce a number of requirements to support a broad range of
    presentation styles and visualisations which have been compiled based on a
    review of the more recent presentation solutions presented in the previous
@@ -748,6 +777,7 @@ TODO rework below
     unification of existing presentation concepts as well as for the rapid
     prototyping and investigation of new ideas for next generation cross-media
     presentation solutions.
+   %</TODO rework>
 
 % --- BEGIN my crappy stuff
     TODO ... or this?
@@ -767,4 +797,13 @@ TODO rework below
     Master thesis, and has since been built upon by himself and other students.
 
 % --- END my crappy stuff
+
+  \section{Layout Algorithms}
+   \label{layout-algorithms}
+
+   TODO stuff from papers about automatic layout goes here
+
+   \citep{hurst-1}
+
+   \citep{lok-1}
 
