@@ -6,12 +6,20 @@ latexopts = -file-line-error
 
 default: view
 
-full: clean $(project).bbl pdflatex view
+full: clean
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+	bibtex $(project)
+	bibtex $(project)
+	bibtex $(project)
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+
+fv: full view
 
 $(project).bbl: db.bib
-	pdflatex $(latexopts) $(project)
-	pdflatex $(latexopts) $(project)
-	pdflatex $(latexopts) $(project)
 	bibtex $(project)
 	bibtex $(project)
 	bibtex $(project)
