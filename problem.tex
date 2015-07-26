@@ -2,7 +2,7 @@
 
  \chapter{Problem statement}
 
-  Computers, software and digital content are everywhere. Everything you use
+  Computers, software and digital content are everywhere. Everything we use
   nowadays is somehow related to computers and electronics, and if it isn't, it
   probably will be soon. This may be a bit of hyperbole, but there's a core of
   truth in it. If you think about it, more and more things have become and are
@@ -41,11 +41,11 @@
   took the world by storm, making it possible for everyone with a computer to
   make digital slideshows, which was impressive at the time. However, \ppt*
   never really evolved beyond that, except for adding some simpel animations
-  allowing text to `fly' into view. Since it was --- and still is! --- the
-  dominant player in the world of slideware with over 90\% market share, this
-  apathy towards change firmly rooted slideware in the concepts of the past.
-  Luckily, a few years ago some people realized this and decided to take
-  matters into their own hands. They stepped away from the classic slide
+  allowing text to `fly' into view (among others). Since it was --- and still
+  is! --- the dominant player in the world of slideware with over 90\% market
+  share, this apathy towards change firmly rooted slideware in the concepts of
+  the past.  Luckily, a few years ago some people realized this and decided to
+  take matters into their own hands. They stepped away from the classic slide
   format, allowing for any kind of layout, combined with zoomable interfaces
   and other methods of displaying data. One such alternative is \mxp, created
   in the WISE lab at the VUB.
@@ -73,13 +73,25 @@
 
    TODO use fancy words to explain other fancy words
 
-   \paragraph{Slideware}
+   The words \emph{slideshow} and \emph{presentation} are often used
+   interchangeably throughout this report, although they do not quite cover the
+   same meaning. By \emph{slideshow} we mean a presentation consisting of a set
+   of slides, the kind \ppt* and many other presentation software provide us
+   with. \emph{Presentation} then refers to the wider concept of material
+   intended to be viewed and manipulated by people in order to convey
+   information, usually but not necessarily from one or several presenter(s) to
+   an audience.
+
+   The term \emph{layout} refers to both the process of determining the
+   position and size of each visual object that is to be displayed in a
+   presentation, and the result of that process.
+
+   \emph{Slideware} is a contraction of the words `slideshow' and `software',
+   referring to software packages used to create slideshow presentations.
 
   \section{Stuff we want to solve}
 
    TODO change this section's title
-
-   TODO talk about how automatic layout is a real problem in today's world
 
    According to several sources \citep{parker-1, drucker-1, bajaj-1}, over 30
    million \ppt presentations are being made every day. That is an enormous
@@ -90,8 +102,39 @@
    the years, many people have created written and unwritten guidelines to
    creating effective slideshows, specifying how much text and how many images
    should fit on one slide. Over those years, many people have failed to follow
-   those guidelines. Either way, whether you choose to follow the guidelines or
+   those guidelines. But whether you choose to follow the guidelines or
    not, one thing remains true: people who create slideshow presentations spend
-   most of their time not on the content of their presentation, but on the
+   most of their time not on the \emph{content} of their presentation, but on the
    \emph{layout}.
+
+   The layout of a presentation can have a significant impact on how well it
+   communicates information to and obtains information from those who interact
+   with it. The vast majority of layouts created today are done ``by hand'': a
+   human graphic designer or ``layout expert'' makes most, if not all, of the
+   decisions about the position and size of the objects to be presented.
+   Designers typically spend years learning how to create effective layouts,
+   and may take hours or days to create even a single screen of a presentation.
+   Designing presentations by hand is too expensive and too slow to address
+   situations in which time-critical information must be communicated.
+
+   It may seem like an overstatement to emphasize the significance of layout
+   and formatting in presentations. One could assume these issues are
+   irrelevant, or that only inexperienced presenters would make these mistakes.
+   The real-life example of the space shuttle Columbia illustrates that this is
+   not always the case. Leading up to the tragic incident in which the shuttle
+   burned up during re-entry after spending 2 weeks in orbit, Boeing
+   Corporation engineers delivered three reports to {NASA} totalling 28 \ppt
+   slides, to help them assess the damage caused by a piece of debris hitting
+   the wing of the shuttle during launch, and the threat this damage might have
+   posed.  As Edward Tufte beautifully describes in his article ``\ppt Does
+   Rocket Science'' \citep{tufte-2}, the reports existed only in those slides,
+   and the slides were woefully inadequate for the task at hand. Although Tufte
+   likes to suggest this proves that \ppt is an inherently bad tool, what it
+   really proves is that \ppt makes it easy to create bad presentations, and a
+   tool that either discourages this manner of presenting information or makes
+   it altogether impossible would be a great improvement.
+
+   Since layout is such a hard skill to master, we propose to automate this
+   task, letting the presenter focus on the content of the presentation and
+   providing a proper layout fit for the content provided through software.
 
