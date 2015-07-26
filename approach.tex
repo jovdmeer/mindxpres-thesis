@@ -87,13 +87,34 @@
 
   \section{Using \mxp}
 
-   \mxp already takes care of layout for you, since that is one of its primary
-   goals. The way it does this currently is however heavily based on templates,
-   while we wanted a layout engine that could take any content and put in in an
+   One of the primary goals of \mxp is to separate content from layout,
+   allowing the author of a presentation to focus on the content while \mxp
+   takes care of the layout. The way it does this is currently mostly through
+   the compiler, which decides the width, height and coordinates of content,
+   relative to the container the content belongs to. The plugins responsible
+   for handling components and containers currently don't mess with those
+   settings, but technically, they could. The compiler decides the measurements
+   and coordinates based on templates (TODO ist waar?). The solution we were
+   looking for was a layout engine that could take any content and put it in an
    appropriate layout without any directions from the user. As such, we had to
    enhance \mxp's layout engine to use constraints, based on the size of the
    content, and try to find an optimal position for every component it is
    given.
+
+   We did this by extending the `slide' plugin (TODO echt?). This plugin
+   behaved fairly straightforward before in that it added a title if necessary,
+   and then just put all enclosed content on the slide where and how the
+   compiler had said it should be. Our implementation instead uses the
+   compiler's numbers to decide relative locations between components, as well
+   as size ratios, and then finds a way to display those components in a way
+   that the display order makes sense (or at least matches the intended order),
+   that no overlapping occurs (since we don't have the animations that \ppt
+   might have used to display one piece of information and then another on top
+   of it), and resizing everything if necessary in order to fit within the
+   specified container. While this may seem like a bad idea since content can
+   get illegibly small this way, keep in mind that we can rely on the ZUI to
+   focus on each component separately, or on groups of components, while \ppt
+   obviously can only display the whole slide at once.
 
    TODO we need more content here
 
