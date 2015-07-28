@@ -78,14 +78,16 @@
    software offers some templates, allowing you to drop pictures and text into
    predefined slots and places on a slide, but then those templates have been
    defined by someone else too. Computer-generated layout is rare and usually
-   not quite up to the task. \mxp is among the software packages offering
-   templates, in that layout is handled by whichever plugin you choose, but so
-   far no plugins have defined dynamic layout algorithms, rather sticking to
-   predefined ways to put text and pictures on slides. But as \mxp does not
-   constrain us to the limits of slides, this should be seen as an opportunity
-   to offer dynamic layout as well. After all, if we're not limited to a
-   certain area within which our content should fit, it should be much easier
-   to put content next to each other in a way that makes sense.
+   not quite up to the task.
+  
+   \mxp is among the software packages offering templates, in that layout is
+   handled by whichever plug-in you choose, but so far no plug-ins have defined
+   dynamic layout algorithms, rather sticking to predefined ways to put text
+   and pictures on slides. But as \mxp does not constrain us to the limits of
+   slides, this should be seen as an opportunity to offer dynamic layout as
+   well. After all, if we're not limited to a certain area within which our
+   content should fit, it should be much easier to put content next to each
+   other in a way that makes sense.
 
   \section{Existing solutions}
 
@@ -483,9 +485,9 @@
      there is an XML Schema which is augmented with additional constraints
      provided by the plug-ins. After validation, the document is parsed and
      discovered tags might trigger preprocessor actions by the plug-ins such as
-     the extraction of data from referenced legacy document formats (e.g.
-     \ppt or Excel) or the conversion of an unsupported video format. The
-     tag is then converted to HTML5 by simply encoding the information in the
+     the extraction of data from referenced legacy document formats (e.g.  \ppt
+     or Excel) or the conversion of an unsupported video format. The tag is
+     then converted to HTML5 by simply encoding the information in the
      attributes of a \code{div} element. The HTML5 standard allows custom
      attributes if they start with a \code{data-} prefix. \lstref{xml-2} shows
      parts of the transformed XML document shown in \lstref{xml-1}. Note that
@@ -644,8 +646,8 @@
      When videos are used in educational settings, we often need more
      functionality than what is offered by the average video player
      \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     \lstref{roels-1-fig-5} with the possibility to overlay a video with text or
-     arbitrary shapes. This overlay functionality can be used as a basic
+     \lstref{roels-1-fig-5} with the possibility to overlay a video with text
+     or arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
 
@@ -736,13 +738,13 @@
     plug-in level. For instance, the image or video plug-in can visualise (and
     enhance) external resources, a dictionary plug-in might retrieve
     definitions on demand via a web service or we might create a plug-in that
-    allows us to import content (e.g. \ppt slides) from legacy documents
-    at compile time. Nevertheless, we are currently investigating the
-    introduction of generic reuse tags in our document format which would allow
-    the presenter to transclude arbitrary parts of other \mxp presentations.
-    While our focus has been on the cross-media aspect of resources that can be
-    used in a presentation, we might also investigate the cross-media
-    publishing aspect via alternative compiler output formats.
+    allows us to import content (e.g. \ppt slides) from legacy documents at
+    compile time. Nevertheless, we are currently investigating the introduction
+    of generic reuse tags in our document format which would allow the
+    presenter to transclude arbitrary parts of other \mxp presentations. While
+    our focus has been on the cross-media aspect of resources that can be used
+    in a presentation, we might also investigate the cross-media publishing
+    aspect via alternative compiler output formats.
 
     We are aware that the current authoring of \mxp presentations has some
     usability issues. The average presenter cannot be expected to construct an
@@ -784,7 +786,7 @@
     TODO ... or this?
 
     \mxp tries to be an alternative unlike other alternatives, stepping away
-    from the classic slide format and introducing a plugin system to allow
+    from the classic slide format and introducing a plug-in system to allow
     literally anything you can think of. The obvious choices are
     visualisations, animations, layout and the embedding of various media such
     as video, but it can also provide interaction with the audience, allow

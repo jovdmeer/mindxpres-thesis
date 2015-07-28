@@ -91,45 +91,73 @@
    allowing the author of a presentation to focus on the content while \mxp
    takes care of the layout. The way it does this is currently mostly through
    the compiler, which decides the width, height and coordinates of content,
-   relative to the container the content belongs to. The plugins responsible
+   relative to the container the content belongs to. The plug-ins responsible
    for handling components and containers currently don't mess with those
    settings, but technically, they could. The compiler decides the measurements
-   and coordinates based on templates (TODO ist waar?). The solution we were
-   looking for was a layout engine that could take any content and put it in an
-   appropriate layout without any directions from the user. As such, we had to
-   enhance \mxp's layout engine to use constraints, based on the size of the
-   content, and try to find an optimal position for every component it is
-   given.
+   and coordinates based on templates. The solution we were looking for was a
+   layout engine that could take any content and put it in an appropriate
+   layout without any directions from the user. As such, we had to enhance
+   \mxp's layout engine to use constraints, based on the size of the content,
+   and try to find an optimal position for every component it is given.
 
-   We did this by extending the `slide' plugin (TODO echt?). This plugin
-   behaved fairly straightforward before in that it added a title if necessary,
-   and then just put all enclosed content on the slide where and how the
-   compiler had said it should be. Our implementation instead uses the
-   compiler's numbers to decide relative locations between components, as well
-   as size ratios, and then finds a way to display those components in a way
-   that the display order makes sense (or at least matches the intended order),
-   that no overlapping occurs (since we don't have the animations that \ppt
-   might have used to display one piece of information and then another on top
-   of it), and resizing everything if necessary in order to fit within the
-   specified container. While this may seem like a bad idea since content can
-   get illegibly small this way, keep in mind that we can rely on the ZUI to
-   focus on each component separately, or on groups of components, while \ppt
-   obviously can only display the whole slide at once.
+   We did this by creating an invisible container plug-in. Containers are a way
+   of grouping components, other containers, etc. in \mxp. This means they have
+   control over their child elements, which gives us the opportunity to
+   override the layout of those elements. A container plugin thus allows us to
+   implement our own layout system. Since it's a new element, it doesn't
+   override existing elements as it would have done if we had, for example,
+   rewritten the `slide' plugin. The user can decide for themself whether or
+   not to use it, and it can be used anywhere in the presentation: wrap the
+   whole presentation in it, or just a small part, whichever works best for
+   your purposes. It also won't break existing presentations that don't use it,
+   while those presentations can very easily be altered to take advantage of
+   it.
+
+   An important aspect of this is that containers can be nested. This means we
+   can create slide-based presentations, which can contain our auto-layout
+   container, which then contains the slide's contents, thus creating an
+   optimal layout of the content per-slide. Another way of using it could be
+   without slides, throwing all content together in one auto-layout container,
+   and letting it take care of the layout for the whole presentation at once.
+   It should be noted here that the auto-layout container makes each of its
+   child nodes focusable separately, to compensate for arbitrary resizing it
+   may perform on large objects in order to fit them next to other content, by
+   using the focus functionality to automatically zoom into these components
+   when necessary.
+  
+   We call it an \emph{invisible} container plug-in because it does not
+   introduce any visual content, shape or indication for itself. Compare with
+   the \emph{slide} plug-in which obviously puts some kind of slide-look around
+   the content it encompasses, and it becomes clear what we mean by this:
+   although the content within is obviously affected by our plug-in, there is
+   no visible indication of its presence to the audience.
+
+   The plug-in uses the compiler's numbers to decide relative locations between
+   components, as well as size ratios, and then finds a way to display those
+   components in a way that the display order makes sense (or at least matches
+   the intended order as closely as possible), that no overlapping occurs
+   (since we don't have the animations that \ppt might have used to display one
+   piece of information and then another on top of it), and resizing everything
+   if necessary in order to fit within the specified container. While this may
+   seem like a bad idea since content can get illegibly small this way, keep in
+   mind that we can rely on the ZUI to focus on each component separately, or
+   on groups of components, while \ppt obviously can only display the whole
+   slide at once.
 
    TODO we need more content here
 
-%   15:50 <omega> zeg, ik zit nu al een hele tijd thesis te schrijven en de laatste paar dagen vooral te zeveren over layout, maar intussen doe ik nog ni echt iets van layout, met t gedacht van ik schrijf daar binnenkort ne mindxpres plugin voor en klaar
+%   15:50 <omega> zeg, ik zit nu al een hele tijd thesis te schrijven en de laatste paar dagen vooral te zeveren over layout, maar intussen doe ik nog ni echt iets van layout, met t gedacht van ik schrijf daar binnenkort ne mindxpres plug-in voor en klaar
 %   15:51 <omega> maar wordt layout momenteel eig ni mostly door de compiler gedaan?
-%   15:52 <omega> ben zo eens naar de presentation.js libs en code gaan kijken, en ik zie ni direct een manier om ne plugin layout te laten doen, aangezien plugins mostly component-specifiek zijn en ni alle componenten kunnen aansturen
-%   15:53 <omega> dus klopt het dat ik ofwel de compiler moet aanpassen, ofwel presentation.js hacken om dat soort plugins toe te laten?
-%   15:53 <omega> of laat het dat soort plugins al toe maar zijn er gewoon nog geen?
-%   16:30 <omega> de 'structured' plugin doet wel layout van slides, maar binnen die slides zie ik niet meteen een systeem dat layout regelt, met templates of otherwise, het pakt gewoon de coordinaten en afmetingen die de compiler bepaald heeft
-%   16:31 <omega> al zou die slide plugin wel *kunnen* prutsen met die layout... dus mss moet ik gwn de slide plugin uitbreiden/hacken/vervangen
-%   13:22 <reinout> ik zou een container plugin maken
+%   15:52 <omega> ben zo eens naar de presentation.js libs en code gaan kijken, en ik zie ni direct een manier om ne plug-in layout te laten doen, aangezien plug-ins mostly component-specifiek zijn en ni alle componenten kunnen aansturen
+%   15:53 <omega> dus klopt het dat ik ofwel de compiler moet aanpassen, ofwel presentation.js hacken om dat soort plug-ins toe te laten?
+%   15:53 <omega> of laat het dat soort plug-ins al toe maar zijn er gewoon nog geen?
+%   16:30 <omega> de 'structured' plug-in doet wel layout van slides, maar binnen die slides zie ik niet meteen een systeem dat layout regelt, met templates of otherwise, het pakt gewoon de coordinaten en afmetingen die de compiler bepaald heeft
+%   16:31 <omega> al zou die slide plug-in wel *kunnen* prutsen met die layout... dus mss moet ik gwn de slide plug-in uitbreiden/hacken/vervangen
+%   13:22 <reinout> ik zou een container plug-in maken
 %   13:22 <reinout> gelijk de slide
 %   13:22 <reinout> maar dan onzichtbaar
 %   13:23 <reinout> want containers kan je nesten
 %   13:23 <reinout> dus een slide kan bv uw layout container bevatten, die dan de children een layout geeft
 %   13:23 <reinout> maar op die manier is uw layout ding bruikbaar buiten slides
-%   13:24 <reinout> (alternatief was uw layout stuff in de slide plugin steken)
-%   13:31 <omega> oeh, cool idee indeed, beter dan de slide plugin abusen
+%   13:24 <reinout> (alternatief was uw layout stuff in de slide plug-in steken)
+%   13:31 <omega> oeh, cool idee indeed, beter dan de slide plug-in abusen
