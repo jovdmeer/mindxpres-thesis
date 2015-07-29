@@ -69,7 +69,7 @@
    use cases and \mxp plug-ins and followed by a discussion of future work.
    %</TODO rework>
 
-   A specific issue with slideware we'd like to solve in this thesis, is the
+   A specific issue with slideware we'd like to focus on in this thesis, is the
    trouble with layout in presentations. It can be hard to display the content
    you want in a way that's clear, informative and nice to look at. The vast
    majority of layouts created today is mostly done by hand: a human graphic
@@ -804,9 +804,58 @@
   \section{Layout Algorithms}
    \label{layout-algorithms}
 
-   TODO stuff from papers about automatic layout goes here
+   Proper layout is incredibly important when trying to transfer knowledge and
+   information through written and visual media. Layout can help clarify
+   boundaries and relations between pieces of information, by grouping and
+   separating them appropriately. Creating a good layout is almost never easy.
+   People often spend more time on the layout of their presentation than the
+   content. Many software packages have been developed to make this process
+   easier, to get better results, to give more or less control to the creators.
+   Many different approaches have been taken, and yet most of them involve
+   having a human being make the final decisions on the layout. This makes most
+   --- if not all --- of these approaches flawed. 
 
-   \citep{hurst-1}
+   There are tools like \ppt, which give you some guidelines and some templates
+   but generally let you do your own thing. If your own thing is entirely
+   different from any best practices on layout, nothing will stop you. Other
+   tools like \latex give you complete control over every aspect of the layout,
+   while setting some sensible defaults so that you can get a good-looking
+   layout without much effort, while still letting you do whatever you want
+   once you overcome the steep learning curve that separates the casual users
+   from the experts. There are tools that combine the power of \latex with the
+   comfort of WYSIWYG editors, bringing the casuals a bit closer to the
+   experts. But all of those tools have one thing in common: every aspect of
+   every layout they create has, at some point, been designed and decided upon
+   by a human being. Aesthetics is a hard concept to grasp, and even harder to
+   put into simple terms, so it should come as no surprise that few people have
+   bothered to program a computer to understand it. After all, to create an
+   algorithm for a concept consists of nothing more than finding the simplest
+   terms to describe that concept.
 
-   \citep{lok-1}
+   When we look to other technologies, we do find some automatic layout
+   implementations. For example, the web has had to adapt to mobile devices
+   with small screens over the past few years, and has done this gracefully by
+   creating the concept of responsive design. In short, this allows websites to
+   adapt their layout to any screen, no matter the size. While this is often a
+   hard-coded difference, where effectively two or more versions of the same
+   webpage are created aimed at different screen sizes, some websites take a
+   more dynamic approach based on constraints. As the space the page is to be
+   displayed on gets smaller, the layout algorithm may decide to display
+   content below other content instead of side-by-side, it may scale images to
+   fit the screen, it may even switch fonts and font sizes if necessary.
+
+   This constraint-based technique is described in a few papers
+   \citep{lok-1,hurst-1}, but has --- to our knowledge --- not been applied in
+   any presentation software so far. This is surprising, as presentations often
+   look like they could use some of this magic. A proper constraint-based
+   layout algorithm could allow any user to drop content onto a slide, without
+   worrying about clarity or even legibility, and the algorithm could take care
+   of the rest. Of course, there are some limits in traditional slideware that
+   may hinder this approach: if a user decides to put more content on a slide
+   than there is physical room available, the algorithm could either make the
+   content smaller or split it across several slides, but either solution may
+   bring its own problems up. An advantage of ZUI's is that no matter how small
+   the content gets, we can still zoom in to make it clear again.
+
+   TODO more stuff from papers about automatic layout goes here
 
