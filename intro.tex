@@ -66,7 +66,7 @@
   have software either warn its users against these choices and practices, or
   --- even better --- have the software fix these problems automatically.
 
-  One of the primary goals of \mxp is to provide automatic layout, much like
+  One of the primary purposes of \mxp is to provide automatic layout, much like
   \latex does, ensuring that the content creator only has to worry about the
   actual content, while the software takes care of layout. In practice, both
   \latex and \mxp currently use template-based layouts, where the contents'
@@ -75,6 +75,15 @@
   that sooner or later you will struggle to get a certain image incorporated in
   the text correctly, ending up doing the layout yourself anyway, because the
   predefined template just doesn't work properly for your specific content.
+
+  Our goal is to eradicate those situations. Automatic layout should
+  dynamically adjust to any content it is given, no matter the size or aspect
+  ratio. This may seem hard, if you consider the limits of slides and the fact
+  that you can only fit so much content on them before they are full. this is
+  where another important aspect of \mxp comes into play: we are not
+  necessarily bound to the limits of slides. If we don't have to consider the
+  boundaries of traditional slides, we can fit content together in an
+  aesthetically pleasing way much easier, without having to scale anything.
 
   As such, the second part of this thesis focuses on implementing true
   automatic layout in \mxp. Again primarily to convince \ppt* users to switch,
