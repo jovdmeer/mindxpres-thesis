@@ -122,6 +122,26 @@
    tool for hypermedia-based presentations has further been investigated by
    Garcia \citep{garcia-1}.
 
+   %<TODO this is my stuff!>
+   \ppt* was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
+   had originally been developed as Presenter, but trademark issues caused a
+   name change early on. It was also originally build for the Macintosh, which
+   may seem surprising nowadays but was actually common practice back then
+   since the Macintosh was widely regarded as a better development environment,
+   more mature, more stable and capable of far better performance and
+   visualisations. Some may argue this still rings true today.
+
+   Since then, it has grown to be the world's most popular slide show
+   presentation program, alledgedly having been installed on over 1 billion
+   computers worldwide, and being used on average 350 times \emph{per second}
+   \citep{parks-1}. In 2012, it had a market share of 95\%, leaving the other
+   5\% to be shared by alternatives such as Apple's Keynote, Prezi, SlideRocket
+   and others. While this number is declining, it may not be going as fast as
+   many people think. As most readers of this thesis have heard before, over 30
+   million \ppt presentations are created every day, for all kinds of purposes,
+   with good and bad results both presentation-wise and goal-wise.
+   %</TODO this is my stuff!>
+
    Existing presentation tools require content to be duplicated for reuse,
    resulting in multiple redundant copies that need to be kept up to date.
    Even though some attempts have been made to address this issue, there is
@@ -197,28 +217,6 @@
    common sense. This has resulted in mindboggling layout choices involving
    enormous amounts of tiny text crammed onto one slide, or pictures strewn
    across a slide overwhelming the audience with too much information at once. 
-
-  \section{\ppt*}
-
-   \ppt* was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
-   had originally been developed as Presenter, but trademark issues caused a
-   name change early on. It was also originally build for the Macintosh, which
-   may seem surprising nowadays but was actually common practice back then
-   since the Macintosh was widely regarded as a better development environment,
-   more mature, more stable and capable of far better performance and
-   visualisations. Some may argue this still rings true today.
-
-   Since then, it has grown to be the world's most popular slide show
-   presentation program, alledgedly having been installed on over 1 billion
-   computers worldwide, and being used on average 350 times \emph{per second}
-   \citep{parks-1}. In 2012, it had a market share of 95\%, leaving the other
-   5\% to be shared by alternatives such as Apple's Keynote, Prezi, SlideRocket
-   and others. While this number is declining, it may not be going as fast as
-   many people think. As most readers of this thesis have heard before, over 30
-   million \ppt presentations are created every day, for all kinds of purposes,
-   with good and bad results both presentation-wise and goal-wise.
-
-%   TODO this probably needs more content.
 
   \section{New solutions}
 
@@ -807,13 +805,34 @@
    Proper layout is incredibly important when trying to transfer knowledge and
    information through written and visual media. Layout can help clarify
    boundaries and relations between pieces of information, by grouping and
-   separating them appropriately. Creating a good layout is almost never easy.
-   People often spend more time on the layout of their presentation than the
-   content. Many software packages have been developed to make this process
-   easier, to get better results, to give more or less control to the creators.
-   Many different approaches have been taken, and yet most of them involve
-   having a human being make the final decisions on the layout. This makes most
-   --- if not all --- of these approaches flawed. 
+   separating them appropriately. Layout is one component of a presentation's
+   design, that --- combined with other decisions --- determines the number and
+   nature of the visual representations of the information the creator wants to
+   communicate, along with its format\footnote{The way the visual objects are
+   realized (e.g. as text, graphics, UI widgets\ldots), and their attributes
+   (e.g. color, texture, font\ldots)}. The layout of a presentation can have a
+   tremenduous influence on its effectiveness in communicating information to,
+   and obtaining information from, the audience it is meant to interact with.
+   The importance of individual objects can be emphasized or minimized, and the
+   connection between obects can be clarified or blurred. A well laid out
+   presentation can provide a narrative for the viewer to discover, inferring
+   correct links between the objects along the way, and to accomplish tasks
+   quickly and correctly, increasing the presentation's effectiveness.
+  
+   Creating a good layout is almost never easy. People often spend more time on
+   the layout of their presentation than the content. Most, if not all,
+   decisions in layout are made by human beings. Some of them are professional
+   designers who spend years learning and figuring out how to create effective
+   layouts, and even then they may take hours or days to create even a single
+   screen of a presentation. In fact, the more someone knows about proper
+   layout and design, the more time they may spend perfectioning their work.
+   However, sometimes time-critical information must be communicated and the
+   layout process is too expensive and too slow to address these situations.
+   This can be a serious problem (see also section \ref{nasa}). Many software
+   packages have been developed to make this process easier, to get better
+   results, to give more or less control to the creators. Many different
+   approaches have been taken, and yet most of them still involve having a
+   human being make the final decisions on the layout.
 
    There are tools like \ppt, which give you some guidelines and some templates
    but generally let you do your own thing. If your own thing is entirely
@@ -855,7 +874,14 @@
    than there is physical room available, the algorithm could either make the
    content smaller or split it across several slides, but either solution may
    bring its own problems up. An advantage of ZUI's is that no matter how small
-   the content gets, we can still zoom in to make it clear again.
+   the content gets, we can still zoom in to make it clear again\footnote{It
+   should be noted that \mxp in its current form does not support this level of
+   zooming. While the software can zoom out to provide an overview of the
+   presentation while zooming in on the separate components, it is not yet
+   possible to zoom in or out extremely to reveal 'hidden' parts of the
+   presentation. This is something we encourage to look into and change,
+   because it can greatly improve both our layout solution as well as the whole
+   \mxp experience in general.}.
 
 %   TODO more stuff from papers about automatic layout goes here
 
