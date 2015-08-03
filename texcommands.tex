@@ -1,13 +1,16 @@
 % vim:ts=1:et:nospell:spelllang=en_gb:ft=tex
 
 \usepackage{xspace}
+\usepackage{xparse}
 
 \usepackage{listings}
 \usepackage{color}
 
 \newcommand\code{\texttt}
-\newcommand\ppt{Microsoft PowerPoint\xspace}
-\newcommand\mxp{MindXpres\xspace}
+\NewDocumentCommand\ppt{s}{\IfBooleanTF#1{{Microsoft PowerPoint}\xspace}{{PowerPoint}\xspace}}
+%\newcommand\ppt{Microsoft PowerPoint\xspace}
+%\newcommand\ppt*{PowerPoint\xspace}
+\newcommand\mxp{{MindXpres}\xspace}
 \newcommand\latex{\LaTeX\xspace}
 \newcommand\lstref[1]{Listing \ref{lst:#1}}
 \newcommand\figref[1]{Figure \ref{fig:#1}}
