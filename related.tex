@@ -799,8 +799,7 @@
 
 % --- END my crappy stuff
 
-  \section{Layout Algorithms}
-   \label{layout-algorithms}
+  \section{Layout}
 
    Proper layout is incredibly important when trying to transfer knowledge and
    information through written and visual media. Layout can help clarify
@@ -845,11 +844,14 @@
    comfort of WYSIWYG editors, bringing the casuals a bit closer to the
    experts. But all of those tools have one thing in common: every aspect of
    every layout they create has, at some point, been designed and decided upon
-   by a human being. Aesthetics is a hard concept to grasp, and even harder to
-   put into simple terms, so it should come as no surprise that few people have
-   bothered to program a computer to understand it. After all, to create an
-   algorithm for a concept consists of nothing more than finding the simplest
-   terms to describe that concept.
+   by a human being.
+  
+   Aesthetics are a natural phenomenon, and the creation of aesthetically
+   pleasing layouts is therefore a manifestation of our instincts. As with most
+   instincts, it has proven difficult to translate this into a concept that can
+   be understood by a computer. Moreover, it is still difficult to explain it
+   in human terms, which --- according to a popular quote often attributed to
+   Albert Einstein --- proves we don't fully understand it ourselves.
 
    When we look to other technologies, we do find some automatic layout
    implementations. For example, the web has had to adapt to mobile devices
@@ -884,4 +886,24 @@
    \mxp experience in general.}.
 
 %   TODO more stuff from papers about automatic layout goes here
+
+   \subsection{Algorithms}
+
+    When researching layout algorithms, one will often come across the very
+    active field of graph layout \citep{battista-1}. We will not go into the
+    specifics of this field, as most of the issues with which it is concerned
+    are specific to problems caused by the explicit visual representation of
+    graph edges --- for example, the minimization of edge crossing
+    \citep{battista-2, shahrokhi-1}. The same applies to automated layout as
+    referring to automated circuit layout for VLSI chip fabrication
+    \citep{hu-1, lengauer-1} as well as automated placement of pieces to be cut
+    from a bolt of cloth used to produce clothing \citep{milenkovic-1}.
+    Contrary to presentation layouts (including graph layouts), these layouts
+    are designed to meet the requirements of a fabrication process, rather than
+    to make them understandable to humans. While some techniques used therein
+    definitely apply to our more general problem of automated presentation
+    layout (e.g. general constraint solvers) others decidedly do not (e.g.
+    bin-packing techniques \citep{hofri-1} that result in minimal area layouts
+    at the expense of maintaining visually obvious relationships between
+    objects).
 
