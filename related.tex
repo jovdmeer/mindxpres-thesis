@@ -61,17 +61,37 @@
    evaluation of new concepts for the representation, visualisation and
    interaction with content.
    
-   TODO
-   After
-   introducing existing slideware solutions, we discuss the requirements for
-   next generation presentation tools. This is followed by a description of the
-   extensible \mxp architecture and its plug-in mechanism. The web
+   %<TODO rework>
+   After introducing existing slideware solutions, we discuss the requirements
+   for next generation presentation tools. This is followed by a description of
+   the extensible \mxp architecture and its plug-in mechanism. The web
    technology-based implementation of \mxp is validated based on a number of
    use cases and \mxp plug-ins and followed by a discussion of future work.
-   TODO
+   %</TODO rework>
+
+   A specific issue with slideware we'd like to focus on in this thesis, is the
+   trouble with layout in presentations. It can be hard to display the content
+   you want in a way that's clear, informative and nice to look at. The vast
+   majority of layouts created today is mostly done by hand: a human graphic
+   designer or ``layout expert'' makes most, if not all, of the decisions about
+   the position and size of the objects to be presented \citep{lok-1}. Most
+   software offers some templates, allowing you to drop pictures and text into
+   predefined slots and places on a slide, but then those templates have been
+   defined by someone else too. Computer-generated layout is rare and usually
+   not quite up to the task.
+  
+   \mxp is among the software packages offering templates, in that layout is
+   handled by whichever plug-in you choose, but so far no plug-ins have defined
+   dynamic layout algorithms, rather sticking to predefined ways to put text
+   and pictures on slides. But as \mxp does not constrain us to the limits of
+   slides, this should be seen as an opportunity to offer dynamic layout as
+   well. After all, if we're not limited to a certain area within which our
+   content should fit, it should be much easier to put content next to each
+   other in a way that makes sense.
 
   \section{Existing solutions}
 
+   %<TODO rework>
    The impact, benefits and issues of slideware have been studied ever since
    digital slideware has been introduced. While some studies acknowledge
    slideware as a teaching aid \citep{holzinger-1}, Tufte \citep{tufte-1}
@@ -98,9 +118,29 @@
    NextSlidePlease \citep{spicer-1} allows users to create a weighted graph of
    slides and may suggest navigational paths based on the link weights and the
    remaining presentation time. Microsoft follows this trend with their
-   HyperSlides \citep{edge-1} project. The potential of \ppt as an authoring
+   HyperSlides \citep{edge-1} project. The potential of \ppt* as an authoring
    tool for hypermedia-based presentations has further been investigated by
    Garcia \citep{garcia-1}.
+
+   %<TODO this is my stuff!>
+   \ppt* was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
+   had originally been developed as Presenter, but trademark issues caused a
+   name change early on. It was also originally build for the Macintosh, which
+   may seem surprising nowadays but was actually common practice back then
+   since the Macintosh was widely regarded as a better development environment,
+   more mature, more stable and capable of far better performance and
+   visualisations. Some may argue this still rings true today.
+
+   Since then, it has grown to be the world's most popular slide show
+   presentation program, alledgedly having been installed on over 1 billion
+   computers worldwide, and being used on average 350 times \emph{per second}
+   \citep{parks-1}. In 2012, it had a market share of 95\%, leaving the other
+   5\% to be shared by alternatives such as Apple's Keynote, Prezi, SlideRocket
+   and others. While this number is declining, it may not be going as fast as
+   many people think. As most readers of this thesis have heard before, over 30
+   million \ppt presentations are created every day, for all kinds of purposes,
+   with good and bad results both presentation-wise and goal-wise.
+   %</TODO this is my stuff!>
 
    Existing presentation tools require content to be duplicated for reuse,
    resulting in multiple redundant copies that need to be kept up to date.
@@ -164,33 +204,23 @@
    presentation formats. We therefore see a need for an open presentation
    platform such as \mxp which supports innovation by providing the necessary
    modularity and interoperability \citep{bush-1}.
+   %</TODO rework>
 
-  \section{\ppt}
-
-   \ppt was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
-   had originally been developed as Presenter, but trademark issues caused a
-   name change early on. It was also originally build for the Macintosh, which
-   may seem surprising nowadays but was actually common practice back then
-   since the Macintosh was widely regarded as a better development environment,
-   more mature, more stable and capable of far better performance and
-   visualisations. Some may argue this still rings true today.
-
-   Since then, it has grown to be the world's most popular slide show
-   presentation program, alledgedly having been installed on over 1 billion
-   computers worldwide, and being used on average 350 times \emph{per second}
-   \citep{parks-1}. In 2012, it had a market share of 95\%, leaving the other
-   5\% to be shared by alternatives such as Apple's Keynote, Prezi, SlideRocket
-   and others. While this number is declining, it may not be going as fast as
-   many people think. As most readers of this thesis have heard before, over 30
-   million \ppt presentations are created every day, for all kinds of purposes,
-   with good and bad results both presentation-wise and goal-wise.
-
-   TODO this probably needs more content.
-
-TODO rework below
+   It is perhaps surprising that, to our knowledge, currently no tools exist to
+   calculate dynamic layouts of content in slideware. Existing solutions
+   include template systems, sometimes very fine-grained like \latex allowing
+   you to define templates for every single layout choice, usually more coarse
+   like \ppt* or Apple Keynote using Master Slides to define different layouts
+   on a per-slide basis, and always with the option of letting the user
+   customize the layout by hand, literally manually moving the content to the
+   exact place where we want it, unhindered by style guides, good practices or
+   common sense. This has resulted in mindboggling layout choices involving
+   enormous amounts of tiny text crammed onto one slide, or pictures strewn
+   across a slide overwhelming the audience with too much information at once. 
 
   \section{New solutions}
 
+   %<TODO rework>
    We now introduce a number of requirements to support a broad range of
    presentation styles and visualisations which have been compiled based on a
    review of the more recent presentation solutions presented in the previous
@@ -453,9 +483,9 @@ TODO rework below
      there is an XML Schema which is augmented with additional constraints
      provided by the plug-ins. After validation, the document is parsed and
      discovered tags might trigger preprocessor actions by the plug-ins such as
-     the extraction of data from referenced legacy document formats (e.g.
-     \ppt or Excel) or the conversion of an unsupported video format. The
-     tag is then converted to HTML5 by simply encoding the information in the
+     the extraction of data from referenced legacy document formats (e.g.  \ppt
+     or Excel) or the conversion of an unsupported video format. The tag is
+     then converted to HTML5 by simply encoding the information in the
      attributes of a \code{div} element. The HTML5 standard allows custom
      attributes if they start with a \code{data-} prefix. \lstref{xml-2} shows
      parts of the transformed XML document shown in \lstref{xml-1}. Note that
@@ -614,8 +644,8 @@ TODO rework below
      When videos are used in educational settings, we often need more
      functionality than what is offered by the average video player
      \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     \lstref{roels-1-fig-5} with the possibility to overlay a video with text or
-     arbitrary shapes. This overlay functionality can be used as a basic
+     \lstref{roels-1-fig-5} with the possibility to overlay a video with text
+     or arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
 
@@ -706,13 +736,13 @@ TODO rework below
     plug-in level. For instance, the image or video plug-in can visualise (and
     enhance) external resources, a dictionary plug-in might retrieve
     definitions on demand via a web service or we might create a plug-in that
-    allows us to import content (e.g. \ppt slides) from legacy documents
-    at compile time. Nevertheless, we are currently investigating the
-    introduction of generic reuse tags in our document format which would allow
-    the presenter to transclude arbitrary parts of other \mxp presentations.
-    While our focus has been on the cross-media aspect of resources that can be
-    used in a presentation, we might also investigate the cross-media
-    publishing aspect via alternative compiler output formats.
+    allows us to import content (e.g. \ppt slides) from legacy documents at
+    compile time. Nevertheless, we are currently investigating the introduction
+    of generic reuse tags in our document format which would allow the
+    presenter to transclude arbitrary parts of other \mxp presentations. While
+    our focus has been on the cross-media aspect of resources that can be used
+    in a presentation, we might also investigate the cross-media publishing
+    aspect via alternative compiler output formats.
 
     We are aware that the current authoring of \mxp presentations has some
     usability issues. The average presenter cannot be expected to construct an
@@ -730,7 +760,7 @@ TODO rework below
 
    \subsection{Conclusion}
 
-    TODO do we need this?
+%    TODO do we need this?
    
     We have presented \mxp, an HTML5 and web technology-based presentation
     platform addressing the lacking extensibility of existing slideware
@@ -748,12 +778,13 @@ TODO rework below
     unification of existing presentation concepts as well as for the rapid
     prototyping and investigation of new ideas for next generation cross-media
     presentation solutions.
+   %</TODO rework>
 
 % --- BEGIN my crappy stuff
-    TODO ... or this?
+%    TODO ... or this?
 
     \mxp tries to be an alternative unlike other alternatives, stepping away
-    from the classic slide format and introducing a plugin system to allow
+    from the classic slide format and introducing a plug-in system to allow
     literally anything you can think of. The obvious choices are
     visualisations, animations, layout and the embedding of various media such
     as video, but it can also provide interaction with the audience, allow
@@ -767,4 +798,112 @@ TODO rework below
     Master thesis, and has since been built upon by himself and other students.
 
 % --- END my crappy stuff
+
+  \section{Layout}
+
+   Proper layout is incredibly important when trying to transfer knowledge and
+   information through written and visual media. Layout can help clarify
+   boundaries and relations between pieces of information, by grouping and
+   separating them appropriately. Layout is one component of a presentation's
+   design, that --- combined with other decisions --- determines the number and
+   nature of the visual representations of the information the creator wants to
+   communicate, along with its format\footnote{The way the visual objects are
+   realized (e.g. as text, graphics, UI widgets\ldots), and their attributes
+   (e.g. color, texture, font\ldots)}. The layout of a presentation can have a
+   tremenduous influence on its effectiveness in communicating information to,
+   and obtaining information from, the audience it is meant to interact with.
+   The importance of individual objects can be emphasized or minimized, and the
+   connection between obects can be clarified or blurred. A well laid out
+   presentation can provide a narrative for the viewer to discover, inferring
+   correct links between the objects along the way, and to accomplish tasks
+   quickly and correctly, increasing the presentation's effectiveness.
+  
+   Creating a good layout is almost never easy. People often spend more time on
+   the layout of their presentation than the content. Most, if not all,
+   decisions in layout are made by human beings. Some of them are professional
+   designers who spend years learning and figuring out how to create effective
+   layouts, and even then they may take hours or days to create even a single
+   screen of a presentation. In fact, the more someone knows about proper
+   layout and design, the more time they may spend perfectioning their work.
+   However, sometimes time-critical information must be communicated and the
+   layout process is too expensive and too slow to address these situations.
+   This can be a serious problem (see also section \ref{nasa}). Many software
+   packages have been developed to make this process easier, to get better
+   results, to give more or less control to the creators. Many different
+   approaches have been taken, and yet most of them still involve having a
+   human being make the final decisions on the layout.
+
+   There are tools like \ppt, which give you some guidelines and some templates
+   but generally let you do your own thing. If your own thing is entirely
+   different from any best practices on layout, nothing will stop you. Other
+   tools like \latex give you complete control over every aspect of the layout,
+   while setting some sensible defaults so that you can get a good-looking
+   layout without much effort, while still letting you do whatever you want
+   once you overcome the steep learning curve that separates the casual users
+   from the experts. There are tools that combine the power of \latex with the
+   comfort of WYSIWYG editors, bringing the casuals a bit closer to the
+   experts. But all of those tools have one thing in common: every aspect of
+   every layout they create has, at some point, been designed and decided upon
+   by a human being.
+  
+   Aesthetics are a natural phenomenon, and the creation of aesthetically
+   pleasing layouts is therefore a manifestation of our instincts. As with most
+   instincts, it has proven difficult to translate this into a concept that can
+   be understood by a computer. Moreover, it is still difficult to explain it
+   in human terms, which --- according to a popular quote often attributed to
+   Albert Einstein --- proves we don't fully understand it ourselves.
+
+   When we look to other technologies, we do find some automatic layout
+   implementations. For example, the web has had to adapt to mobile devices
+   with small screens over the past few years, and has done this gracefully by
+   creating the concept of responsive design. In short, this allows websites to
+   adapt their layout to any screen, no matter the size. While this is often a
+   hard-coded difference, where effectively two or more versions of the same
+   webpage are created aimed at different screen sizes, some websites take a
+   more dynamic approach based on constraints. As the space the page is to be
+   displayed on gets smaller, the layout algorithm may decide to display
+   content below other content instead of side-by-side, it may scale images to
+   fit the screen, it may even switch fonts and font sizes if necessary.
+
+   This constraint-based technique is described in a few papers
+   \citep{lok-1,hurst-1}, but has --- to our knowledge --- not been applied in
+   any presentation software so far. This is surprising, as presentations often
+   look like they could use some of this magic. A proper constraint-based
+   layout algorithm could allow any user to drop content onto a slide, without
+   worrying about clarity or even legibility, and the algorithm could take care
+   of the rest. Of course, there are some limits in traditional slideware that
+   may hinder this approach: if a user decides to put more content on a slide
+   than there is physical room available, the algorithm could either make the
+   content smaller or split it across several slides, but either solution may
+   bring its own problems up. An advantage of ZUI's is that no matter how small
+   the content gets, we can still zoom in to make it clear again\footnote{It
+   should be noted that \mxp in its current form does not support this level of
+   zooming. While the software can zoom out to provide an overview of the
+   presentation while zooming in on the separate components, it is not yet
+   possible to zoom in or out extremely to reveal 'hidden' parts of the
+   presentation. This is something we encourage to look into and change,
+   because it can greatly improve both our layout solution as well as the whole
+   \mxp experience in general.}.
+
+%   TODO more stuff from papers about automatic layout goes here
+
+   \subsection{Algorithms}
+
+    When researching layout algorithms, one will often come across the very
+    active field of graph layout \citep{battista-1}. We will not go into the
+    specifics of this field, as most of the issues with which it is concerned
+    are specific to problems caused by the explicit visual representation of
+    graph edges --- for example, the minimization of edge crossing
+    \citep{battista-2, shahrokhi-1}. The same applies to automated layout as
+    referring to automated circuit layout for VLSI chip fabrication
+    \citep{hu-1, lengauer-1} as well as automated placement of pieces to be cut
+    from a bolt of cloth used to produce clothing \citep{milenkovic-1}.
+    Contrary to presentation layouts (including graph layouts), these layouts
+    are designed to meet the requirements of a fabrication process, rather than
+    to make them understandable to humans. While some techniques used therein
+    definitely apply to our more general problem of automated presentation
+    layout (e.g. general constraint solvers) others decidedly do not (e.g.
+    bin-packing techniques \citep{hofri-1} that result in minimal area layouts
+    at the expense of maintaining visually obvious relationships between
+    objects).
 

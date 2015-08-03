@@ -2,31 +2,119 @@
 
  \chapter{Implementation}
 
+  To implement the \emph{ppt2mxp} conversion tool that is the subject of this
+  thesis, we chose the Java programming language \citep{gosling-1}, version 8.
+  Although the author has significant experience with lots of other, more
+  interesting, more compelling, more fun languages, several reasons pushed us
+  towards Java, the least of them being its ease of use. Of course, Java
+  \emph{is} easy to use --- it would not have become as popular as it is
+  nowadays if it wasn't. It has a fairly clear and logical syntax, a consistent
+  structure, and an extensive standard library. At conception in 1995, its
+  performance was abysmal, but through the years it has steadily improved and
+  somewhere between Java 5 and 6 it became an industry standard.
+
+  Quite a number of IDEs have been created to further improve developers'
+  experience working with Java. Netbeans, Eclipse and IntelliJ come to mine,
+  although there are many others, and of course you can still write Java using
+  a standard (or advanced) text editor such as Notepad or VIM. While the author
+  usually prefers the latter for any kind of text editing --- this very
+  document was written entirely using VIM --- the weapon of choice when it
+  comes to Java is currently IntelliJ. The way IntelliJ practically writes more
+  than half of the code automatically for you is something no other IDE has
+  been able to match. Naturally, this is the author's personal opinion and
+  should not be seen as fact, but if you're looking for a new Java IDE, it's
+  definitely worth checking out. The prospect of using IntelliJ for this thesis
+  has definitely contributed to the decision of using Java. It should be noted
+  that, had another Java IDE been required, this thesis might never have seen
+  the light of day.
+
+  The vast and extensive amount of libraries available for Java was obviously
+  one of the more important reasons to make this choice. The existence of the
+  Apache POI library (see section \ref{poi}) was a huge help in reaching our
+  goal; without it, we would have had to figure out the very obfuscated .ppt
+  file format structure, which undoubtedly would have taken up more time than
+  was available to us. Other libraries like Spring, which allows the programmer
+  to use and reuse components without writing complex systems to instantiate
+  them, further increased our resolve to make Java our primary technology
+  choice.
+
+  However, Java is not the only technology used here. \mxp is written entirely
+  in HTML5, so any tool that somehow relates to \mxp sooner or later needs to
+  use HTML5 as well. The widely accepted HTML5 standard makes \mxp
+  presentations highly portable and runnable on any device with a recent web
+  browser, including smartphones and tablets \citep{roels-1}.
+
+  In the following sections we discuss how the various technologies were used
+  to create the \emph{ppt2mxp} tool.
+
   \section{Taking \ppt apart}
+   \label{poi}
+
+   When converting one file format into another, the first part of the process
+   involves getting the data you need out of the original file. This can be
+   very complicated, as some --- usually proprietary --- file formats are
+   deliberately designed to discourage this. They obfuscate data, encrypt it,
+   and structure it in illogical and unexpected ways, amongst other techniques.
+   The \ppt file format unfortunately is such a format, as Microsoft wouldn't
+   want to risk other companies making software that would work with \ppt
+   files. Of course, over the years people have managed to crack the format,
+   enabling the conversion of \ppt presentations into other formats, although
+   the conversion does not usually guarantee to yield results that mimic the
+   original version perfectly. Luckily, we don't want a perfect conversion, we
+   want a better one.
 
    We found Apache POI library very helpful in this part of the implementation.
    The POI Library --- formerly ''Poor Obfuscation Implementation''
    \citep{sundaram-1} --- is a Java library that provides an API to access
    Microsoft document formats. The most mature (and most popular) part of it is
    HSSF, which stands for Horrible SpreadSheet Format, and which is used by
-   Java developers worldwide to access Microsoft Excel spreadsheet data. 
+   Java developers worldwide to access Microsoft Excel spreadsheet data, as
+   well as export data into Excel spreadsheets.
 
    For our purposes, we relied on HSLF (''Horrible SLideshow Format''), which
    gave us access to a \ppt presentation's contents in many ways. We could
    access all images at once, or every bit of text from the whole presentation,
    but the most interesting to us was the ability to access contents on a
-   per-slide basis.
+   per-slide basis. This allowed us to loop over the presentation's slides,
+   converting them one by one, by placing the contents of each slide in a \mxp
+   slide equivalent.
 
-   This allowed us to loop over the presentation's slides, converting them one
-   by one, by placing the contents of each slide in a \mxp slide equivalent.
+   That was sadly not the end of it. While HSLF does give us access to all the
+   text in a presentation, or per slide, it does not distinguish between
+   'normal' text and bullet lists, for example. This was a difference we had to
+   detect ourselves somehow. % TODO find out and explain how we do this.
+
+   Another challenge was dealing with animations and other ways people managed
+   to put way more content on one slide than would be advisable. The animations
+   could not be transferred to \mxp since \mxp has its own set of transitions.
+   It would technically be possible to implement additional animations as a
+   separate plug-in for \mxp to provide the equivalents of the animations in
+   \ppt*, but that is beyond the scope of this thesis. So we could not provide
+   the same animations, but some people use those animations not just to show
+   off but to actually show multiple pictures and blocks of text, one after the
+   other, on the same slide. Without animations, this content would either not
+   be visible or it would become a serious layout issue in \mxp. Our solution
+   proposes to limit the amount of objects one slide can contain, and any
+   additional content should be put on extra slides automatically. A downside
+   of this is that we currently have no way of guessing the correct order in
+   which the content should appear, so what may have been an intrinsic
+   choreography of pictures in \ppt may become an incoherent jumble of images
+   in \mxp. Another solution would be to scale all content until it all fits
+   next to each other on one slide, and then rely on the zoomable interface to
+   show the pictures one by one, but in this case the same problem with order
+   of appearance manifests itself. In the end, we decided it would be best to
+   accept that no conversion algorithm is going to be perfect, and the author
+   can always manually change the order around after the conversion is done.
 
   \section{Generating \mxp}
+
+%   TODO generating
 
    \subsection{Plain HTML5}
 
     Since the \mxp compiler was not functional during most of this thesis'
     implementation, we decided to generate an html file much like the \mxp
-    compiler would, including the \mxp JavaScript library and plugins. This
+    compiler would, including the \mxp JavaScript library and plug-ins. This
     required us to first find out how \mxp works on the inside, which proved to
     be a steep learning curve but gave us more insight into the software than
     we would've gotten if we only had to generate \mxp XML and leave the rest
@@ -34,9 +122,17 @@
 
    \subsection{\mxp XML}
 
+%    TODO XML
+
   \section{Creating layouts}
+
+%   TODO layout
 
    \subsection{Using constraints}
 
+%    TODO constraints
+
    \subsection{Other ways}
+
+%    TODO other ways
 

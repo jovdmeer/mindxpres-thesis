@@ -17,6 +17,18 @@ full: clean
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
 
+fv: full view
+
+$(project).bbl: db.bib
+	bibtex $(project)
+	bibtex $(project)
+	bibtex $(project)
+
+pdflatex:
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+	pdflatex $(latexopts) $(project)
+
 %.aux: %.tex
 	pdflatex $(latexopts) $(project)
 
@@ -38,8 +50,10 @@ edit:
 	vim $(files) -p
 	clear
 	grep --colour=always TODO $(files)
+	@echo "number of TODOs: "
+	@grep --colour=always TODO $(files) | wc -l
 
 file:
 	vim Makefile
 
-.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full
+.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex
