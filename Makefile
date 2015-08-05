@@ -24,6 +24,8 @@ $(project).bbl: db.bib
 	bibtex $(project)
 	bibtex $(project)
 
+bibtex: $(project).bbl
+
 pdflatex:
 	pdflatex $(latexopts) $(project)
 	pdflatex $(latexopts) $(project)
@@ -56,4 +58,4 @@ edit:
 file:
 	vim Makefile
 
-.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex
+.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex bibtex
