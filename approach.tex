@@ -115,9 +115,10 @@
    right time to incorporate automated layout generation into the conversion
    process. As we see later in section \ref{mxp-plugin}, it turned out it
    wasn't. In the end, no significant `optimizations' or manipilation of the
-   tree structure were implemented. Perhaps in the future some other problem
-   may be solved by utilizing this optimization phase, but in its current
-   incarnation it does not affect the end result in any way.
+   tree structure were implemented. Later on we would utilize this optimization
+   phase to enable automated layout in another way, without actually performing
+   the layout here, but at this point it would not affect the end result in any
+   way.
   
    To finish the conversion process, we can traverse our component tree and
    generate a \mxp presentation from it. This can be done in several ways,
@@ -143,27 +144,66 @@
    \label{compiler-optimizations}
 
    Since the conversion process resembles that of a compiler, it seemed logical
-   at first to make automatic layout a part of that process, as some kind of
-   `compiler optimization'.
+   at first to make automated layout a part of that process, as some kind of
+   `compiler optimization'. During this phase in the process, the component
+   tree would be manipulated and altered, with the express purpose to improve
+   upon its structure and properties, so as to get a better end result. Our
+   improvements in this case would then consist of the automated layout.
 
-   At first, we tried to traverse the component tree, giving its objects new
-   coordinates and sizes so that they would fit together on every slide as well
-   as possible. This seemed an easy solution, but the results were sub-optimal.
-   On top of that, we soon realised that we were in essence creating another
-   template out of which a presentation would be made, which was exactly the
-   opposite of what we were trying to do. As such, we abandoned this approach.
+   As a first attempt, we tried to traverse the component tree, giving each
+   object new coordinates and sizes based on their original coordinates and
+   sizes, as well as the coordinates and sizes of objects around them, so that
+   they would fit together on every slide as well as possible. This seemed an
+   easy solution, but the results were sub-optimal.  On top of that, we soon
+   realised that we were in essence creating another template-based system that
+   would generate slides and presentations based on predefined ratios and
+   rules, which was exactly the opposite of what we were trying to do. As such,
+   we abandoned this approach in favor of a constraint-based algorithm as
+   described in section \ref{related-algorithms}.
 
-   We then switched to a different method: defining constraints for every
-   component, in the form of margins, maximum sizes and other limits, and then
-   calculating a way to satisfy all constraints while fitting content together
-   on each slide. While this is clearly a better method, it turned out the
-   compiler optimization phase was not the best place in the process to take
-   care of this.
+   This involved a technique that at first sight may seem like yet another
+   template system, but actually is completely different: defining constraints
+   for every component, in the form of margins, maximum sizes and other limits,
+   and then calculating a way to satisfy all constraints while fitting content
+   together on each slide. The similarities with template-based systems exist
+   in the presence of predefined constraints, ratios and rules, but the
+   important difference is that these constraints are defined relative to the
+   component itself, without specifying anything absolute about location or
+   size. For example, we would retain the aspect ratio of an image, without
+   specifying its size, so that the image may be scaled to accomodate other
+   components in a dynamic layout. As another example, we might specify there
+   needs to be a certain distance between a component and any other components,
+   relative to its size. We could also specify a certain relation between
+   components, ensuring components stay in each others vicinity, one should
+   always be left of the other, no other components may be placed between them,
+   etc. Using these rules, we would then programmatically calculate the best
+   layout using those components, but without any other bias. These constraints
+   would be based only on the original situation, never on any suggestions from
+   us or other developers or authors, which makes all the difference with
+   traditional template-based layouts.
+ 
+   While this is clearly a better method, it turned out the compiler
+   optimization phase was not the best place in the process to take care of
+   this. While we had the necessary data to calculate the layout, we would have
+   had to generate the layout along with the \mxp presentation, after which the
+   presentation could not be altered anymore without breaking the layout. This
+   defeated the purpose of exporting to \mxp, which was to allow the presenter
+   to edit, extend and improve their presentation further using \mxp. What we
+   needed was a way to get \mxp itself to generate the layout, even if we
+   wanted to add components to the presentation afterwards, and even if we
+   wanted to create a new \mxp presentation instead of starting from \ppt.
+   After all, how would we convince people to drop \ppt for \mxp's automated
+   layout capabilities if they could only use that functionality by starting
+   from \ppt?
 
-   In the end, we decided to take a different approach, relying on the layout
-   engine of \mxp itself and enhancing that engine to create the automatic
-   layout we wanteD.
-
+   In the end, we decided to change our approach again. We took the automated
+   layout out of the conversion process, instead opting at this point in the
+   process to only add the necessary layout triggers in the form of an
+   enclosing XML tag around the components that would need to be included in
+   the automated layout. As such, the generated \mxp XML would include those
+   tags, and a plugin (described in section \ref{mxp-plugin}) would then
+   generate the layout at runtime.
+  
   \section{Using \mxp}
    \label{mxp-plugin}
 
@@ -223,6 +263,11 @@
    mind that we can rely on the ZUI to focus on each component separately, or
    on groups of components, while \ppt obviously can only display the whole
    slide at once.
+
+   In this manner we would generate \mxp presentations that were immediately
+   usable, while also being adjustable; and on top of this, we would allow the
+   automated layout process to be used in other \mxp presentations that were
+   not originally converted from \ppt slides.
 
 %   TODO we need more content here
 
