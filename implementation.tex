@@ -137,3 +137,18 @@
 
 %    TODO other ways
 
+%   15:50 <omega> zeg, ik zit nu al een hele tijd thesis te schrijven en de laatste paar dagen vooral te zeveren over layout, maar intussen doe ik nog ni echt iets van layout, met t gedacht van ik schrijf daar binnenkort ne mindxpres plug-in voor en klaar
+%   15:51 <omega> maar wordt layout momenteel eig ni mostly door de compiler gedaan?
+%   15:52 <omega> ben zo eens naar de presentation.js libs en code gaan kijken, en ik zie ni direct een manier om ne plug-in layout te laten doen, aangezien plug-ins mostly component-specifiek zijn en ni alle componenten kunnen aansturen
+%   15:53 <omega> dus klopt het dat ik ofwel de compiler moet aanpassen, ofwel presentation.js hacken om dat soort plug-ins toe te laten?
+%   15:53 <omega> of laat het dat soort plug-ins al toe maar zijn er gewoon nog geen?
+%   16:30 <omega> de 'structured' plug-in doet wel layout van slides, maar binnen die slides zie ik niet meteen een systeem dat layout regelt, met templates of otherwise, het pakt gewoon de coordinaten en afmetingen die de compiler bepaald heeft
+%   16:31 <omega> al zou die slide plug-in wel *kunnen* prutsen met die layout... dus mss moet ik gwn de slide plug-in uitbreiden/hacken/vervangen
+%   13:22 <reinout> ik zou een container plug-in maken
+%   13:22 <reinout> gelijk de slide
+%   13:22 <reinout> maar dan onzichtbaar
+%   13:23 <reinout> want containers kan je nesten
+%   13:23 <reinout> dus een slide kan bv uw layout container bevatten, die dan de children een layout geeft
+%   13:23 <reinout> maar op die manier is uw layout ding bruikbaar buiten slides
+%   13:24 <reinout> (alternatief was uw layout stuff in de slide plug-in steken)
+%   13:31 <omega> oeh, cool idee indeed, beter dan de slide plug-in abusen
