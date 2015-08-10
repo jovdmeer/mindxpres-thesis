@@ -196,9 +196,43 @@
 
     \subsubsection{Plain HTML5}
 
-     % TODO write about how we wrote HTML5 like neanderthals
+     After investigating the inner workings of \mxp and studying some example
+     presentations, we were ready to start generating our own presentations
+     based on our component tree. This meant every possible component would
+     have to be written out as valid HTML, with the necessary attributes for
+     each generated tag and with any child components enclosed. Since our
+     component tree nodes are nested the way the final HTML should be nested,
+     this was not a problem.
 
-   \subsection{\mxp XML}
+     Our implementation currently includes \code{compile()} methods on every
+     component object, which is consistent and easy to understand, but which
+     might not be the best way to implement this depending on future goals. We
+     have to walk through the entire tree in any case, so performance will
+     always be $O(n)$ at best. The current implementation has the advantage of
+     extensibility, where new components can easily be added and it is
+     immediately obvious to any new developer how these new components should
+     generate their equivalent HTML code. However, for replacing the output
+     with a different format it would be better if this functionality was
+     separated from the components and gathered in a distinct \code{Writer}
+     class instead. Switching formats would then be as easy as dropping in a
+     new \code{Writer} class that generates a different format. Since we
+     initially did not expect to switch outputs, and because we started
+     implementing one component and then added components as we needed them,
+     the current implementation --- focussed on simplifying addition of new
+     components --- was easier for us to work with. Perhaps the refactoring of
+     this implementation is an option for future work.
+
+     % TODO write more about how we wrote HTML5 like neanderthals
+
+    \subsubsection{\mxp XML}
+
+     Generating \mxp XML should be simpler than the HTML5 output, although in
+     the end there is probably not much difference. We won't have to generate
+     unique ID's for every component, and we won't have to generate the
+     preamble content (which includes the \mxp library itself), but the
+     structure and content should remain pretty much the same. Instead of
+     \code{<div>} tags we can now use \mxp-specific tags. All that adds up to a
+     much more easily readable result.
 
 %    TODO XML
 
