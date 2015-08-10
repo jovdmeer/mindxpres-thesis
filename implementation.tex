@@ -1,6 +1,7 @@
 % vim:ts=1:et:nospell:spelllang=en_gb:ft=tex
 
  \chapter{Implementation}
+  \label{implementation}
 
   To implement the \emph{ppt2mxp} conversion tool that is the subject of this
   thesis, we chose the Java programming language \citep{gosling-1}, version 8.
@@ -10,8 +11,9 @@
   \emph{is} easy to use --- it would not have become as popular as it is
   nowadays if it wasn't. It has a fairly clear and logical syntax, a consistent
   structure, and an extensive standard library. At conception in 1995, its
-  performance was abysmal, but through the years it has steadily improved and
-  somewhere between Java 5 and 6 it became an industry standard.
+  performance was abysmal, but throughout the years it has steadily improved
+  and somewhere between Java 5 (then still called 1.5) and 6 (when they dropped
+  the `1.' prefix) it became an industry standard.
 
   Quite a number of IDEs have been created to further improve developers'
   experience working with Java. Netbeans, Eclipse and IntelliJ come to mine,
@@ -64,63 +66,173 @@
    want a better one.
 
    We found Apache POI library very helpful in this part of the implementation.
-   The POI Library --- formerly ''Poor Obfuscation Implementation''
-   \citep{sundaram-1} --- is a Java library that provides an API to access
+   The POI\footnote{Originally ``Poor Obfuscation Implementation''
+   \citep{sundaram-1}} Library is a Java library that provides an API to access
    Microsoft document formats. The most mature (and most popular) part of it is
-   HSSF, which stands for Horrible SpreadSheet Format, and which is used by
-   Java developers worldwide to access Microsoft Excel spreadsheet data, as
-   well as export data into Excel spreadsheets.
+   HSSF\footnote{Horrible SpreadSheet Format}, which is used by Java developers
+   worldwide to access Microsoft Excel spreadsheet data, as well as export data
+   into Excel spreadsheets.
 
-   For our purposes, we relied on HSLF (''Horrible SLideshow Format''), which
-   gave us access to a \ppt presentation's contents in many ways. We could
-   access all images at once, or every bit of text from the whole presentation,
-   but the most interesting to us was the ability to access contents on a
-   per-slide basis. This allowed us to loop over the presentation's slides,
+   For our purposes, we relied on HSLF\footnote{``Horrible SLideshow Format''},
+   which provided us with a full API to access the contents of a \ppt
+   presentation's contents in a myriad of ways. We could access all images at
+   once, or every bit of text from the whole presentation, but the most
+   interesting to us was the ability to access contents on a per-slide basis.
+   Getting a list of the slides in a presentation first allowed us to group
+   contents within their immediate context, under a node per slide in our
+   component tree. As such, we could loop over the presentation's slides,
    converting them one by one, by placing the contents of each slide in a \mxp
    slide equivalent.
 
-   That was sadly not the end of it. While HSLF does give us access to all the
-   text in a presentation, or per slide, it does not distinguish between
-   'normal' text and bullet lists, for example. This was a difference we had to
-   detect ourselves somehow. % TODO find out and explain how we do this.
+   \subsection{Bullets}
 
-   Another challenge was dealing with animations and other ways people managed
-   to put way more content on one slide than would be advisable. The animations
-   could not be transferred to \mxp since \mxp has its own set of transitions.
-   It would technically be possible to implement additional animations as a
-   separate plug-in for \mxp to provide the equivalents of the animations in
-   \ppt*, but that is beyond the scope of this thesis. So we could not provide
-   the same animations, but some people use those animations not just to show
-   off but to actually show multiple pictures and blocks of text, one after the
-   other, on the same slide. Without animations, this content would either not
-   be visible or it would become a serious layout issue in \mxp. Our solution
-   proposes to limit the amount of objects one slide can contain, and any
-   additional content should be put on extra slides automatically. A downside
-   of this is that we currently have no way of guessing the correct order in
-   which the content should appear, so what may have been an intrinsic
-   choreography of pictures in \ppt may become an incoherent jumble of images
-   in \mxp. Another solution would be to scale all content until it all fits
-   next to each other on one slide, and then rely on the zoomable interface to
-   show the pictures one by one, but in this case the same problem with order
-   of appearance manifests itself. In the end, we decided it would be best to
-   accept that no conversion algorithm is going to be perfect, and the author
-   can always manually change the order around after the conversion is done.
+    That was unfortunately not the end of it. While HSLF does give us access to
+    all the text in a presentation, or per slide, it was not immediately clear
+    to us how it distinguished between `normal' text and bullet lists. This
+    meant for a long time our conversion process was incomplete, as all bullets
+    from the original \ppt presentation appeared as incoherent text runs in our
+    converted result. We found out about the \code{RichTextRun} class, which
+    had all the tools and properties to detect bullets and their indentation
+    level, but we only discovered very recently that we could extract
+    \code{RichTextRun}s from the \code{TextShape}s we were getting out of the
+    slides.
+
+    % TODO more whining about bullets, show some code of that awesome stack we use to create nested bullet lists
+
+   \subsection{Animations}
+
+    Another challenge was dealing with animations and other ways people managed
+    to put way more content on one slide than would be advisable. The
+    animations could not be transferred to \mxp since \mxp has its own way of
+    transitioning from each component to the next in the form of a
+    ZUI\footnote{Zoomable User Interface}. It would technically be possible to
+    implement additional animations as a separate plug-in for \mxp to provide
+    the equivalents of the animations in \ppt*, but that is beyond the scope of
+    this thesis. So we could not provide the same animations, but some people
+    use those animations not just to show off but to actually show multiple
+    pictures and blocks of text, one after the other, on the same slide.
+    Without animations, this content would either not be visible or it would
+    become a serious layout issue in \mxp.
+   
+    Our first solution tried to limit the amount of objects one slide can
+    contain, and any additional content should be put on extra slides
+    automatically. A downside of this is that we had no way of guessing the
+    correct order in which the content should appear, so what may have been an
+    intrinsic choreography of pictures in \ppt might become an incoherent
+    jumble of images in \mxp. Another solution would be to scale all content
+    until it all fits next to each other on one slide, and then rely on the ZUI
+    to show the pictures one by one, but in this case the same problem with
+    order of appearance manifests itself. In the end, we decided it would be
+    best to accept that no conversion algorithm is going to be perfect, and the
+    author can always manually change the order around after the conversion is
+    done.
+
+    With this in mind, we now render the components in the order we get them
+    from HSLF, hoping that this resembles the original order closely. The
+    automated layout takes care of any overlapping that might have occurred
+    originally, so we don't have to worry about that.
 
   \section{Generating \mxp}
 
+   Generating \mxp presentations was the final goal of the first phase of this
+   thesis. This seemed a fairly easy task at first, until we learned that the
+   \mxp compiler would not be available to us for most of the year. This meant
+   we would either not be able to view-test our generated presentations, or we
+   would have to convert them to browser-ready HTML5 ourselves. We chose the
+   latter option, as not being able to see our results would not be very
+   helpful in implementing and tweaking our conversion tool. As a result, this
+   task became much more complicated, as we had to emulate the compiler's work
+   ourselves. Luckily we already decided we would be working with a Java object
+   representation of the original presentation as an intermediary form, a
+   so-called component tree, which meant we could easily change the output of
+   our conversion tool without affecting the rest of the conversion process,
+   and on a per-component basis.
+
 %   TODO generating
 
-   \subsection{Plain HTML5}
+   \subsection{Playing \mxp compiler}
 
     Since the \mxp compiler was not functional during most of this thesis'
-    implementation, we decided to generate an html file much like the \mxp
+    implementation, we decided to generate an HTML5 file much like the \mxp
     compiler would, including the \mxp JavaScript library and plug-ins. This
-    required us to first find out how \mxp works on the inside, which proved to
-    be a steep learning curve but gave us more insight into the software than
-    we would've gotten if we only had to generate \mxp XML and leave the rest
-    to the compiler.
+    required us to first learn how \mxp works on the inside, which proved to be
+    a steep learning curve but gave us more insight into the software than we
+    would've gotten if we only had to generate \mxp XML and leave the rest to
+    the compiler.
 
-   \subsection{\mxp XML}
+    \subsubsection{Improving the ZUI}
+   
+     As an exercise, we changed the way the ZUI works. Originally, \mxp used
+     the CSS3 \code{transform: scale()} property to enlarge or reduce the whole
+     view, giving the impression of zooming in or out. This is an obvious
+     approach, simple in its execution and quite foolproof. However, the
+     downside is that you can't zoom in very much, because currently browsers
+     do not leverage the advantage of vector graphics and fonts even if you do
+     use them, and obviously raster-based content doesn't scale much anyway.
+     Instead, browsers render the content at its initial scale, and then treat
+     the result as one big image when scaled or otherwise transformed
+     afterwards. This means you get extremely pixelated content when zooming in
+     too much.
+
+     Through some refactoring, we were able to change this to use the
+     \code{transform: translateZ()} property instead, along with the
+     \code{transform: perspective()}\footnote{Not to be confused with the
+     \code{perspective: \[number\]} property, which yields different results}
+     and the \code{transform-style: preserve-3d} properties. This means we're
+     now effectively rendering the presentation in 3D, and moving our viewpoint
+     around in the 3D space to center each slide or component in turn.
+
+     We believe this opens the door for even more visually impressive
+     presentations, where content can be placed on different points along the
+     Z-axis. This allows for example to place multiple slides behind one
+     another, making for impressive zoom transitions between slides. The
+     downside of this is that the overview may not always show all content, as
+     some content can overlap, but we trust the author uses this feature wisely
+     when manually adjusting the position of their slides. It may for example
+     be useful to group slides together in this way, when there is too much
+     content to show on one slide but creating a second, separate slide may
+     break the flow of the presentation. In any case, our automated layout
+     plugin won't currently generate slides positioned this way.
+
+    \subsubsection{Plain HTML5}
+
+     After investigating the inner workings of \mxp and studying some example
+     presentations, we were ready to start generating our own presentations
+     based on our component tree. This meant every possible component would
+     have to be written out as valid HTML, with the necessary attributes for
+     each generated tag and with any child components enclosed. Since our
+     component tree nodes are nested the way the final HTML should be nested,
+     this was not a problem.
+
+     Our implementation currently includes \code{compile()} methods on every
+     component object, which is consistent and easy to understand, but which
+     might not be the best way to implement this depending on future goals. We
+     have to walk through the entire tree in any case, so performance will
+     always be $O(n)$ at best. The current implementation has the advantage of
+     extensibility, where new components can easily be added and it is
+     immediately obvious to any new developer how these new components should
+     generate their equivalent HTML code. However, for replacing the output
+     with a different format it would be better if this functionality was
+     separated from the components and gathered in a distinct \code{Writer}
+     class instead. Switching formats would then be as easy as dropping in a
+     new \code{Writer} class that generates a different format. Since we
+     initially did not expect to switch outputs, and because we started
+     implementing one component and then added components as we needed them,
+     the current implementation --- focussed on simplifying addition of new
+     components --- was easier for us to work with. Perhaps the refactoring of
+     this implementation is an option for future work.
+
+     % TODO write more about how we wrote HTML5 like neanderthals
+
+    \subsubsection{\mxp XML}
+
+     Generating \mxp XML should be simpler than the HTML5 output, although in
+     the end there is probably not much difference. We won't have to generate
+     unique ID's for every component, and we won't have to generate the
+     preamble content (which includes the \mxp library itself), but the
+     structure and content should remain pretty much the same. Instead of
+     \code{<div>} tags we can now use \mxp-specific tags. All that adds up to a
+     much more easily readable result.
 
 %    TODO XML
 
@@ -136,3 +248,18 @@
 
 %    TODO other ways
 
+%   15:50 <omega> zeg, ik zit nu al een hele tijd thesis te schrijven en de laatste paar dagen vooral te zeveren over layout, maar intussen doe ik nog ni echt iets van layout, met t gedacht van ik schrijf daar binnenkort ne mindxpres plug-in voor en klaar
+%   15:51 <omega> maar wordt layout momenteel eig ni mostly door de compiler gedaan?
+%   15:52 <omega> ben zo eens naar de presentation.js libs en code gaan kijken, en ik zie ni direct een manier om ne plug-in layout te laten doen, aangezien plug-ins mostly component-specifiek zijn en ni alle componenten kunnen aansturen
+%   15:53 <omega> dus klopt het dat ik ofwel de compiler moet aanpassen, ofwel presentation.js hacken om dat soort plug-ins toe te laten?
+%   15:53 <omega> of laat het dat soort plug-ins al toe maar zijn er gewoon nog geen?
+%   16:30 <omega> de 'structured' plug-in doet wel layout van slides, maar binnen die slides zie ik niet meteen een systeem dat layout regelt, met templates of otherwise, het pakt gewoon de coordinaten en afmetingen die de compiler bepaald heeft
+%   16:31 <omega> al zou die slide plug-in wel *kunnen* prutsen met die layout... dus mss moet ik gwn de slide plug-in uitbreiden/hacken/vervangen
+%   13:22 <reinout> ik zou een container plug-in maken
+%   13:22 <reinout> gelijk de slide
+%   13:22 <reinout> maar dan onzichtbaar
+%   13:23 <reinout> want containers kan je nesten
+%   13:23 <reinout> dus een slide kan bv uw layout container bevatten, die dan de children een layout geeft
+%   13:23 <reinout> maar op die manier is uw layout ding bruikbaar buiten slides
+%   13:24 <reinout> (alternatief was uw layout stuff in de slide plug-in steken)
+%   13:31 <omega> oeh, cool idee indeed, beter dan de slide plug-in abusen

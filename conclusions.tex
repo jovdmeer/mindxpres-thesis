@@ -10,7 +10,7 @@
 
    Converting \ppt presentations into \mxp is now possible and easy.
 
-   Automatic layout has not been available in presentations until now. \mxp is
+   Automated layout has not been available in presentations until now. \mxp is
    the first presentation system that doesn't require predefined templates, nor
    manual layout tweaking by the enduser, instead letting people focus on the
    content while the software takes care of the rest.
@@ -22,9 +22,14 @@
    Other formats: extend the convertor tool to convert Keynote, prezzi, pptx,
    \ldots
 
+   Other formats: refactor the convertor tool to separate output from the
+   component classes, concentrating it in a Writer class that implements a
+   Writer interface, so that the Writer class can easily be replaced with
+   another one to generate a different format.
+
    Integrate the convertor into an \mxp editor
 
-   Improve the automatic layout algorithm beyond constraints using learning AI,
+   Improve the automated layout algorithm beyond constraints using learning AI,
    training it on good/bad layouts, neural network...
 
    Implement extreme zooming into \mxp using the CSS3 perspective property
