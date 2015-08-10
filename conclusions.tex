@@ -22,6 +22,11 @@
    Other formats: extend the convertor tool to convert Keynote, prezzi, pptx,
    \ldots
 
+   Other formats: refactor the convertor tool to separate output from the
+   component classes, concentrating it in a Writer class that implements a
+   Writer interface, so that the Writer class can easily be replaced with
+   another one to generate a different format.
+
    Integrate the convertor into an \mxp editor
 
    Improve the automated layout algorithm beyond constraints using learning AI,
