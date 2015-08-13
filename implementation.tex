@@ -272,12 +272,95 @@
    worst. Using the \code{perspective()} and \code{translateZ()} properties
    yields much better results, but this isn't easily usable within a slide
    container as the content would be rendered \emph{behind} the slide, making
-   the slide seem empty as seen from the front.
+   the slide seem empty as seen from the front. If we want the content to be
+   visible on the slide, we need to render it within the size limits of the
+   slide, which gives the same blurred results as scaling.
+
+   The true power of automated layout generation becomes apparent when no such
+   boundaries are posed. If the content does not need to be scaled down, we can
+   use it all in its original size whether those sizes are similar or not.
+   Depending on which options the author of the presentation turns on, we can
+   then still resize content to match sizes, among other things.
 
    \subsection{Using constraints}
 
 %    TODO constraints
 
+    The basis of our automated layout approach is the use of constraints. As a
+    first step in the process, we assign each component a certain `bounding
+    box', a set of constraints that dictates how close other components can get
+    to this particular component. This distance can be decided arbitrarily, or
+    have a hard-coded value, but we decided to take a more dynamic approach and
+    let the distance be 10\% of the width or height, whichever is the largest.
+    This way, the padding around the content is equal on all sides, and
+    proportionate to the size of the content.
+
+    The next step in the process decides the size of the components. There are
+    two mechanisms that may be applied here together, separately or not at all.
+    One mechanism is the equalization of sizes, where we resize all components
+    in such a manner that they end up all being the same or similar sizes. We
+    can decide to apply this either to the width, the height or the surface
+    area, depending on the effect we hope to create. If we want to put all
+    components size by side, making them all the same height might make for an
+    aesthetically pleasing result, for example; if we want to group them
+    together in a raster-like manner similar surface areas would usually be a
+    better idea.
+
+    The other mechanism is the scaling of components, in which we scale
+    everything up or down equally, maintaining relative proportions between
+    components while reducing or increasing the total used surface area. This
+    is especially useful when we have to generate an automated layout that
+    needs to fit within a predefined container with a fixed size, such as a
+    slide container.
+
+    The default approach when no such fixed-size container is present, is to
+    not apply either of these mechanisms, while we apply both mechanisms
+    together when we do have to fill this predefined area: we then calculate an
+    average surface area size between all components, resize all components to
+    match this average, and finally scale everything up or down so that the
+    total area fits the container.
+
+    It is possible to override this behaviour: when no fixed size is defined,
+    we can specify that all components should be sized equally, be it in width,
+    height or surface area. The latter is the default but this too can be
+    overridden: specifying that the components should be placed in a row or a
+    column instead of a raster-like structure will automatically choose the
+    matching equalizing method. Conversely, when there is a fixed size, we may
+    specify to retain the original proportions and only scale everything up or
+    down equally to fit the area.
+   
    \subsection{Other ways}
+
+    During implementation, we tried several other ways to improve upon the
+    automated layout, all of which we ultimately decided to abandon in favor of
+    the current approach. There were various reasons for abandoning these
+    paths. Often the reason was that we realized we were influencing the
+    automated layout process with human design decisions, which is exactly what
+    we were trying to avoid. Sometimes what we were trying did not yield the
+    results we hoped for, and sometimes the implementation became too complex
+    to continue or what seemed like a good idea in theory turned our to be
+    impossible in practice.
+
+    One such idea was to divide components in a raster-like structure, but
+    spread over a set of rows according to a normal distribution --- most
+    components in the middle rows, a few components on the first and last few
+    rows. We realized soon that on one side, this would become a kind of
+    template (a very dynamic one, but still), and on the other side, this was a
+    lot more complex than we initially thought. While this feature has been
+    abandoned in the current implementation we do think it may still be an
+    option for future work though: although it is a template, it seems dynamic
+    enough that it would still match the spirit of our automated layout
+    approach.
+
+    Another idea was to use the Z-axis to make components seem equal in size
+    when viewed from a certain angle as an overview, then zooming in on each
+    component to reveal their true size. This was abandoned purely for
+    complexity reasons: it is not enough to just place larger components
+    further back, you also need to adjust the x and y coordinated to make it
+    seem like the component is placed right next to another when in reality it
+    is a lot further back. This would not be necessary with an orthogonal
+    camera mode, but the HTML5 rendering engines only have a perspective camera
+    mode, which makes this idea too complex to implement within our limited
+    timeframe.
 
 %    TODO other ways
