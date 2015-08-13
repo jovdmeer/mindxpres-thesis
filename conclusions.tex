@@ -4,6 +4,73 @@
 
 %  TODO conclusion
 
+  We proposed an approach for converting existing \ppt presentations into \mxp
+  presentations, along with a way to take control over layout away from the
+  author and improve upon flawed human design by programmatically calculating
+  ideal content placement and size. We delivered a proof of concept
+  implementation that puts this approach into practice, first letting us show a
+  \ppt presentation's content in \mxp, then showing us the possibility of
+  applying an automated layout algorithm to that an any other \mxp content at
+  will.
+
+  Considering the first part of this thesis, which consists of the conversion
+  between \ppt and \mxp, we can conclude that conversion from any other
+  presentation format into \mxp is a feasible concept. Closed-source formats
+  will obviously be more of a challenge than their open-sourced cousins,
+  especially if no API has been created for them as we had the fortune with
+  \ppt and Apache's POI/HSLF implementation. That said, open-source formats may
+  be more easy to take apart but if no API exists for them it would still
+  require a substantial amount of effort. Having an existing API readily
+  available has definitely helped us a great deal in our efforts.
+
+  Converting these other formats into \mxp remains an important goal in the
+  endeavour to raise awareness and increase popularity of \mxp's features and
+  possibilities. Our implementation provides a way to convert \ppt .ppt
+  presentations, but \ppt* has switched to using the Office Open XML-based
+  .pptx format in recent years, so newer \ppt presentations cannot currently be
+  imported into the \mxp system.
+
+  Our implementation is written in a way that should make it straightforward to
+  adapt for other formats, provided there is a way to get the separate
+  components out of those formats. If slide-based conversion is desired, then
+  obviously a way to extract the components on a per-slide basis is also
+  required. Additionally, our approach using an intermediary form during the
+  conversion process allows for adaptation of the tool to generate other output
+  formats as well. The current implementation generates HTML5 which includes
+  the \mxp standard library and a set of plugins, but the original goal of
+  generating \mxp XML files should be easily attainable; the only reason we did
+  not implement this was the unavailability of the \mxp compiler, which made it
+  impossible for us to test the generated XML files.
+
+  As for the second part of this thesis, concerning the automated generation of
+  presentation layouts, we have discussed why this is necessary. When creating
+  traditional slideware, as well as using more advanced and modern presentation
+  tools, layout remains a problem that for many presenters becomes the biggest
+  timesink in their work. On top of that, the layout they create isn't always a
+  good one, and bad layout has been proven to have negative impact on the
+  effectiveness of a presentation. As such, having a way to automatically
+  generate a layout would save a lot of time while also improving the
+  information transfer effectiveness of presentations.
+
+  We have demonstrated such an automated layout mechanism based on theory and
+  research found in related works, which we adapted and improved upon for our
+  purposes. Our constraint-based approach considers every component separately,
+  to combine all components into a layout where no overlapping exists,
+  components can be grouped together, clear margins are put in between content
+  and surrounding limits in the form of slides and other fixed-size containers
+  are respected.
+
+  The implementation of this mechanism is far from complete, and may still be
+  improved upon in several ways, which will be discussed in section
+  \ref{future}. It does however provide the most basic form of automated
+  layout, which may not always succeed in generating an aesthetically pleasing
+  layout but at least attempts to combine content in a way that makes the
+  content easy to focus on, thus increasing effectiveness of the presentation.
+  It also succeeds in letting the presenter focus on the content rather than
+  the layout. It thus reduces stress and arguably increases quality of
+  presentations, especially when we look at time spent creating the
+  presentation versus its effectiveness.
+
   \section{Contribution}
 
 %   TODO why is this useful at all
@@ -16,6 +83,7 @@
    content while the software takes care of the rest.
 
   \section{Future Work}
+   \label{future}
 
 %   TODO what should the next thesis slave still fix
 
