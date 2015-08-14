@@ -99,6 +99,50 @@
 
     % TODO more whining about bullets, show some code of that awesome stack we use to create nested bullet lists
 
+     \begin{figure}[h!]
+      \begin{lstjava}{java-1}{Converting bullet points}
+BulletList ul = new BulletList();
+Stack<BulletList> listStack = new Stack<>();
+int indent = 0;
+
+for (RichTextRun run : textShape.getTextRun().getRichTextRuns()) {
+  ListItem li = new ListItem();
+  StringContent txt = new StringContent(StringUtils.strip(run.getText()));
+
+  if (run.isBullet()) {
+    if (run.getBulletOffset() > indent) {
+
+      indent = run.getBulletOffset();
+      listStack.push(ul);
+      ul = new BulletList();
+      listStack.peek().addItem(ul);
+
+    } else if (run.getBulletOffset() < indent) {
+
+      indent = run.getBulletOffset();
+      ul = listStack.pop();
+
+    }
+  } else {
+    while (listStack.size() > 0) {
+  //  Current component is not a bulletlist or bullet, go to the top bullet level
+      ul = listStack.pop();
+    }
+  }
+
+  li.getContents().add(txt);
+  ul.addItem(li);
+}
+
+while (listStack.size() > 0) {
+  // Current component is not a bulletlist or bullet, go to the top bullet level
+  ul = listStack.pop();
+}
+
+return ul;
+      \end{lstjava}
+     \end{figure}
+
    \subsection{Animations}
 
     Another challenge was dealing with animations and other ways people managed
@@ -177,7 +221,7 @@
      Through some refactoring, we were able to change this to use the
      \code{transform: translateZ()} property instead, along with the
      \code{transform: perspective()}\footnote{Not to be confused with the
-     \code{perspective: \[number\]} property, which yields different results}
+     \code{perspective: [number]} property, which yields different results}
      and the \code{transform-style: preserve-3d} properties. This means we're
      now effectively rendering the presentation in 3D, and moving our viewpoint
      around in the 3D space to center each slide or component in turn.
@@ -206,23 +250,25 @@
 
      Our implementation currently includes \code{compile()} methods on every
      component object, which is consistent and easy to understand, but which
-     might not be the best way to implement this depending on future goals. We
-     have to walk through the entire tree in any case, so performance will
-     always be $O(n)$ at best. The current implementation has the advantage of
-     extensibility, where new components can easily be added and it is
-     immediately obvious to any new developer how these new components should
-     generate their equivalent HTML code. However, for replacing the output
-     with a different format it would be better if this functionality was
-     separated from the components and gathered in a distinct \code{Writer}
-     class instead. Switching formats would then be as easy as dropping in a
-     new \code{Writer} class that generates a different format. Since we
-     initially did not expect to switch outputs, and because we started
-     implementing one component and then added components as we needed them,
-     the current implementation --- focussed on simplifying addition of new
-     components --- was easier for us to work with. Perhaps the refactoring of
-     this implementation is an option for future work.
-
-     % TODO write more about how we wrote HTML5 like neanderthals
+     might not be the best way to implement this depending on future goals.
+     Instead of having a separate layer taking care of the output, currently it
+     is a cross-cutting concern, which as we all know is not a desirable design
+     pattern. We have to walk through the entire tree in any case, so
+     performance will always be $O(n)$ at best.
+    
+     The current implementation has the advantage of extensibility, where new
+     components can easily be added and it is immediately obvious to any new
+     developer how these new components should generate their equivalent HTML
+     code. However, for replacing the output with a different format it would
+     be better if this functionality was separated from the components and
+     gathered in a distinct \code{Writer} class instead. Switching formats
+     would then be as easy as dropping in a new \code{Writer} class that
+     generates a different format.  Since we initially did not expect to switch
+     outputs, and because we started implementing the conversion of one
+     component and then added components as we needed them, the current
+     implementation --- focused on simplifying addition of new components ---
+     was easier for us to work with.  Perhaps the refactoring of this
+     implementation is an option for future work.
 
     \subsubsection{\mxp XML}
 
@@ -234,7 +280,11 @@
      \code{<div>} tags we can now use \mxp-specific tags. All that adds up to a
      much more easily readable result.
 
-%    TODO XML
+     The advantages towards the user would be even bigger. Using a hypothetical
+     \mxp editor, the output of our conversion tool could be edited in such a
+     tool immediately, while presumably such an editor would not work on plain
+     HTML5. The reuse of content --- one of the main goals of \mxp --- would
+     also be much more plausible using the XML format.
 
   \section{Creating layouts}
 
