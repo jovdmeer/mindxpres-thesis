@@ -48,9 +48,6 @@
   existing \ppt content is available, usable and editable in \mxp, it should be
   obvious to anyone why \mxp is the better option for their presentations.
 
-%  TODO argue that automated layout helps liberate the content from the confines
-%  of slides, not just fix bad layout
-
   Another common problem with \ppt presentations is the way they look. This is
   not necessarily the fault of the software; most people just are not trained
   in graphical design, and as such they know very little about proper layout,
@@ -79,15 +76,38 @@
   Our goal is to eradicate those situations. Automated layout should
   dynamically adjust to any content it is given, no matter the size or aspect
   ratio. This may seem hard, if you consider the limits of slides and the fact
-  that you can only fit so much content on them before they are full. this is
+  that you can only fit so much content on them before they are full. This is
   where another important aspect of \mxp comes into play: we are not
   necessarily bound to the limits of slides. If we don't have to consider the
   boundaries of traditional slides, we can fit content together in an
   aesthetically pleasing way much easier, without having to scale anything.
 
   As such, the second part of this thesis focuses on implementing true
-  automated layout in \mxp. Again primarily to convince \ppt* users to switch,
-  showing that their presentations actually could look better in \mxp, while
-  thus also providing new functionality to existing \mxp users.
+  automated layout in \mxp. Again with the goal to convince \ppt* users to
+  switch, showing that their presentations actually could look better in \mxp,
+  but at the same time we also provide new functionality to other \mxp users.
 
-%  TODO moar?
+  We believe this functionality will improve the aesthetic aspect as well as
+  the effectiveness of presentations. If content is not scaled down to fit the
+  articifial confines of a slide, but can instead be shown and studied in
+  detail, this should clearly increase the flow of information towards the
+  audience. Providing an overview of the information in a presentation becomes
+  easier and more effective too: where traditional presentations rely on a
+  boring table of contents, in which the presenter announces the subjects
+  they'll be talking about one by one while the audience forgets the first
+  thing in the list by the time they get to the last, \mxp allows the presenter
+  to just show all of the presentation's content at once just by zooming out.
+  Here automated layout can help as well: content can be arranged in such a way
+  that an overview effectively hilights the important subjects, different parts
+  or keywords of a presentation.
+
+  Last but not least, we hope this functionality improves the experience of
+  creating a presentation. Everyone who ever created a presentation knows, and
+  research has shown \citep{lok-1} that often more time is spent on creating
+  and fine-tuning the layout than actually putting in the content. Most
+  presenters however have not had any significant training in creating
+  effective layout, which means this time is often wasted on a layout that ends
+  up not actually benefiting the presentation as a whole. We want to eliminate
+  this problem by taking control over the layout away from the presenter and
+  instead providing them with a programatically generated layout that presents
+  the information provided by the presenter in the best, clearest way possible.
