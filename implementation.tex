@@ -97,10 +97,8 @@
     \code{RichTextRun}s from the \code{TextShape}s we were getting out of the
     slides.
 
-    % TODO more whining about bullets, show some code of that awesome stack we use to create nested bullet lists
-
      \begin{figure}[h!]
-      \begin{lstjava}{java-1}{Converting bullet points}
+      \begin{lstjava}{bullets-1}{Converting bullet points}
 BulletList ul = new BulletList();
 Stack<BulletList> listStack = new Stack<>();
 int indent = 0;
@@ -142,6 +140,23 @@ while (listStack.size() > 0) {
 return ul;
       \end{lstjava}
      \end{figure}
+
+    The code in \lstref{bullets-1} shows how we extract bullet points from a
+    \code{TextShape} object and convert them into the nested bullet format we
+    need. As you may notice, the original bullet points are not nested in any
+    way: they are all on the same level of the original object tree, no matter
+    their indentation level. This indentation level is also stored in the
+    bullet object. However, we wanted a more elegant solution where the
+    indentation would be deduced from the level of nesting, much like HTML has
+    always done.
+
+    The solution loops over the list of bullets, checking their indentation
+    level and building a stack of nested bullets accordingly. When increasing
+    the indentation level, a new bullet list is started and added as an item on
+    the existing bullet list. When indentation decreases, we go back to the
+    parent list and continue there. This can go down several levels, and all
+    the way back up of course. Since the objects don't have a direct link to
+    their parent, we use a stack to keep track of this at all times.
 
    \subsection{Animations}
 
@@ -221,9 +236,9 @@ return ul;
      Through some refactoring, we were able to change this to use the
      \code{transform: translateZ()} property instead, along with the
      \code{transform: perspective()}\footnote{Not to be confused with the
-     \code{perspective: [number]} property, which yields different results}
-     and the \code{transform-style: preserve-3d} properties. This means we're
-     now effectively rendering the presentation in 3D, and moving our viewpoint
+     \code{perspective: <number>} property, which yields different results} and
+     the \code{transform-style: preserve-3d} properties. This means we're now
+     effectively rendering the presentation in 3D, and moving our viewpoint
      around in the 3D space to center each slide or component in turn.
 
      We believe this opens the door for even more visually impressive
