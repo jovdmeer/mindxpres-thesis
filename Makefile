@@ -26,18 +26,19 @@ $(project).bbl: db.bib
 
 bibtex: $(project).bbl
 
-pdflatex:
-	pdflatex $(latexopts) $(project)
-	pdflatex $(latexopts) $(project)
-	pdflatex $(latexopts) $(project)
-
 %.aux: %.tex
 	pdflatex $(latexopts) $(project)
 
 $(project).pdf: $(texfiles)
 	pdflatex $(latexopts) $(project)
 
-view: $(project).pdf
+twice: $(project).pdf
+	pdflatex $(latexopts) $(project)
+
+thrice: twice
+	pdflatex $(latexopts) $(project)
+
+view: twice
 	open $(project).pdf
 
 cleanpdf:
@@ -58,4 +59,4 @@ edit:
 file:
 	vim Makefile
 
-.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex bibtex
+.PHONY: $(project).pdf view file edit clean cleanpdf cleanfiles full pdflatex bibtex twice thrice
