@@ -489,21 +489,20 @@
      technologies are usually not suitable, including video conversion, legacy
      document format access, file system access or TCP/IP connectivity.
 
-   %<TODO rework>
-     In order to validate a \mxp document in the XML format described above,
-     there is an XML Schema which is augmented with additional constraints
-     provided by the plug-ins. After validation, the document is parsed and
-     discovered tags might trigger preprocessor actions by the plug-ins such as
-     the extraction of data from referenced legacy document formats (e.g. \ppt
-     or Excel) or the conversion of an unsupported video format. The tag is
-     then converted to HTML5 by simply encoding the information in the
-     attributes of a \code{div} element. The HTML5 standard allows custom
-     attributes if they start with a \code{data-} prefix. \lstref{xml-2} shows
-     parts of the transformed XML document shown in \lstref{xml-1}. Note that
-     the transformation does not include visualisation-specific information but
-     merely results in a valid HTML5 document which is bundled into a
-     self-contained package together with the presentation engine.
-   %</TODO rework>
+     To enable validation of a \mxp document in the XML format described above,
+     an XML Schema exists which is augmented with additional constraints
+     provided by the plug-ins. After validating the document, it is parsed and
+     any discovered tags might trigger preprocessor actions defined by the
+     plug-ins, such as the extraction of data from referenced legacy document
+     formats (e.g. \ppt or Excel) or the conversion of an unsupported video
+     format. Each tag is then converted to HTML5 and all information is encoded
+     in the attributes of a \code{div} element. The HTML5 standard allows
+     custom attributes that start with a \code{data-} prefix. \lstref{xml-2}
+     shows converted parts of the original XML document we saw in
+     \lstref{xml-1}. Observe that no visualisation-specific information is
+     included in the transformation, which merely results in a valid HTML5
+     document ready to bundle into a self-contained package together with the
+     presentation engine.
 
      \begin{figure}[h!]
       \begin{lstxml}{xml-2}{Transformed HTML5 presentation content}
