@@ -444,17 +444,15 @@
 
    \subsection{Implementation}
 
-   %<TODO rework>
-    HTML5 and its related web technologies were chosen as the backbone for
-    the \mxp presentation platform. Other options such as JavaFX, Flash or game
-    engines were investigated as well, but HTML5 seemed to be the best choice.
-    The widely accepted HTML5 standard makes \mxp presentations highly portable and
-    runnable on any device with a recent web browser, including smartphones and
-    tablets. Furthermore, HTML5 provides rich visualisation functionality out of
-    the box and the combination with Cascading Style Sheets
-    (CSS) and third-party JavaScript libraries forms a potent visualisation
-    platform.
-   %</TODO rework>
+    HTML5 and its related web technologies were chosen as the backbone for the
+    \mxp presentation platform. Alternatives such as JavaFX, Flash or game
+    engines were investigated as well, but HTML5 appeared to be the best
+    option. The widely accepted HTML5 standard makes \mxp presentations highly
+    portable, as any device with a recent web browser can display them,
+    including smartphones and tablets. Moreover, HTML5 offers rich
+    visualisation functionality by design and the inclusion of Cascading Style
+    Sheets (CSS) and third-party JavaScript libraries makes it a powerful
+    visualisation platform.
 
     \subsubsection{Document Format and Authoring Language}
 
@@ -481,19 +479,19 @@
 
     \subsubsection{Compiler}
 
-   %<TODO rework>
-     The compiler has been realised as a Node.js application. This not only
-     allows the compiler to be used via a web interface or as a web service,
-     but projects such as node-webkit also enable the compiler to run as a
-     local offline desktop application. The choice of using server-side
-     JavaScript was influenced by the fact that Node.js is capable of bridging
-     web and desktop technologies. On the one hand, the framework makes it easy
-     to interact with other web services and to work with HTML, JSON, XML and
-     JavaScript visualisation libraries at compile time. On the other hand, the
-     framework can also perform tasks which are usually not suited for web
-     technologies, including video conversion, legacy document format access,
-     file system access or TCP/IP connectivity.
+     The compiler has been implemented as a Node.js application. Not only does
+     this accomodate the use of the compiler via a web interface or as a web
+     service, but projects such as node-webkit also enable the compiler to be
+     executed as a local offline desktop application. The decision to use
+     server-side JavaScript was influenced by the fact that Node.js has the
+     ability to bridge web and desktop technologies. On one hand, the framework
+     facilitates interaction with other web services and allows us to work with
+     HTML, JSON, XML and JavaScript visualisation libraries during compilation.
+     On the other hand, the framework can carry out tasks for which web
+     technologies are usually not suitable, including video conversion, legacy
+     document format access, file system access or TCP/IP connectivity.
 
+   %<TODO rework>
      In order to validate a \mxp document in the XML format described above,
      there is an XML Schema which is augmented with additional constraints
      provided by the plug-ins. After validation, the document is parsed and
