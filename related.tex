@@ -60,7 +60,7 @@
    presentation tools, it is essential to allow the rapid prototyping and
    evaluation of new concepts for the representation, visualisation and
    interaction with content.
-   
+
    Before discussing the requirements for a new generation of presentation
    tools, we briefly introduce existing slideware solutions. Afterwards, we
    describe the architecture of \mxp, its extensible nature and its plug-in
@@ -77,7 +77,7 @@
    predefined slots and places on a slide, but then those templates have been
    defined by someone else too. Computer-generated layout is rare and usually
    not quite up to the task.
-  
+
    \mxp is among the software packages offering templates, in that layout is
    handled by whichever plug-in you choose, but so far no plug-ins have defined
    dynamic layout algorithms, rather sticking to predefined ways to put text
@@ -217,7 +217,7 @@
    exact place where we want it, unhindered by style guides, good practices or
    common sense. This has resulted in mindboggling layout choices involving
    enormous amounts of tiny text crammed onto one slide, or pictures strewn
-   across a slide overwhelming the audience with too much information at once. 
+   across a slide overwhelming the audience with too much information at once.
 
   \section{New solutions}
 
@@ -243,7 +243,7 @@
       navigation might be addressed, including the possibility to define
       non-linear navigation paths \citep{spicer-1,edge-1} or zoomable user
       interfaces (ZUIs) \citep{good-1,lichtschlag-1,haller-1}.
-     
+
      \paragraph{Separation of Content and Presentation} Similar to the approach
       of \latex and other professional typesetting systems, content should be
       written in a standardised way with visualisation being handled
@@ -256,61 +256,85 @@
       its structured and content-driven approach, the content-related
       functionality and the visualisation possibilities are too limited to be
       considered as a basis for an extensible presentation tool.
-     
+
+     \paragraph{Extensibility} Rapidly prototyping innovative navigation and
+      visualisation techniques, but also new content types and presentation
+      formats, should be easy in order for a presentation tool to be successful
+      as an experimental platform for new presentation concepts. It should be
+      possible to add or replace specific components without requiring changes
+      in the core. A presentation tool should provide a modular architecture
+      with loosely coupled components to be truly extensible. Note that this
+      type of extensibility should be offered on the level of content types as
+      well as for the visualisation engine and content structures.
+
+     \paragraph{Cross-Media Content Reuse} We have previously briefly mentioned
+      the lack of content reuse in existing presentation tools. Even though
+      there is a wealth of open education material available, it is rather
+      difficult to use this content in presentations. However, the concept of
+      transclusion does work well for digital documents and parts of the Web
+      (e.g. via the HTML img tag). The seamless integration of external
+      cross-media content as implemented in these environments should also be
+      supported by any modern presentation tool. This includes several
+      different mechanisms that enable including parts of other presentations
+      (e.g. slides), transcluding content from third-party document formats,
+      and including content from open learning repositories.
+
    %<TODO rework>
 
-     \paragraph{Extensibility} In order for a presentation tool to be
-      successful as an experimental platform for new presentation concepts, it
-      should be easy to rapidly prototype new content types and presentation
-      formats as well as innovative navigation and visualisation techniques. It
-      has to be possible to add or replace specific components without
-      requiring changes in the core. In order to be truly extensible, a
-      presentation tool should provide a modular architecture with loosely
-      coupled components. Note that this type of extensibility should not only
-      be offered on the level of content types but also for the visualisation
-      engine or content structures.
-
-     \paragraph{Cross-Media Content Reuse} In the introduction we briefly
-      mentioned the lack of content reuse in existing presentation tools. There
-      is a wealth of open education material available but it is rather
-      difficult to use this content in presentations. On the other hand, the
-      concept of transclusion works well for digital documents and parts of the
-      Web (e.g. via the HTML img tag). A modern presentation tool should also
-      support the seamless integration of external cross-media content. This
-      includes various mechanisms for including parts of other presentations
-      (e.g. slides), transcluding content from third-party document formats as
-      well as including content from open learning repositories.
-
-     \paragraph{Connectivity} With the rise of social and mobile technologies,
+     \paragraph{Connectivity}
+     
+      With the rise of social and mobile technologies,
       connectivity for multi-device input and output becomes more relevant in
-      the context of presentation tools. Support for multi-directional
-      connectivity is required for a number of reasons. First, it is necessary
+      the context of presentation tools.
+     
+      Support for multi-directional
+      connectivity is required for a number of reasons.
+     
+      First, it is necessary
       for the previously mentioned cross-media transclusion from external
-      resources. Second, multi-directional connectivity forms the backbone for
+      resources.
+     
+      Second, multi-directional connectivity forms the backbone for
       audience feedback via real-time response or voting systems
       \citep{dufresne-1} as well as other forms of multi-device interfaces.
 
-     \paragraph{Interactivity} We mentioned that content might be more
+     \paragraph{Interactivity}
+     
+      We mentioned that content might be more
       interactive and the extensibility requirement addresses this issue since
       the targeted architecture should support dynamic or interactive content
-      and visualisations. Nevertheless, the use of mouse and keyboard might not
+      and visualisations.
+     
+      Nevertheless, the use of mouse and keyboard might not
       be sufficient for components offering a high level of interaction.
+
       Therefore, a presentation tool should enable the integration of other
       forms of input such a gesture-based interaction based on Microsoft's
       Kinect controller or digital pen interaction \citep{signer-2} as offered
       by the PaperPoint \citep{signer-1} presentation tool.
 
-     \paragraph{Post-Presentation Phase} Even if it was never the original goal
+     \paragraph{Post-Presentation Phase}
+     
+      Even if it was never the original goal
       of slide decks, they often play an important role as study or reference
-      material. While the sharing of traditional slide decks after a
+      material.
+     
+      While the sharing of traditional slide decks after a
       presentation is trivial, this changes when the previously mentioned
-      requirements are taken into account. For instance, the nonlinear
+      requirements are taken into account.
+     
+      For instance, the nonlinear
       navigation allows presenters to go through their content in a non-obvious
       order or input from the audience might drive parts of a presentation.
+
       Special attention should therefore be paid to the post-presentation
-      phase. It should not only be easy to play back a presentation with the
+      phase.
+     
+      It should not only be easy to play back a presentation with the
       original navigational path, annotations and audience input, but its
-      content should also be made discoverable and reusable. In accordance with
+      content should also be made discoverable and reusable.
+     
+      In accordance with
       the Web 2.0, we see potential for the social aspect in a
       post-presentation phase via a content discussion mechanism.
 
@@ -782,7 +806,7 @@
    presentation can provide a narrative for the viewer to discover, inferring
    correct links between the objects along the way, and to accomplish tasks
    quickly and correctly, increasing the presentation's effectiveness.
-  
+
    Creating a good layout is almost never easy. People often spend more time on
    the layout of their presentation than the content. Most, if not all,
    decisions in layout are made by human beings. Some of them are professional
@@ -810,7 +834,7 @@
    experts. But all of those tools have one thing in common: every aspect of
    every layout they create has, at some point, been designed and decided upon
    by a human being.
-  
+
    Aesthetics are a natural phenomenon, and the creation of aesthetically
    pleasing layouts is therefore a manifestation of our instincts. As with most
    instincts, it has proven difficult to translate this into a concept that can
