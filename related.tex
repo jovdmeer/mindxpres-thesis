@@ -153,27 +153,28 @@
    modules, and users are encouraged to use these, as a whole, in their
    teaching. When we investigated the formats more closely, we observed that
    outgoing links to external content were supported, but
-   transclusion\footnote{The inclusion of content via references} was not.
+   transclusion\footnote{The inclusion of content via references} was not.  In
+   relation to presentations, Microsoft's Slide Libraries exist as central
+   repositories that store slides to enable slide sharing and reuse within an
+   organisation. The dependency on SharePoint might represent a hurdle for some
+   users, as not everyone has the ability and opportunity to set up such a
+   server. A more significant issue is the fact that slides still need to be
+   searched and manually copied into presentations. Keeping slides in the
+   repository and in other presentations is the responsibility of the authors
+   of those slides and those presentations, as no automatic update system is
+   provided. SlideRocket and SlideShare are both similar tools showing
+   intentions and providing functionality for content reuse. The SliDL
+   \citep{canos-1} research framework works much like Microsoft's Slide
+   Libraries, in that it allows for storage and tagging of slides in a database
+   for reuse, but also in that it shares the same shortcomings. The ALOCOM
+   \citep{verbert-1} framework aimed at flexible content reuse is built upon a
+   content ontology and a (de)composition framework for legacy documents
+   including \ppt documents, Wikipedia pages and SCORM content packages.
+   However, ALOCOM may be too rigid for evolving presentation formats, and it
+   currently only supports the authoring phase, although the tool does succeed
+   in decomposing legacy documents as advertised.
 
    %<TODO rework>
-    In the context of presentations, Microsoft's
-   Slide Libraries are central repositories for the storage of slides in order
-   to facilitate slide sharing and reuse within a company. However, one needs
-   to set up a SharePoint server which might represent a hurdle for some users.
-   Slides still need to be searched and manually copied into presentations.
-   Furthermore, users are responsible to push back updates to the repository or
-   update slides when they have been modified on the server side. Other
-   commercial tools with similar intentions and functionality for content reuse
-   are SlideRocket or SlideShare. The SliDL \citep{canos-1} research framework
-   provides a service-oriented architecture for storing and tagging slides in a
-   database for reuse. However, it shares some of the shortcomings of
-   Microsoft's Slide Libraries. The ALOCOM \citep{verbert-1} framework for
-   flexible content reuse consists of a content ontology and a (de)composition
-   framework for legacy documents including \ppt documents, Wikipedia pages and
-   SCORM content packages. While ALOCOM succeeds in the decomposition of legacy
-   documents, it might be too rigid for evolving presentation formats and the
-   tool is furthermore only supporting the authoring phase.
-
    There is not only a similarity in the evolution of the Web and presentation
    environments, but a number of the issues presented in this section have
    solutions in the setting of the Web. It is therefore not surprising that
@@ -192,21 +193,21 @@
    of applying a widely used open standard such as HTML is the cross-device
    support. Nevertheless, also these solutions show some restrictions in terms
    of visualisation, navigation and cross-media support.
-
-   Most of the tools and projects presented in this section focus on specific
-   novel ideas for presentations. However, there is no interoperability between
-   the concepts introduced in different tools. While one project might focus on
-   the authoring, another one focusses on novel content types and a third
-   solution introduces radically new navigation mechanisms. Some slideware
-   tools can be extended via third-party plug-ins but the functionality that is
-   exposed to the developers is often limited by the tool's underlying model.
-   For example, \ppt allows plug-ins to interact with the presentation model,
-   but the model dictates that a presentation must consist of a sequence of
-   slides. This lack of freedom is also a shortcoming of existing web-based
-   presentation formats. We therefore see a need for an open presentation
-   platform such as \mxp which supports innovation by providing the necessary
-   modularity and interoperability \citep{bush-1}.
    %</TODO rework>
+
+   The tools and projects discussed in this section mostly focus on
+   distinguishing novel ideas for presentations. Nevertheless, the different
+   concepts introduced in these tools don't offer interoperability between
+   them. One project may focus on the authoring, another one fixates on novel
+   content types and a third solution supplies radically new navigation
+   mechanisms. Slideware tools may often allow third-party extensions but the
+   API exposed to plug-in developers is usually limited by the software's
+   underlying model. As an illustration, \ppt supports interaction from
+   plug-ins with the presentation model, but the model dictates that a
+   presentation consists of a sequence of slides. Many existing web-based
+   presentation formats share this flaw. Because of this, we see a need for an
+   open presentation platform such as \mxp to support innovation by
+   contributing the necessary modularity and interoperability \citep{bush-1}.
 
    It is perhaps surprising that, to our knowledge, currently no tools exist to
    calculate dynamic layouts of content in slideware. Existing solutions
