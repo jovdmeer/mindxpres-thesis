@@ -139,20 +139,24 @@
    million \ppt presentations are created every day, for all kinds of purposes,
    with good and bad results both presentation-wise and goal-wise.
 
-   %<TODO rework>
-   Existing presentation tools require content to be duplicated for reuse,
-   resulting in multiple redundant copies that need to be kept up to date.
-   Even though some attempts have been made to address this issue, there is
-   room for improvement. When it comes to document formats for more general
-   educational purposes, there are formats such as the Learning Material Markup
+   To reuse content in existing presentation tools, that content needs to be
+   duplicated, which results in a multitude of redundant copies that need to be
+   kept consistent with each other: if one copy is changed, all the others must
+   be changed in the same way to prevent inconsistencies and mistakes. While
+   some attempts have been made to solve this problem, there is still a long
+   way to go. When looking for document formats designed to server more general
+   educational purposes, we find formats such as the Learning Material Markup
    Language (LMML) \citep{suss-1}, the Connexions Markup Language (CNXML) and
-   the eLesson Markup Language (eLML) \citep{fisler-1}. The common factor of
-   these formats is their focus on the reuse of content, but always at a
-   relatively high granularity level. Content is organised in lessons or
-   modules and users are encouraged to use these, as a whole, in their
-   teaching. When we examined the formats in more detail, we noticed that they
-   support outgoing links to external content but not the inclusion of content
-   via references (transclusion). In the context of presentations, Microsoft's
+   the eLesson Markup Language (eLML) \citep{fisler-1}.  All of these formats
+   share their focus on the reuse of content, but all of them attempt this at a
+   relatively high granularity level. Content can be organised in lessons or
+   modules, and users are encouraged to use these, as a whole, in their
+   teaching. When we investigated the formats more closely, we observed that
+   outgoing links to external content were supported, but
+   transclusion\footnote{The inclusion of content via references} was not.
+
+   %<TODO rework>
+    In the context of presentations, Microsoft's
    Slide Libraries are central repositories for the storage of slides in order
    to facilitate slide sharing and reuse within a company. However, one needs
    to set up a SharePoint server which might represent a hurdle for some users.
