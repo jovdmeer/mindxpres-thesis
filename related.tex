@@ -356,32 +356,32 @@
     The compiler generates a self-contained portable \mxp presentation bundle
     based on a \mxp document. Although a \mxp document could be directly
     interpreted at visualisation time, we decided to create this intermediary
-    step for a number of reasons.  First, the compiler enables the creation of
+    step for a number of reasons. First, the compiler enables the creation of
     different types of presentations from the same \mxp document instance.
     This lets us not only create dynamic and interactive presentations but also
-    more static output formats such as PDF documents for printing.  Second, it
+    more static output formats such as PDF documents for printing. Second, it
     is unwise to assume that there will always be an Internet connection
-    available when giving a presentation.  To overcome this possible issue, the
+    available when giving a presentation. To overcome this possible issue, the
     compiler might create an offline version of a presentation with all
     necessary content pre-downloaded and included in the \mxp presentation
-    bundle.  Last but not least, the compiler might resolve incompatibility
+    bundle. Last but not least, the compiler might resolve incompatibility
     issues by, for instance, converting unsupported video formats or including
     certain HTML5 libraries.
 
    \subsection{\mxp Presentation Bundle}
 
-   %<TODO rework>
+    The dynamic \mxp presentation bundle contains the compiled content along
+    with a portable cross-platform presentation runtime engine which enables
+    more interactive and networked presentations. Resembling the original
+    document, the compiled presentation content still consists of integrated
+    content as well as references to external resources, such as online content
+    that will be retrieved when the presentation is visualised. However, it
+    should be noted that the content might have been modified by the compiler
+    and, for example, been converted or extracted from other document formats
+    that the runtime engine cannot process. References to external content may
+    have been dereferenced by the compiler for offline viewing.
 
-    The dynamic \mxp presentation bundle consists of the compiled content
-    together with a portable cross-platform presentation runtime engine which
-    allows more interactive and networked presentations. Similar to the
-    original document, the compiled presentation content still consists of
-    both, integrated content and references to external resources such as
-    online content that will be retrieved when the presentation is visualised.
-    Note that the content might have been modified by the compiler and, for
-    example, been converted or extracted from other document formats that the
-    runtime engine cannot process. References to external content may have
-    been dereferenced by the compiler for offline viewing.
+   %<TODO rework>
 
     A presentation bundle's core runtime engine consists of the three modules
     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
