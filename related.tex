@@ -382,7 +382,6 @@
     have been dereferenced by the compiler for offline viewing.
 
    %<TODO rework>
-
     A presentation bundle's core runtime engine consists of the three modules
     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
     for processing the content and linking it to the corresponding
@@ -403,66 +402,68 @@
     well as on a plug-in level. When the content engine encounters different
     content types, they are handed over to the specific plug-in which uses the
     graphics engine to visualise the content.
+   %</TODO rework>
 
    \subsection{Plug-in Types}
 
     \fig{roels-1-fig-2}{Structure plug-in examples}
 
-    In order to provide the necessary flexibility, all non-core modules are
-    implemented as plug-ins. Even the basic content types such as text, images
-    or bullet lists have been realised via plug-ins and three major categories
-    of plug-ins have to be distinguished:
+    In order to attain the required flexibility, all non-core modules have been
+    implemented as plug-ins. Even the most basic content types including text,
+    images and bullet lists are handled through plug-ins. We distinguish
+    between three major categories of plug-ins:
 
     \begin{itemize}
 
-     \item \emph{Components} form the basic building blocks of a presentation.
-     They are represented by plug-ins that handle the visualisation for
-     specific content types such as text, images, bullet lists, graphs or
-     videos. The content engine invokes the corresponding plug-ins in order to
-     visualise the content.
+     \item \emph{Components} are the smallest elements of a presentation. The
+     component plug-ins handle the visualisation for specific content types
+     such as text, images, bullet lists, graphs or videos. The content engine
+     invokes the corresponding plug-ins in order to visualise the content.
 
-     \item \emph{Containers} are responsible for grouping and organising
-     components of a specific type. An example of such a container is a slide
-     with each slide containing different content but also some reoccurring
-     elements. Every slide of a presentation may for example contain elements
-     such as a title, a slide number and the author's name, which can be
-     abstracted in a higher level container. Another example is an image
-     container that visualises its content as a horizontally scrollable list of
-     images. Note that we are not restricted to the slide format and content
-     can be laid out in alternative ways.
+     \item \emph{Containers} are used to group and organise components in a
+     specific way. One example of such a container is a slide, where each slide
+     contains different content but also some recurring elements. For instance,
+     every slide of a presentation can contain certain elements such as a
+     title, a slide number and the author's name, all of which can be
+     abstracted at a higher level. Another example is an image container that
+     visualises its content as a horizontally scrollable list of images. It's
+     important to observe that \mxp does not restrict us to the slide format
+     and content can be laid out in many alternative ways.
 
      \item \emph{Structures} are high-level structures and layouts for
-     components and containers. For example, content can be scattered in a
-     graph-like structure or it can be clearly grouped in sections like in a
-     book. Both are radically different ways of visualising and navigating
-     content but by abstracting them as plug-ins, the user can easily switch
-     between different presentation styles as the ones shown in
-     \figref{roels-1-fig-2}. Structures differ from containers by the fact that
-     they do not impose restrictions on the media types of their child elements
-     and may also influence the default navigational path through the content.
+     components and containers. They may scatter content in a graph-like
+     structure or they may clearly group it in sections like in a book. These
+     are radically different ways of visualising and navigating content but the
+     plug-in abstraction allows the user to easily switch between different
+     presentation styles like the ones shown in \figref{roels-1-fig-2}.
+     Structures differ from containers in that they do not restrict media types
+     of their child elements in any way while they may influence the default
+     navigational path through the content.
 
     \end{itemize}
 
    \subsection{Implementation}
 
+   %<TODO rework>
     HTML5 and its related web technologies were chosen as the backbone for
     the \mxp presentation platform. Other options such as JavaFX, Flash or game
-    engines have also been investigated, but HTML5 seemed to be the best choice.
+    engines were investigated as well, but HTML5 seemed to be the best choice.
     The widely accepted HTML5 standard makes \mxp presentations highly portable and
     runnable on any device with a recent web browser, including smartphones and
     tablets. Furthermore, HTML5 provides rich visualisation functionality out of
     the box and the combination with Cascading Style Sheets
     (CSS) and third-party JavaScript libraries forms a potent visualisation
     platform.
+   %</TODO rework>
 
     \subsubsection{Document Format and Authoring Language}
 
-     The \mxp document format which allows us to easily express a
+     The \mxp document format that enables the simple expression of a
      presentation's content, structure and references is based on the
-     eXtensible Markup Language (XML). A simple example of a presentation
-     defined in our XML-based authoring language is shown in \lstref{xml-1}.
-     The set of valid tags and their structure, except the \code{presentation}
-     root tag, is defined by the available plug-ins.
+     eXtensible Markup Language (XML). \lstref{xml-1} shows a simple example
+     of a presentation defined in our XML-based authoring language. The set of
+     valid tags and their structure, apart from the \code{presentation} root
+     tag, consists of what is provided by the available plug-ins.
 
      \begin{figure}[h!]
       \begin{lstxml}{xml-1}{Authoring a simple \mxp presentation}
@@ -480,6 +481,7 @@
 
     \subsubsection{Compiler}
 
+   %<TODO rework>
      The compiler has been realised as a Node.js application. This not only
      allows the compiler to be used via a web interface or as a web service,
      but projects such as node-webkit also enable the compiler to run as a
@@ -505,6 +507,7 @@
      the transformation does not include visualisation-specific information but
      merely results in a valid HTML5 document which is bundled into a
      self-contained package together with the presentation engine.
+   %</TODO rework>
 
      \begin{figure}[h!]
       \begin{lstxml}{xml-2}{Transformed HTML5 presentation content}
@@ -517,6 +520,7 @@
 
     \subsubsection{Presentation Engine}
 
+   %<TODO rework>
      The presentation engine's task is to turn the compiled HTML content into a
      visually appealing and interactive presentation. As highlighted in
      \figref{roels-1-fig-1}, the presentation engine consists of several
@@ -525,9 +529,11 @@
      prototyping and evaluation of innovative visualisation ideas. A resulting
      \mxp presentation combining various structure, container and component
      plug-ins is shown in \figref{roels-1-fig-3}.
+   %</TODO rework>
 
      \fig{roels-1-fig-3}{A \mxp presentation}
 
+   %<TODO rework>
      \paragraph{Content Engine} When a presentation is loaded, the content
       engine is the first component that is activated. It processes the content
       of the HTML presentation by making use of the well-known jQuery
@@ -583,18 +589,22 @@
       level. However, we see this as a temporary solution as it is not
       well-suited for alternative compiler outputs (e.g. PDF) and a more
       generic templating scheme is planned for the future.
+   %</TODO rework>
 
    \subsection{Use Cases}
 
+   %<TODO rework>
     In order to validate the architectural and technological choices, we
     demonstrate the extensibility and feasibility of \mxp as a rapid
     prototyping platform by presenting a number of content- and
     navigation-specific plug-ins that have been developed so far. Additional
     plug-ins for audience-driven functionality such as real-time polls, screen
     mirroring and navigational takeover can be found in \citep{roels-2}.
+   %</TODO rework>
 
     \subsubsection{Structured Overview Plug-in}
 
+   %<TODO rework>
      In Section \ref{mxp-platform} we have explained how structure plug-ins may
      change the way presentations are visualised and navigated. In order to
      illustrate this, we have implemented a structure plug-in called
@@ -604,9 +614,11 @@
      Whenever a new section is reached, the view is zoomed out to provide an
      overview of the content within the section and communicate a sense of
      progress.
+   %</TODO rework>
 
     \subsubsection{Slide Plug-in}
 
+   %<TODO rework>
      In order to also support the traditional slide concept, we created a
      slide-like container plug-in. While the benefits and issues of using
      slides with a fixed size are debatable, we implemented this plug-in as a
@@ -622,6 +634,7 @@
      enables a simple form of cross-media transclusion. A visualised external
      image can be cropped and filters (e.g. colour correction) may be applied
      without duplicating or modifying the original source.
+   %</TODO rework>
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -654,6 +667,7 @@
 
     \subsubsection{Enhanced Video Plug-in}
 
+   %<TODO rework>
      When videos are used in educational settings, we often need more
      functionality than what is offered by the average video player
      \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
@@ -672,6 +686,7 @@
      for augmentation. Currently we make use of the HTML5 video API to
      synchronise the creation and removal of overlays but a SMIL-based
      implementation might be used in the future.
+   %</TODO rework>
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -704,6 +719,7 @@
 
     \subsubsection{Source Code Visualisation Plug-in}
 
+   %<TODO rework>
      Earlier, we mentioned the difficulty of visualising complex resources such
      as source code. Our \mxp source code plug-in exports a \code{code} tag
      which allows the presenter to paste their code into a presentation and
@@ -713,6 +729,7 @@
      tag, it invokes the code plug-in to beautify the code and automatically
      adds vertical scrollbars for larger pieces of source code as shown in
      \lstref{roels-1-fig-6}.
+   %</TODO rework>
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -745,6 +762,7 @@
 
    \subsection{Discussion and Future Work}
 
+   %<TODO rework>
     \mxp currently supports transclusion and cross-media content reuse on the
     plug-in level. For instance, the image or video plug-in can visualise (and
     enhance) external resources, a dictionary plug-in might retrieve
