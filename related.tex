@@ -381,28 +381,26 @@
     that the runtime engine cannot process. References to external content may
     have been dereferenced by the compiler for offline viewing.
 
-   %<TODO rework>
     A presentation bundle's core runtime engine consists of the three modules
     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
     for processing the content and linking it to the corresponding
-    visualisation plug-ins. The \emph{graphics engine} abstracts all
-    rendering-related functionality. For instance, certain presenters prefer a
-    zoomable user interface in order to provide a better overview of their
-    content \citep{reuss-1}. This graphical functionality is also exposed to
+    visualisation plug-ins. The \emph{graphics engine} provides all
+    rendering-related functionality. For instance, some presenters may prefer a
+    zoomable user interface because it provides a better overview of their
+    content \citep{reuss-1}. This graphical functionality is also available to
     the plug-ins, which can make use of the provided abstractions. The
-    \emph{communication engine} exposes a communication API that can be used by
-    plug-ins. It provides some basic functionality for fetching external
-    content but also offers the possibility to form networks between multiple
-    \mxp presentation instances as well as to connect to third-party hardware
-    such as digital pens or clicker systems.
+    \emph{communication engine} exposes a communication API which can also be
+    used by plug-ins. It implements some basic functionality for fetching
+    external content while also offering the possibility to form networks
+    between multiple \mxp presentation instances as well as to connect to
+    third-party hardware such as digital pens or clicker systems.
 
-    In addition to the presentation content and core modules, the presentation
-    bundle contains a set of \emph{themes} and \emph{plug-ins} that are
-    referenced by the content. Themes may contain visual styling on a global as
-    well as on a plug-in level. When the content engine encounters different
-    content types, they are handed over to the specific plug-in which uses the
-    graphics engine to visualise the content.
-   %</TODO rework>
+    Finally, the presentation bundle also contains a collection of
+    \emph{themes} and \emph{plug-ins} as referenced by the presentation
+    content. Themes may define visual styling on a global as well as on a
+    plug-in level. The content engine encounters different content types and
+    hands them over to the matching plug-in, which in turn uses the graphics
+    engine to visualise the content.
 
    \subsection{Plug-in Types}
 
