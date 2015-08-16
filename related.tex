@@ -16,7 +16,7 @@
    presentation tools. The rectangular boundaries of a slide, and the linear
    navigation between slides, are still restrictions we face today in digital
    presentations. Tufte argues that these concepts of slideware have a negative
-   impact on the effectiveness of knowledge transfer \citep{tufte-1}.  While
+   impact on the effectiveness of knowledge transfer \citep{tufte-1}. While
    the presenter is compelled to squeeze complex ideas into a linear sequence
    of slides, those ideas are rarely sequential by nature, resulting in a loss
    of relations, overview and details. An initial approach to address these
@@ -147,13 +147,13 @@
    way to go. When looking for document formats designed to server more general
    educational purposes, we find formats such as the Learning Material Markup
    Language (LMML) \citep{suss-1}, the Connexions Markup Language (CNXML) and
-   the eLesson Markup Language (eLML) \citep{fisler-1}.  All of these formats
+   the eLesson Markup Language (eLML) \citep{fisler-1}. All of these formats
    share their focus on the reuse of content, but all of them attempt this at a
    relatively high granularity level. Content can be organised in lessons or
    modules, and users are encouraged to use these, as a whole, in their
    teaching. When we investigated the formats more closely, we observed that
    outgoing links to external content were supported, but
-   transclusion\footnote{The inclusion of content via references} was not.  In
+   transclusion\footnote{The inclusion of content via references} was not. In
    relation to presentations, Microsoft's Slide Libraries exist as central
    repositories that store slides to enable slide sharing and reuse within an
    organisation. The dependency on SharePoint might represent a hurdle for some
@@ -178,7 +178,7 @@
    evolution, some of the problems mentioned in this section can find their
    solutions in the context of the Web. It should not come as a surprise then,
    that web technologies are being used more often recently in the realisation
-   of presentation solutions.  The Simple Standards-based Slide Show System
+   of presentation solutions. The Simple Standards-based Slide Show System
    (S5)\footnote{http://meyerweb.com/eric/tools/s5/} is an XHTML-based
    slideshow file format that enforces the standard slideware model. The W3C's
    Slidy \citep{raggett-1} initiative offers another presentation format based
@@ -341,37 +341,42 @@
   \section{\mxp Platform}
    \label{mxp-platform}
 
-   In this section, we present the general architecture of our
-   \mxp\footnote{http://mindxpres.com} crossmedia presentation platform which
-   is outlined in \figref{roels-1-fig-1} and addresses the requirements
+   %</TODO rework>
+
+   This section presents the global architecture of the
+   \mxp\footnote{http://mindxpres.com} crossmedia presentation platform as
+   outlined in \figref{roels-1-fig-1}, which addresses the requirements
    presented in the previous section.
 
    \fig{roels-1-fig-1}{\mxp architecture}
 
    \subsection{Document Format and Authoring Language}
 
-    Content is stored, structured and referenced in a dedicated \mxp document
-    format. An individual \mxp document contains the content itself and may
+    A dedicated \mxp document format is used to store, structure and and
+    reference content. Content is stored, structured and referenced in Each
+    individual \mxp document contains the presentation's content itself and may
     also refer to some external content to be included. A new \mxp document can
-    be written manually similar to the \latex approach introduced earlier or in
-    the near future it can also be generated via a graphical authoring tool. In
-    contrast to other presentation formats such as Slidy, S5 or OOXML, the
-    authoring language eliminates unnecessary HTML and XML specifics and
-    focusses on a semantically more meaningful vocabulary. The vocabulary of
-    the authoring language is almost completely defined by plug-ins that
-    provide support for various media types and structures. In order to give
-    users some freedom in the way they present their information, the core \mxp
-    presentation engine only plays a supporting role for plug-ins and lets them
-    define the media types (e.g. video or source code) as well as structures
-    (e.g. slides or graph-based content layouts).
+    be constructed by hand similar to how \latex is authored, or --- in the
+    near future --- it may be generated via a graphical authoring tool.
+    Contrary to other presentation formats such as Slidy, S5 or OOXML, the \mxp
+    authoring language abandons unnecessary HTML and XML specifics and focuses
+    on a semantically more meaningful vocabulary. The syntax of the authoring
+    language is almost entirely defined by plug-ins that enable the inclusion
+    and visualisation of various media types and structures. To allow users
+    some freedom in the way they present their information, the core \mxp
+    presentation engine does little more than providing a runtime environment
+    for plug-ins and lets them define the media types (e.g. video or source
+    code) as well as structures (e.g. slides or graph-based content layouts).
 
-    This is also reflected in the document format as each plug-in extends the
-    vocabulary that can be used. Any visual styling including different fonts,
+    This also becomes apparent in the document format as every plug-in extends the
+    available syntax. Any visual styling including different fonts,
     colours or backgrounds is achieved by applying specific themes to the
     underlying content.
 
    \subsection{Compiler}
 
+   %<TODO rework>
+   
     The compiler transforms a \mxp document into a self-contained portable \mxp
     presentation bundle. While a \mxp document could be directly interpreted at
     visualisation time, for a number of reasons we decided to have this
@@ -382,7 +387,7 @@
     Similarly, we cannot always expect that there will be an Internet
     connection while giving a presentation. For this case, the compiler might
     create an offline version of a presentation with all necessary content
-    pre-downloaded and included in the \mxp presentation bundle.  Last but not
+    pre-downloaded and included in the \mxp presentation bundle. Last but not
     least, the compiler might resolve incompatibility issues by, for instance,
     converting unsupported video formats.
 
@@ -396,7 +401,7 @@
     online content that will be retrieved when the presentation is visualised.
     Note that the content might have been modified by the compiler and, for
     example, been converted or extracted from other document formats that the
-    runtime engine cannot process.  References to external content may have
+    runtime engine cannot process. References to external content may have
     been dereferenced by the compiler for offline viewing.
 
     A presentation bundle's core runtime engine consists of the three modules
@@ -440,7 +445,7 @@
      \item \emph{Containers} are responsible for grouping and organising
      components of a specific type. An example of such a container is a slide
      with each slide containing different content but also some reoccurring
-     elements.  Every slide of a presentation may for example contain elements
+     elements. Every slide of a presentation may for example contain elements
      such as a title, a slide number and the author's name, which can be
      abstracted in a higher level container. Another example is an image
      container that visualises its content as a horizontally scrollable list of
@@ -450,7 +455,7 @@
      \item \emph{Structures} are high-level structures and layouts for
      components and containers. For example, content can be scattered in a
      graph-like structure or it can be clearly grouped in sections like in a
-     book.  Both are radically different ways of visualising and navigating
+     book. Both are radically different ways of visualising and navigating
      content but by abstracting them as plug-ins, the user can easily switch
      between different presentation styles as the ones shown in
      \figref{roels-1-fig-2}. Structures differ from containers by the fact that
@@ -512,7 +517,7 @@
      there is an XML Schema which is augmented with additional constraints
      provided by the plug-ins. After validation, the document is parsed and
      discovered tags might trigger preprocessor actions by the plug-ins such as
-     the extraction of data from referenced legacy document formats (e.g.  \ppt
+     the extraction of data from referenced legacy document formats (e.g. \ppt
      or Excel) or the conversion of an unsupported video format. The tag is
      then converted to HTML5 by simply encoding the information in the
      attributes of a \code{div} element. The HTML5 standard allows custom
@@ -874,7 +879,7 @@
    because it can greatly improve both our layout solution as well as the whole
    \mxp experience in general.}.
 
-%   maybe TODO more stuff from papers about automated layout goes here
+% maybe TODO more stuff from papers about automated layout goes here
 
    \subsection{Algorithms}
     \label{related-algorithms}
