@@ -886,42 +886,22 @@
     result in minimal area layouts at the expense of maintaining visually
     obvious relationships between objects).
 
-% TODO more stuff from papers about automated layout goes here
-
-    In the remainder of this paper, we first discuss some of the simple
-    approaches to presentation layout used in current commercial software in
-    Section \ref{simple-techniques}. Next, we focus on the two methods that
-    have been adopted by research systems that address automated presentation
-    layout: constraints and learning. As described in Section
-    \ref{constraint-satisfaction}, most research layout systems assume that a
-    layout can be described by a set of constraints. Much of this work
-    addresses applying constraint solvers and developing new ones. In addition,
-    many researchers have focused on how to determine or extract the right
-    constraints as well as how to to express them to a computer program.
-    Systems that are not constraint-based generally fall into the category of
-    learning systems, which we discuss in Section \ref{learning-techniques}.
-    These systems are sometimes trained by experts and other times by the user
-    as the system assists in the layout process. In Section
-    \ref{evaluation-techniques}, we introduce some of the issues involved in
-    evaluating presentation layouts. Finally, Section
-    \label{conclusions-layout-paper} presents our conclusions and ideas for
-    future work.
-
    \subsection{Simple techniques}
     \label{simple-techniques}
 
-    Almost all contemporary user interfaces are built with a UI toolkit (e.g.,
-    Sun JFC/Swing \citep{sun-1}, Microsoft Foundation Classes
-    \citep{microsoft-1}, and their ancestors, such as Xtk \citep{mccormack-1}
-    or Tk \citep{ousterhout-1}) that provides basic functionality, such as
-    creating buttons and windows. Toolkits include layout managers (also known
-    as geometry managers) to assist the UI designer (programmer) in designing
-    the layout of objects in a managed container, without having to specify the
-    absolute position and size of each object. Layout managers allow the
-    programmer to say, in effect, “add button” or “add button to this part of
-    the window,” and optionally specify additional numeric constraints. This
-    makes it possible to create layouts that adapt to changes in the
-    container’s size.
+    Most modern user interfaces are built with a UI toolkit (e.g., Sun
+    JFC/Swing \citep{sun-1}, Microsoft Foundation Classes \citep{microsoft-1},
+    and their predecessors, such as Xtk \citep{mccormack-1} or Tk
+    \citep{ousterhout-1}) which provide some basic functionality such as
+    creating buttons and windows. Toolkits usually include layout managers to
+    assist the user interface designer in deciding how objects should be places
+    inside a managed container.  Layout managers allow the programmer to add
+    objects to a container and optionally specify additional constraints while
+    forgoing the need to specify the absolute position and size of every
+    object.  As such, it becomes possible to create layouts that adapt to
+    changes in the container’s size.
+
+% TODO more stuff from papers about automated layout goes here
 
     A layout manager chooses positions and sizes at run time for the objects
     that it controls, governed by a set of constraints imposed by a simple
