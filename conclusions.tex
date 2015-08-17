@@ -2,37 +2,130 @@
 
  \chapter{Conclusions and Future Work}
 
-%  TODO conclusion
+  \ppt* remains the most popular presentation tool worldwide. We believe this
+  is mostly because people are generally afraid of change, and would rather
+  stick to their habits. Since all of their existing work is stored in the \ppt
+  format, they keep using \ppt to access that content as well as create new
+  presentations. On top of that, the process of creating a presentation is
+  still heavily burdened by the layout of the content we want to present.
+  Layout is an important and vastly underrated aspect of presentations in
+  general, which uses up an astonishing amount of time during the creation of a
+  presentation.
 
   \section{Contribution}
 
-%   TODO why is this useful at all
+   We proposed an approach for converting existing \ppt presentations into \mxp
+   presentations, along with a way to take control over layout away from the
+   author and improve upon flawed human design by programmatically calculating
+   ideal content placement and size. We delivered a proof of concept
+   implementation that puts this approach into practice, first letting us show
+   a \ppt presentation's content in \mxp, then showing us the possibility of
+   applying an automated layout algorithm to that an any other \mxp content at
+   will.
 
-   Converting \ppt presentations into \mxp is now possible and easy.
+   Considering the first part of this thesis, which consists of the conversion
+   between \ppt and \mxp, we can conclude that conversion from any other
+   presentation format into \mxp is a feasible concept. Closed-source formats
+   will obviously be more of a challenge than their open-sourced cousins,
+   especially if no API has been created for them as we had the fortune with
+   \ppt and Apache's POI/HSLF implementation. That said, open-source formats
+   may be more easy to take apart but if no API exists for them it would still
+   require a substantial amount of effort. Having an existing API readily
+   available has definitely helped us a great deal in our efforts.
 
-   Automated layout has not been available in presentations until now. \mxp is
-   the first presentation system that doesn't require predefined templates, nor
-   manual layout tweaking by the enduser, instead letting people focus on the
-   content while the software takes care of the rest.
+   Converting these other formats into \mxp remains an important goal in the
+   endeavour to raise awareness and increase popularity of \mxp's features and
+   possibilities. Our implementation provides a way to convert \ppt .ppt
+   presentations, but \ppt* has switched to using the Office Open XML-based
+   .pptx format in recent years, so newer \ppt presentations cannot currently
+   be imported into the \mxp system.
+
+   Our implementation is written in a way that should make it straightforward
+   to adapt for other formats, provided there is a way to get the separate
+   components out of those formats. If slide-based conversion is desired, then
+   obviously a way to extract the components on a per-slide basis is also
+   required. Additionally, our approach using an intermediary form during the
+   conversion process allows for adaptation of the tool to generate other
+   output formats as well. The current implementation generates HTML5 which
+   includes the \mxp standard library and a set of plugins, but the original
+   goal of generating \mxp XML files should be easily attainable; the only
+   reason we did not implement this was the unavailability of the \mxp
+   compiler, which made it impossible for us to test the generated XML files.
+
+   As for the second part of this thesis, concerning the automated generation
+   of presentation layouts, we have discussed why this is necessary. When
+   creating traditional slideware, as well as using more advanced and modern
+   presentation tools, layout remains a problem that for many presenters
+   becomes the biggest timesink in their work. On top of that, the layout they
+   create isn't always a good one, and bad layout has been proven to have
+   negative impact on the effectiveness of a presentation. As such, having a
+   way to automatically generate a layout would save a lot of time while also
+   improving the information transfer effectiveness of presentations.
+
+   We have demonstrated such an automated layout mechanism based on theory and
+   research found in related works, which we adapted and improved upon for our
+   purposes. Our constraint-based approach considers every component
+   separately, to combine all components into a layout where no overlapping
+   exists, components can be grouped together, clear margins are put in between
+   content and surrounding limits in the form of slides and other fixed-size
+   containers are respected.
+
+   The implementation of this mechanism is far from complete, and may still be
+   improved upon in several ways, which will be discussed in section
+   \ref{future}. It does however provide the most basic form of automated
+   layout, which may not always succeed in generating an aesthetically pleasing
+   layout but at least attempts to combine content in a way that makes the
+   content easy to focus on, thus increasing effectiveness of the presentation.
+   It also succeeds in letting the presenter focus on the content rather than
+   the layout. It thus reduces stress and arguably increases quality of
+   presentations, especially when we look at time spent creating the
+   presentation versus its effectiveness.
 
   \section{Future Work}
+   \label{future}
 
-%   TODO what should the next thesis slave still fix
+   In this thesis we have presented a proof-of-concept implementation of both a
+   tool to convert \ppt presentations into \mxp, and an algorithm for
+   generating an objectively effective layout. Due to the limited time
+   available for this thesis, we were not able to go into the finer details of
+   these tools, and the result can seem rather unpolished. However, within this
+   limited timeframe we did deliver a solid core containing the most important
+   features, in a way that allows future research to improve upon it and easily
+   add any missing details.
 
-   Other formats: extend the convertor tool to convert Keynote, prezzi, pptx,
-   \ldots
+   \subsection{Other formats}
 
-   Other formats: refactor the convertor tool to separate output from the
-   component classes, concentrating it in a Writer class that implements a
-   Writer interface, so that the Writer class can easily be replaced with
-   another one to generate a different format.
+    Our conversion tool currently allows to convert \ppt .ppt files into \mxp
+    presentations, bypassing the \mxp compiler. The tool internally uses an
+    intermediary structure to store the presentation's content, and this
+    facilitates the implementation of conversion tools for other formats. As
+    such, it might be a good idea to extend the tool to convert other popular
+    formats like \ppt .pptx files, Apple Keynote presentations and many others.
 
-   Integrate the convertor into an \mxp editor
+    It would also be a good idea to change the output of the conversion tool to
+    generate \mxp XML files to compile further using the \mxp compiler. In and
+    of itself this would not seem advantageous, but with \mxp IDE's and other
+    editing tools in mind it would be better to have XML files which would be
+    editable using those tools, rather than raw HTML5 which presumably would
+    not be readily available in any IDE.
 
-   Improve the automated layout algorithm beyond constraints using learning AI,
-   training it on good/bad layouts, neural network...
+   \subsection{Integration}
 
-   Implement extreme zooming into \mxp using the CSS3 perspective property
-   along with translation along the z-axis to utilize the full power of the 3d
-   space.
+    Speaking of editors, it would be interesting to integrate the conversion
+    tool into such an editor. This would allow \mxp users to just open their
+    \ppt files in the \mxp editor, immediately providing access to its contents
+    and letting the user edit the presentation as if it had always been an \mxp
+    presentation. This would greatly improve usability of the conversion tool
+    as well, since it currently does not have a graphical user interface and
+    thus needs to be invoked from the command line.
+
+   \subsection{Improving the automated layout}
+
+    There are many ways in which the automated layout algorithm may yet be
+    improved. Jock Mackinlay's work \citep{mackinlay-1} includes significant
+    research on how to use artificial intelligence to create effective
+    graphical visualisations. Combining his work with ours could potentially
+    improve the results of our algorithm. An interesting angle here might be
+    the use of a learning AI, which can be trained on sets of good and bad
+    layouts, or observe the user's actions and try to mimic their behaviour.
 

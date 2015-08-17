@@ -97,7 +97,66 @@
     \code{RichTextRun}s from the \code{TextShape}s we were getting out of the
     slides.
 
-    % TODO more whining about bullets, show some code of that awesome stack we use to create nested bullet lists
+     \begin{figure}[h!]
+      \begin{lstjava}{bullets-1}{Converting bullet points}
+BulletList ul = new BulletList();
+Stack<BulletList> listStack = new Stack<>();
+int indent = 0;
+
+for (RichTextRun run : textShape.getTextRun().getRichTextRuns()) {
+  ListItem li = new ListItem();
+  StringContent txt = new StringContent(StringUtils.strip(run.getText()));
+
+  if (run.isBullet()) {
+    if (run.getBulletOffset() > indent) {
+
+      indent = run.getBulletOffset();
+      listStack.push(ul);
+      ul = new BulletList();
+      listStack.peek().addItem(ul);
+
+    } else if (run.getBulletOffset() < indent) {
+
+      indent = run.getBulletOffset();
+      ul = listStack.pop();
+
+    }
+  } else {
+    while (listStack.size() > 0) {
+  //  Current component is not a bulletlist or bullet, go to the top bullet level
+      ul = listStack.pop();
+    }
+  }
+
+  li.getContents().add(txt);
+  ul.addItem(li);
+}
+
+while (listStack.size() > 0) {
+  // Current component is not a bulletlist or bullet, go to the top bullet level
+  ul = listStack.pop();
+}
+
+return ul;
+      \end{lstjava}
+     \end{figure}
+
+    The code in \lstref{bullets-1} shows how we extract bullet points from a
+    \code{TextShape} object and convert them into the nested bullet format we
+    need. As you may notice, the original bullet points are not nested in any
+    way: they are all on the same level of the original object tree, no matter
+    their indentation level. This indentation level is also stored in the
+    bullet object. However, we wanted a more elegant solution where the
+    indentation would be deduced from the level of nesting, much like HTML has
+    always done.
+
+    The solution loops over the list of bullets, checking their indentation
+    level and building a stack of nested bullets accordingly. When increasing
+    the indentation level, a new bullet list is started and added as an item on
+    the existing bullet list. When indentation decreases, we go back to the
+    parent list and continue there. This can go down several levels, and all
+    the way back up of course. Since the objects don't have a direct link to
+    their parent, we use a stack to keep track of this at all times.
 
    \subsection{Animations}
 
@@ -148,7 +207,7 @@
    our conversion tool without affecting the rest of the conversion process,
    and on a per-component basis.
 
-%   TODO generating
+%   maybe TODO generating
 
    \subsection{Playing \mxp compiler}
 
@@ -177,9 +236,9 @@
      Through some refactoring, we were able to change this to use the
      \code{transform: translateZ()} property instead, along with the
      \code{transform: perspective()}\footnote{Not to be confused with the
-     \code{perspective: \[number\]} property, which yields different results}
-     and the \code{transform-style: preserve-3d} properties. This means we're
-     now effectively rendering the presentation in 3D, and moving our viewpoint
+     \code{perspective: <number>} property, which yields different results} and
+     the \code{transform-style: preserve-3d} properties. This means we're now
+     effectively rendering the presentation in 3D, and moving our viewpoint
      around in the 3D space to center each slide or component in turn.
 
      We believe this opens the door for even more visually impressive
@@ -206,23 +265,25 @@
 
      Our implementation currently includes \code{compile()} methods on every
      component object, which is consistent and easy to understand, but which
-     might not be the best way to implement this depending on future goals. We
-     have to walk through the entire tree in any case, so performance will
-     always be $O(n)$ at best. The current implementation has the advantage of
-     extensibility, where new components can easily be added and it is
-     immediately obvious to any new developer how these new components should
-     generate their equivalent HTML code. However, for replacing the output
-     with a different format it would be better if this functionality was
-     separated from the components and gathered in a distinct \code{Writer}
-     class instead. Switching formats would then be as easy as dropping in a
-     new \code{Writer} class that generates a different format. Since we
-     initially did not expect to switch outputs, and because we started
-     implementing one component and then added components as we needed them,
-     the current implementation --- focussed on simplifying addition of new
-     components --- was easier for us to work with. Perhaps the refactoring of
-     this implementation is an option for future work.
-
-     % TODO write more about how we wrote HTML5 like neanderthals
+     might not be the best way to implement this depending on future goals.
+     Instead of having a separate layer taking care of the output, currently it
+     is a cross-cutting concern, which as we all know is not a desirable design
+     pattern. We have to walk through the entire tree in any case, so
+     performance will always be $O(n)$ at best.
+    
+     The current implementation has the advantage of extensibility, where new
+     components can easily be added and it is immediately obvious to any new
+     developer how these new components should generate their equivalent HTML
+     code. However, for replacing the output with a different format it would
+     be better if this functionality was separated from the components and
+     gathered in a distinct \code{Writer} class instead. Switching formats
+     would then be as easy as dropping in a new \code{Writer} class that
+     generates a different format.  Since we initially did not expect to switch
+     outputs, and because we started implementing the conversion of one
+     component and then added components as we needed them, the current
+     implementation --- focused on simplifying addition of new components ---
+     was easier for us to work with.  Perhaps the refactoring of this
+     implementation is an option for future work.
 
     \subsubsection{\mxp XML}
 
@@ -234,32 +295,131 @@
      \code{<div>} tags we can now use \mxp-specific tags. All that adds up to a
      much more easily readable result.
 
-%    TODO XML
+     The advantages towards the user would be even bigger. Using a hypothetical
+     \mxp editor, the output of our conversion tool could be edited in such a
+     tool immediately, while presumably such an editor would not work on plain
+     HTML5. The reuse of content --- one of the main goals of \mxp --- would
+     also be much more plausible using the XML format.
 
   \section{Creating layouts}
 
-%   TODO layout
+   Implementing an automated layout is not an easy task. At any point in the
+   process opportunities arise to use some kind of template, some sort of
+   design choice that would appear to make things easier, but turn out to be
+   restrictive when applied to edge cases. There's also not always a clear
+   distinction between implementing a template and implementing an automated
+   layout. If you decide to put all of your components in a row next to each
+   other, have you just implemented a template or not? What if you make them
+   all the same height, so the row will look aesthetically pleasing when
+   looking at it as a whole? What if you don't?
+
+   It becomes more clear when we have to work within a defined area, such as a
+   slide container. In this case, we have to fit our content within the slide;
+   this could be seen as a template decision but it is not one our algorithm
+   makes, so the algorithm itself just tries to fullfill the constraints it is
+   given. We can then calculate the relative sizes of our components, scale
+   them down or up together (using the same scale factor) until their combined
+   size equals the area we need to fill, and puzzle them together in a way that
+   fits. If no way is possible, we scale everything down some more and try
+   again, until we find something that works.
+
+   Whether using automated layout or not, the suggestion to not put too much
+   content on one slide remains. While an automated layout system may be able
+   to fit all content on one slide, too much content will still cause
+   information to be conveyed less effectively. Due to technical limitations of
+   currently existing browsers, scaling content down and then zooming in to
+   make it fill the screen is not always an option: browsers treat the content
+   as rasterized images rather than vectorized graphics, and scaling them does
+   not yield ideal results. Scaling an image down and then zooming in on it
+   will show you a blurred version at best, and a great big coloured blob at
+   worst. Using the \code{perspective()} and \code{translateZ()} properties
+   yields much better results, but this isn't easily usable within a slide
+   container as the content would be rendered \emph{behind} the slide, making
+   the slide seem empty as seen from the front. If we want the content to be
+   visible on the slide, we need to render it within the size limits of the
+   slide, which gives the same blurred results as scaling.
+
+   The true power of automated layout generation becomes apparent when no such
+   boundaries are posed. If the content does not need to be scaled down, we can
+   use it all in its original size whether those sizes are similar or not.
+   Depending on which options the author of the presentation turns on, we can
+   then still resize content to match sizes, among other things.
 
    \subsection{Using constraints}
 
-%    TODO constraints
+    The basis of our automated layout approach is the use of constraints. As a
+    first step in the process, we assign each component a certain `bounding
+    box', a set of constraints that dictates how close other components can get
+    to this particular component. This distance can be decided arbitrarily, or
+    have a hard-coded value, but we decided to take a more dynamic approach and
+    let the distance be 10\% of the width or height, whichever is the largest.
+    This way, the padding around the content is equal on all sides, and
+    proportionate to the size of the content.
 
+    The next step in the process decides the size of the components. There are
+    two mechanisms that may be applied here together, separately or not at all.
+    One mechanism is the equalization of sizes, where we resize all components
+    in such a manner that they end up all being the same or similar sizes. We
+    can decide to apply this either to the width, the height or the surface
+    area, depending on the effect we hope to create. If we want to put all
+    components size by side, making them all the same height might make for an
+    aesthetically pleasing result, for example; if we want to group them
+    together in a raster-like manner similar surface areas would usually be a
+    better idea.
+
+    The other mechanism is the scaling of components, in which we scale
+    everything up or down equally, maintaining relative proportions between
+    components while reducing or increasing the total used surface area. This
+    is especially useful when we have to generate an automated layout that
+    needs to fit within a predefined container with a fixed size, such as a
+    slide container.
+
+    The default approach when no such fixed-size container is present, is to
+    not apply either of these mechanisms, while we apply both mechanisms
+    together when we do have to fill this predefined area: we then calculate an
+    average surface area size between all components, resize all components to
+    match this average, and finally scale everything up or down so that the
+    total area fits the container.
+
+    It is possible to override this behaviour: when no fixed size is defined,
+    we can specify that all components should be sized equally, be it in width,
+    height or surface area. The latter is the default but this too can be
+    overridden: specifying that the components should be placed in a row or a
+    column instead of a raster-like structure will automatically choose the
+    matching equalizing method. Conversely, when there is a fixed size, we may
+    specify to retain the original proportions and only scale everything up or
+    down equally to fit the area.
+   
    \subsection{Other ways}
 
-%    TODO other ways
+    During implementation, we tried several other ways to improve upon the
+    automated layout, all of which we ultimately decided to abandon in favor of
+    the current approach. There were various reasons for abandoning these
+    paths. Often the reason was that we realized we were influencing the
+    automated layout process with human design decisions, which is exactly what
+    we were trying to avoid. Sometimes what we were trying did not yield the
+    results we hoped for, and sometimes the implementation became too complex
+    to continue or what seemed like a good idea in theory turned our to be
+    impossible in practice.
 
-%   15:50 <omega> zeg, ik zit nu al een hele tijd thesis te schrijven en de laatste paar dagen vooral te zeveren over layout, maar intussen doe ik nog ni echt iets van layout, met t gedacht van ik schrijf daar binnenkort ne mindxpres plug-in voor en klaar
-%   15:51 <omega> maar wordt layout momenteel eig ni mostly door de compiler gedaan?
-%   15:52 <omega> ben zo eens naar de presentation.js libs en code gaan kijken, en ik zie ni direct een manier om ne plug-in layout te laten doen, aangezien plug-ins mostly component-specifiek zijn en ni alle componenten kunnen aansturen
-%   15:53 <omega> dus klopt het dat ik ofwel de compiler moet aanpassen, ofwel presentation.js hacken om dat soort plug-ins toe te laten?
-%   15:53 <omega> of laat het dat soort plug-ins al toe maar zijn er gewoon nog geen?
-%   16:30 <omega> de 'structured' plug-in doet wel layout van slides, maar binnen die slides zie ik niet meteen een systeem dat layout regelt, met templates of otherwise, het pakt gewoon de coordinaten en afmetingen die de compiler bepaald heeft
-%   16:31 <omega> al zou die slide plug-in wel *kunnen* prutsen met die layout... dus mss moet ik gwn de slide plug-in uitbreiden/hacken/vervangen
-%   13:22 <reinout> ik zou een container plug-in maken
-%   13:22 <reinout> gelijk de slide
-%   13:22 <reinout> maar dan onzichtbaar
-%   13:23 <reinout> want containers kan je nesten
-%   13:23 <reinout> dus een slide kan bv uw layout container bevatten, die dan de children een layout geeft
-%   13:23 <reinout> maar op die manier is uw layout ding bruikbaar buiten slides
-%   13:24 <reinout> (alternatief was uw layout stuff in de slide plug-in steken)
-%   13:31 <omega> oeh, cool idee indeed, beter dan de slide plug-in abusen
+    One such idea was to divide components in a raster-like structure, but
+    spread over a set of rows according to a normal distribution --- most
+    components in the middle rows, a few components on the first and last few
+    rows. We realized soon that on one side, this would become a kind of
+    template (a very dynamic one, but still), and on the other side, this was a
+    lot more complex than we initially thought. While this feature has been
+    abandoned in the current implementation we do think it may still be an
+    option for future work though: although it is a template, it seems dynamic
+    enough that it would still match the spirit of our automated layout
+    approach.
+
+    Another idea was to use the Z-axis to make components seem equal in size
+    when viewed from a certain angle as an overview, then zooming in on each
+    component to reveal their true size. This was abandoned purely for
+    complexity reasons: it is not enough to just place larger components
+    further back, you also need to adjust the x and y coordinated to make it
+    seem like the component is placed right next to another when in reality it
+    is a lot further back. This would not be necessary with an orthogonal
+    camera mode, but the HTML5 rendering engines only have a perspective camera
+    mode, which makes this idea too complex to implement within our limited
+    timeframe.

@@ -16,7 +16,7 @@
    presentation tools. The rectangular boundaries of a slide, and the linear
    navigation between slides, are still restrictions we face today in digital
    presentations. Tufte argues that these concepts of slideware have a negative
-   impact on the effectiveness of knowledge transfer \citep{tufte-1}.  While
+   impact on the effectiveness of knowledge transfer \citep{tufte-1}. While
    the presenter is compelled to squeeze complex ideas into a linear sequence
    of slides, those ideas are rarely sequential by nature, resulting in a loss
    of relations, overview and details. An initial approach to address these
@@ -60,14 +60,12 @@
    presentation tools, it is essential to allow the rapid prototyping and
    evaluation of new concepts for the representation, visualisation and
    interaction with content.
-   
-   %<TODO rework>
-   After introducing existing slideware solutions, we discuss the requirements
-   for next generation presentation tools. This is followed by a description of
-   the extensible \mxp architecture and its plug-in mechanism. The web
-   technology-based implementation of \mxp is validated based on a number of
-   use cases and \mxp plug-ins and followed by a discussion of future work.
-   %</TODO rework>
+
+   Before discussing the requirements for a new generation of presentation
+   tools, we briefly introduce existing slideware solutions. Afterwards, we
+   describe the architecture of \mxp, its extensible nature and its plug-in
+   mechanism. The HTML5-based implementation of \mxp is then discussed through
+   demonstration of several use cases and \mxp plug-ins.
 
    A specific issue with slideware we'd like to focus on in this thesis, is the
    trouble with layout in presentations. It can be hard to display the content
@@ -79,7 +77,7 @@
    predefined slots and places on a slide, but then those templates have been
    defined by someone else too. Computer-generated layout is rare and usually
    not quite up to the task.
-  
+
    \mxp is among the software packages offering templates, in that layout is
    handled by whichever plug-in you choose, but so far no plug-ins have defined
    dynamic layout algorithms, rather sticking to predefined ways to put text
@@ -91,38 +89,38 @@
 
   \section{Existing solutions}
 
-   %<TODO rework>
-   The impact, benefits and issues of slideware have been studied ever since
-   digital slideware has been introduced. While some studies acknowledge
-   slideware as a teaching aid \citep{holzinger-1}, Tufte \citep{tufte-1}
-   heavily criticises slideware for sticking to outdated concepts. He addresses
-   the many consequences of spatial limitations or linear navigation and
-   relates them to the human mind which works differently. One of Tufte's
-   conclusions, which is also confirmed by Adams \citep{adams-1}, is that
-   slide-based presentations are not suitable for all kinds of knowledge
-   transfer and in particular not in scientific settings. Recent work shows
-   that it is important for the learning process that content is well
-   integrated in the greater whole, both structurally and visually
-   \citep{gross-1}, which is influenced by the navigation and visualisation.
-   There have been a number of different approaches to offer non-linear
-   navigation. Zoomable User Interfaces (ZUIs) as used by CounterPoint
-   \citep{good-1}, Fly \citep{lichtschlag-1} or Prezi, offer virtually
-   unlimited space. Also Microsoft has experimented with zoomable interfaces in
-   pptPlex. While ZUIs are one way to escape the boundaries of the slide, we
-   have seen other approaches such as MultiPresenter \citep{lanir-1} or tiling
-   slideshows \citep{chen-1}. PaperPoint \citep{signer-1} and Palette
-   \citep{nelson-2} further enable the non-linear navigation of digital
-   presentations based on a slide selection via augmented paper-based
-   interfaces. Finally, there is a category of authoring tools that use
-   hypermedia to enable different paths through a set of slides.
-   NextSlidePlease \citep{spicer-1} allows users to create a weighted graph of
-   slides and may suggest navigational paths based on the link weights and the
-   remaining presentation time. Microsoft follows this trend with their
-   HyperSlides \citep{edge-1} project. The potential of \ppt* as an authoring
-   tool for hypermedia-based presentations has further been investigated by
-   Garcia \citep{garcia-1}.
+   Since digital slideware was first introduced, their influence, advantages
+   and disadvantages have been studied extensively. There have been studies
+   acknowledging the benefits of slideware as a teaching asset
+   \citep{holzinger-1}, while others have been less positive. Tufte
+   \citeyearpar{tufte-1} heavily criticises slideware for its infatuation with
+   outdated concepts. He discusses the many ramifications of dimensional and
+   structural limitations as well as linear navigation, and points out the
+   discrepancy with how the human mind works. Amongst Tufte's conclusions, and
+   also confirmed by Adams \citep{adams-1}, is the suggestion that slide-based
+   presentations are not appropriate for every kind of knowledge transfer and
+   especially not in a scientific context. Recent work shows the importance
+   towards the learning process of integrating content into the bigger picture,
+   both structurally and visually \citep{gross-1}, which is affected by the
+   navigation and visualisation.
 
-   %<TODO this is my stuff!>
+   Several approaches have been proposed to offer non-linear navigation.
+   CounterPoint \citep{good-1}, Fly \citep{lichtschlag-1} and Prezi, provide
+   Zoomable User Interfaces (ZUIs) which offer virtually unlimited space.
+   Microsoft has experimented with this concept as well in pptPlex. Other
+   approaches to escape the confines of the slide have been noticed, like
+   MultiPresenter \citep{lanir-1} or tiling slideshows \citep{chen-1}.
+   PaperPoint \citep{signer-1} and Palette \citep{nelson-2} additionally
+   facilitate the non-linear navigation of digital presentations consisting of
+   slide selection through augmented paper-based interfaces. Lastly, a category
+   of authoring tools exists which use hypermedia to implement varying paths
+   through a set of slides. NextSlidePlease \citep{spicer-1} enables users to
+   define a weighted graph of slides, and tries to suggest navigational paths
+   based on the link weights and the remaining presentation time. Microsoft
+   cultivates this idea in their HyperSlides \citep{edge-1} project. Garcia
+   \citep{garcia-1} has additionally explored the potential of \ppt* as an
+   authoring tool for hypermedia-based presentations.
+
    \ppt* was officially released in 1990, with Windows 3.0 \citep{austin-1}. It
    had originally been developed as Presenter, but trademark issues caused a
    name change early on. It was also originally build for the Macintosh, which
@@ -140,71 +138,74 @@
    many people think. As most readers of this thesis have heard before, over 30
    million \ppt presentations are created every day, for all kinds of purposes,
    with good and bad results both presentation-wise and goal-wise.
-   %</TODO this is my stuff!>
 
-   Existing presentation tools require content to be duplicated for reuse,
-   resulting in multiple redundant copies that need to be kept up to date.
-   Even though some attempts have been made to address this issue, there is
-   room for improvement. When it comes to document formats for more general
-   educational purposes, there are formats such as the Learning Material Markup
+   To reuse content in existing presentation tools, that content needs to be
+   duplicated, which results in a multitude of redundant copies that need to be
+   kept consistent with each other: if one copy is changed, all the others must
+   be changed in the same way to prevent inconsistencies and mistakes. While
+   some attempts have been made to solve this problem, there is still a long
+   way to go. When looking for document formats designed to server more general
+   educational purposes, we find formats such as the Learning Material Markup
    Language (LMML) \citep{suss-1}, the Connexions Markup Language (CNXML) and
-   the eLesson Markup Language (eLML) \citep{fisler-1}. The common factor of
-   these formats is their focus on the reuse of content, but always at a
-   relatively high granularity level. Content is organised in lessons or
-   modules and users are encouraged to use these, as a whole, in their
-   teaching. When we examined the formats in more detail, we noticed that they
-   support outgoing links to external content but not the inclusion of content
-   via references (transclusion). In the context of presentations, Microsoft's
-   Slide Libraries are central repositories for the storage of slides in order
-   to facilitate slide sharing and reuse within a company. However, one needs
-   to set up a SharePoint server which might represent a hurdle for some users.
-   Slides still need to be searched and manually copied into presentations.
-   Furthermore, users are responsible to push back updates to the repository or
-   update slides when they have been modified on the server side. Other
-   commercial tools with similar intentions and functionality for content reuse
-   are SlideRocket or SlideShare. The SliDL \citep{canos-1} research framework
-   provides a service-oriented architecture for storing and tagging slides in a
-   database for reuse. However, it shares some of the shortcomings of
-   Microsoft's Slide Libraries. The ALOCOM \citep{verbert-1} framework for
-   flexible content reuse consists of a content ontology and a (de)composition
-   framework for legacy documents including \ppt documents, Wikipedia pages and
-   SCORM content packages. While ALOCOM succeeds in the decomposition of legacy
-   documents, it might be too rigid for evolving presentation formats and the
-   tool is furthermore only supporting the authoring phase.
+   the eLesson Markup Language (eLML) \citep{fisler-1}. All of these formats
+   share their focus on the reuse of content, but all of them attempt this at a
+   relatively high granularity level. Content can be organised in lessons or
+   modules, and users are encouraged to use these, as a whole, in their
+   teaching. When we investigated the formats more closely, we observed that
+   outgoing links to external content were supported, but
+   transclusion\footnote{The inclusion of content via references} was not. In
+   relation to presentations, Microsoft's Slide Libraries exist as central
+   repositories that store slides to enable slide sharing and reuse within an
+   organisation. The dependency on SharePoint might represent a hurdle for some
+   users, as not everyone has the ability and opportunity to set up such a
+   server. A more significant issue is the fact that slides still need to be
+   searched and manually copied into presentations. Keeping slides in the
+   repository and in other presentations is the responsibility of the authors
+   of those slides and those presentations, as no automatic update system is
+   provided. SlideRocket and SlideShare are both similar tools showing
+   intentions and providing functionality for content reuse. The SliDL
+   \citep{canos-1} research framework works much like Microsoft's Slide
+   Libraries, in that it allows for storage and tagging of slides in a database
+   for reuse, but also in that it shares the same shortcomings. The ALOCOM
+   \citep{verbert-1} framework aimed at flexible content reuse is built upon a
+   content ontology and a (de)composition framework for legacy documents
+   including \ppt documents, Wikipedia pages and SCORM content packages.
+   However, ALOCOM may be too rigid for evolving presentation formats, and it
+   currently only supports the authoring phase, although the tool does succeed
+   in decomposing legacy documents as advertised.
 
-   There is not only a similarity in the evolution of the Web and presentation
-   environments, but a number of the issues presented in this section have
-   solutions in the setting of the Web. It is therefore not surprising that
-   more recently we see the use of web technologies for realising presentation
-   solutions. The Simple Standards-based Slide Show System
-   (S5)\footnote{http://meyerweb.com/eric/tools/s5/} is an XHTML-based file
-   format for slideshows which enforces the classical slideware model. The
-   Slidy \citep{raggett-1} initiative by the W3C introduces another
-   presentation format which is based on the standard slideware model. While
-   these two formats are too limited for our needs, they have some interesting
-   properties. Both formats show a clean separation of content and presentation
-   via CSS themes. The visualisation is resolution independent and the layout
-   and font size are adapted to the available screen real estate. Finally, we
-   would like to mention recent HTML5-based presentation solutions, including
-   projects such as impress.js, deck.js, Shower or reveal.js. A major benefit
-   of applying a widely used open standard such as HTML is the cross-device
-   support. Nevertheless, also these solutions show some restrictions in terms
-   of visualisation, navigation and cross-media support.
+   Aside from the similarities in the Web's and presentation environments'
+   evolution, some of the problems mentioned in this section can find their
+   solutions in the context of the Web. It should not come as a surprise then,
+   that web technologies are being used more often recently in the realisation
+   of presentation solutions. The Simple Standards-based Slide Show System
+   (S5)\footnote{http://meyerweb.com/eric/tools/s5/} is an XHTML-based
+   slideshow file format that enforces the standard slideware model. The W3C's
+   Slidy \citep{raggett-1} initiative offers another presentation format based
+   on the classical slideware model. Both of these formats have some valuable
+   properties. They encourage a clean separation of content and visualisation
+   through the use of CSS themes. The design is resolution independent, and the
+   layout and font size adjust to the available screen real estate. Last but
+   not least, some more recent HTML5-based presentation solutions such as
+   impress.js, deck.js, Shower or reveal.js. Cross-device support is one of the
+   most important advantages to leverage when using a well-known open standard
+   such as HTML. However, as all of these solutions display some restrictions
+   in terms of visualisation, navigation, and cross-media support, they are
+   unfortunately too limited for our needs.
 
-   Most of the tools and projects presented in this section focus on specific
-   novel ideas for presentations. However, there is no interoperability between
-   the concepts introduced in different tools. While one project might focus on
-   the authoring, another one focusses on novel content types and a third
-   solution introduces radically new navigation mechanisms. Some slideware
-   tools can be extended via third-party plug-ins but the functionality that is
-   exposed to the developers is often limited by the tool's underlying model.
-   For example, \ppt allows plug-ins to interact with the presentation model,
-   but the model dictates that a presentation must consist of a sequence of
-   slides. This lack of freedom is also a shortcoming of existing web-based
-   presentation formats. We therefore see a need for an open presentation
-   platform such as \mxp which supports innovation by providing the necessary
-   modularity and interoperability \citep{bush-1}.
-   %</TODO rework>
+   The tools and projects discussed in this section mostly focus on
+   distinguishing novel ideas for presentations. Nevertheless, the different
+   concepts introduced in these tools don't offer interoperability between
+   them. One project may focus on the authoring, another one fixates on novel
+   content types and a third solution supplies radically new navigation
+   mechanisms. Slideware tools may often allow third-party extensions but the
+   API exposed to plug-in developers is usually limited by the software's
+   underlying model. As an illustration, \ppt supports interaction from
+   plug-ins with the presentation model, but the model dictates that a
+   presentation consists of a sequence of slides. Many existing web-based
+   presentation formats share this flaw. Because of this, we see a need for an
+   open presentation platform such as \mxp to support innovation by
+   contributing the necessary modularity and interoperability \citep{bush-1}.
 
    It is perhaps surprising that, to our knowledge, currently no tools exist to
    calculate dynamic layouts of content in slideware. Existing solutions
@@ -212,244 +213,253 @@
    you to define templates for every single layout choice, usually more coarse
    like \ppt* or Apple Keynote using Master Slides to define different layouts
    on a per-slide basis, and always with the option of letting the user
-   customize the layout by hand, literally manually moving the content to the
+   customise the layout by hand, literally manually moving the content to the
    exact place where we want it, unhindered by style guides, good practices or
    common sense. This has resulted in mindboggling layout choices involving
    enormous amounts of tiny text crammed onto one slide, or pictures strewn
-   across a slide overwhelming the audience with too much information at once. 
+   across a slide overwhelming the audience with too much information at once.
 
   \section{New solutions}
 
-   %<TODO rework>
-   We now introduce a number of requirements to support a broad range of
-   presentation styles and visualisations which have been compiled based on a
-   review of the more recent presentation solutions presented in the previous
+   Here we propose a set of requirements to establish a wide range of
+   presentation styles and visualisations. This set has been compiled based on
+   a review of the more recent presentation solutions discussed in the previous
    section.
 
-     \paragraph{Non-linear Navigation} As outlined earlier, the linear
-      traversal of slides is a concept that has been taken over from early
-      photographic slides. Nowadays, users are accustomed to this form of
-      navigation even if it might come with some disadvantages. Any navigation
-      outside of the predefined linear path (e.g. to answer a question from the
-      audience) is rather complicated, since the presenter either needs
-      substantial time to scroll forwards or backwards to the desired slide or
-      has to switch to the slide sorter view. It is further impossible to
-      include a single slide multiple times in the navigational path without
-      any duplication. There are different ways how this lack of flexible
-      navigation can be addressed, including presentation tools that allow the
-      presenter to define non-linear navigation paths \citep{spicer-1}
-      \citep{edge-1} or zoomable user interfaces (ZUIs) \citep{good-1}
-      \citep{lichtschlag-1} \citep{haller-1}.
+     \paragraph{Non-linear Navigation} As we mentioned before, traversing
+      slides in a linear fashion is a remnant of the way early photographic
+      slides worked. Over the years, people have grown used to this form of
+      navigation despite the inconveniences. If the presenter unexpectedly
+      needs to show anything other than the next or previous slide (e.g. to
+      answer a question from the audience), they either need a considerable
+      amount of time to scroll forwards or backwards, or they have to switch to
+      the slide sorter view, to find the desired slide. Also troubling is the
+      lack of any functionality allowing a single slide to be included multiple
+      times throughout the presentation without duplicating the slide in
+      question, meaning if any change has to be made to that slide the same
+      change has to be performed on all copies. This poses the risk of
+      overlooking some copies, introducing inconsistencies and facilitating
+      mistakes. There are several manners in which this lack of flexible
+      navigation might be addressed, including the possibility to define
+      non-linear navigation paths \citep{spicer-1,edge-1} or zoomable user
+      interfaces (ZUIs) \citep{good-1,lichtschlag-1,haller-1}.
 
-     \paragraph{Separation of Content and Presentation} In order to facilitate
-      experimentation with different visualisations, there should be a clear
-      separation between content and presentation. This allows the authors of a
-      presentation to focus on the content while the visualisation is handled
-      by the presentation tool. Note that this approach is similar to the
-      \latex typesetting system where content is written in a standardised
-      structured way and the visualisation is automatically handled by the
-      typesetting system. There is also a \latex document class for
-      presentations called Beamer and we were inspired by its structured and
-      content-driven approach. However, the content-related functionality and
-      the visualisation are too limited to be considered as a basis for an
-      extensible presentation tool.
+     \paragraph{Separation of Content and Presentation} Similar to the approach
+      of \latex and other professional typesetting systems, content should be
+      written in a standardised way with visualisation being handled
+      automatically by the typesetting system. The clear separation between
+      content and presentation makes the presentation tool handle the
+      visualisation, allowing the authors of a presentation to focus on the
+      content. Additionally, this facilitates experimentation with different
+      visualisations. \latex does have a document class called Beamer which was
+      designed specifically for presentations, but while we were inspired by
+      its structured and content-driven approach, the content-related
+      functionality and the visualisation possibilities are too limited to be
+      considered as a basis for an extensible presentation tool.
 
-     \paragraph{Extensibility} In order for a presentation tool to be
-      successful as an experimental platform for new presentation concepts, it
-      should be easy to rapidly prototype new content types and presentation
-      formats as well as innovative navigation and visualisation techniques. It
-      has to be possible to add or replace specific components without
-      requiring changes in the core. In order to be truly extensible, a
-      presentation tool should provide a modular architecture with loosely
-      coupled components. Note that this type of extensibility should not only
-      be offered on the level of content types but also for the visualisation
-      engine or content structures.
+     \paragraph{Extensibility} Rapidly prototyping innovative navigation and
+      visualisation techniques, but also new content types and presentation
+      formats, should be easy in order for a presentation tool to be successful
+      as an experimental platform for new presentation concepts. It should be
+      possible to add or replace specific components without requiring changes
+      in the core. A presentation tool should provide a modular architecture
+      with loosely coupled components to be truly extensible. Note that this
+      type of extensibility should be offered on the level of content types as
+      well as for the visualisation engine and content structures.
 
-     \paragraph{Cross-Media Content Reuse} In the introduction we briefly
-      mentioned the lack of content reuse in existing presentation tools. There
-      is a wealth of open education material available but it is rather
-      difficult to use this content in presentations. On the other hand, the
-      concept of transclusion works well for digital documents and parts of the
-      Web (e.g. via the HTML img tag). A modern presentation tool should also
-      support the seamless integration of external cross-media content. This
-      includes various mechanisms for including parts of other presentations
-      (e.g. slides), transcluding content from third-party document formats as
-      well as including content from open learning repositories.
+     \paragraph{Cross-Media Content Reuse} We have previously briefly mentioned
+      the lack of content reuse in existing presentation tools. Even though
+      there is a wealth of open education material available, it is rather
+      difficult to use this content in presentations. However, the concept of
+      transclusion does work well for digital documents and parts of the Web
+      (e.g. via the HTML img tag). The seamless integration of external
+      cross-media content as implemented in these environments should also be
+      supported by any modern presentation tool. This includes several
+      different mechanisms that enable including parts of other presentations
+      (e.g. slides), transcluding content from third-party document formats,
+      and including content from open learning repositories.
 
-     \paragraph{Connectivity} With the rise of social and mobile technologies,
-      connectivity for multi-device input and output becomes more relevant in
-      the context of presentation tools. Support for multi-directional
-      connectivity is required for a number of reasons. First, it is necessary
-      for the previously mentioned cross-media transclusion from external
-      resources. Second, multi-directional connectivity forms the backbone for
-      audience feedback via real-time response or voting systems
-      \citep{dufresne-1} as well as other forms of multi-device interfaces.
+     \paragraph{Connectivity}
 
-     \paragraph{Interactivity} We mentioned that content might be more
-      interactive and the extensibility requirement addresses this issue since
-      the targeted architecture should support dynamic or interactive content
-      and visualisations. Nevertheless, the use of mouse and keyboard might not
-      be sufficient for components offering a high level of interaction.
-      Therefore, a presentation tool should enable the integration of other
-      forms of input such a gesture-based interaction based on Microsoft's
-      Kinect controller or digital pen interaction \citep{signer-2} as offered
-      by the PaperPoint \citep{signer-1} presentation tool.
+      Connectivity for multi-device input and output has become more relevant
+      in relation to presentation tools with the rise of social and mobile
+      technologies. Multi-directional connectivity needs to be supported for
+      several reasons. First, it is a requirement to enable the previously
+      mentioned cross-media transclusion from external resources. Second,
+      multi-directional connectivity is the basis of audience feedback via
+      real-time response or voting systems \citep{dufresne-1} as well as other
+      forms of multi-device interfaces.
 
-     \paragraph{Post-Presentation Phase} Even if it was never the original goal
-      of slide decks, they often play an important role as study or reference
-      material. While the sharing of traditional slide decks after a
-      presentation is trivial, this changes when the previously mentioned
-      requirements are taken into account. For instance, the nonlinear
+     \paragraph{Interactivity}
+
+      As mentioned earlier, content can be more interactive and the
+      extensibility requirement addresses this issue since the intended
+      architecture should support dynamic or interactive content and
+      visualisations. However, traditional human input devices might not
+      suffice for components offering a high level of interaction. As such, a
+      presentation tool should facilitate the integration of other forms of
+      input like gesture-based interaction using Microsoft's Kinect controller
+      or digital pen interaction \citep{signer-2} as implemented by the
+      PaperPoint \citep{signer-1} presentation tool.
+
+     \paragraph{Post-Presentation Phase}
+
+      Slide decks often play an important role as study or reference material,
+      even if that was never their original goal. It is a trivial act to share
+      traditional slide decks after a presentation, but this changes when the
+      previously mentioned requirements are taken into account. The nonlinear
       navigation allows presenters to go through their content in a non-obvious
-      order or input from the audience might drive parts of a presentation.
-      Special attention should therefore be paid to the post-presentation
-      phase. It should not only be easy to play back a presentation with the
-      original navigational path, annotations and audience input, but its
-      content should also be made discoverable and reusable. In accordance with
-      the Web 2.0, we see potential for the social aspect in a
-      post-presentation phase via a content discussion mechanism.
+      order, and input from the audience might drive parts of a presentation,
+      amongst other possible variables. Special attention should therefore be
+      paid to the post-presentation phase. Playing back a presentation using
+      the original navigational path, annotations and audience input should be
+      made easy, while the content should also be made discoverable and
+      reusable. With the rise and popularity of modern social media, there is a
+      definite possibility to include the social aspect in a post-presentation
+      phase through a content discussion mechanism.
 
   \section{\mxp Platform}
    \label{mxp-platform}
 
-   In this section, we present the general architecture of our
-   \mxp\footnote{http://mindxpres.com} crossmedia presentation platform which
-   is outlined in \figref{roels-1-fig-1} and addresses the requirements
+   This section presents the global architecture of the
+   \mxp\footnote{http://mindxpres.com} crossmedia presentation platform as
+   outlined in \figref{roels-1-fig-1}, which addresses the requirements
    presented in the previous section.
 
    \fig{roels-1-fig-1}{\mxp architecture}
 
    \subsection{Document Format and Authoring Language}
 
-    Content is stored, structured and referenced in a dedicated \mxp document
-    format. An individual \mxp document contains the content itself and may
+    A dedicated \mxp document format is used to store, structure and and
+    reference content. Content is stored, structured and referenced in Each
+    individual \mxp document contains the presentation's content itself and may
     also refer to some external content to be included. A new \mxp document can
-    be written manually similar to the \latex approach introduced earlier or in
-    the near future it can also be generated via a graphical authoring tool. In
-    contrast to other presentation formats such as Slidy, S5 or OOXML, the
-    authoring language eliminates unnecessary HTML and XML specifics and
-    focusses on a semantically more meaningful vocabulary. The vocabulary of
-    the authoring language is almost completely defined by plug-ins that
-    provide support for various media types and structures. In order to give
-    users some freedom in the way they present their information, the core \mxp
-    presentation engine only plays a supporting role for plug-ins and lets them
-    define the media types (e.g. video or source code) as well as structures
-    (e.g. slides or graph-based content layouts).
+    be constructed by hand similar to how \latex is authored, or --- in the
+    near future --- it may be generated via a graphical authoring tool.
+    Contrary to other presentation formats such as Slidy, S5 or OOXML, the \mxp
+    authoring language abandons unnecessary HTML and XML specifics and focuses
+    on a semantically more meaningful vocabulary. The syntax of the authoring
+    language is almost entirely defined by plug-ins that enable the inclusion
+    and visualisation of various media types and structures. To allow users
+    some freedom in the way they present their information, the core \mxp
+    presentation engine does little more than providing a runtime environment
+    for plug-ins and lets them define the media types (e.g. video or source
+    code) as well as structures (e.g. slides or graph-based content layouts).
 
-    This is also reflected in the document format as each plug-in extends the
-    vocabulary that can be used. Any visual styling including different fonts,
+    This also becomes apparent in the document format as every plug-in extends the
+    available syntax. Any visual styling including different fonts,
     colours or backgrounds is achieved by applying specific themes to the
     underlying content.
 
    \subsection{Compiler}
 
-    The compiler transforms a \mxp document into a self-contained portable \mxp
-    presentation bundle. While a \mxp document could be directly interpreted at
-    visualisation time, for a number of reasons we decided to have this
-    intermediary step. First, the compiler allows different types of
-    presentations to be created from the same \mxp document instance. This
-    means that we can not only create dynamic and interactive presentations but
-    also more static output formats such as PDF documents for printing.
-    Similarly, we cannot always expect that there will be an Internet
-    connection while giving a presentation. For this case, the compiler might
-    create an offline version of a presentation with all necessary content
-    pre-downloaded and included in the \mxp presentation bundle.  Last but not
-    least, the compiler might resolve incompatibility issues by, for instance,
-    converting unsupported video formats.
+    The compiler generates a self-contained portable \mxp presentation bundle
+    based on a \mxp document. Although a \mxp document could be directly
+    interpreted at visualisation time, we decided to create this intermediary
+    step for a number of reasons. First, the compiler enables the creation of
+    different types of presentations from the same \mxp document instance.
+    This lets us not only create dynamic and interactive presentations but also
+    more static output formats such as PDF documents for printing. Second, it
+    is unwise to assume that there will always be an Internet connection
+    available when giving a presentation. To overcome this possible issue, the
+    compiler might create an offline version of a presentation with all
+    necessary content pre-downloaded and included in the \mxp presentation
+    bundle. Last but not least, the compiler might resolve incompatibility
+    issues by, for instance, converting unsupported video formats or including
+    certain HTML5 libraries.
 
    \subsection{\mxp Presentation Bundle}
 
-    The dynamic \mxp presentation bundle consists of the compiled content
-    together with a portable cross-platform presentation runtime engine which
-    allows more interactive and networked presentations. Similar to the
-    original document, the compiled presentation content still consists of
-    both, integrated content and references to external resources such as
-    online content that will be retrieved when the presentation is visualised.
-    Note that the content might have been modified by the compiler and, for
-    example, been converted or extracted from other document formats that the
-    runtime engine cannot process.  References to external content may have
-    been dereferenced by the compiler for offline viewing.
+    The dynamic \mxp presentation bundle contains the compiled content along
+    with a portable cross-platform presentation runtime engine which enables
+    more interactive and networked presentations. Resembling the original
+    document, the compiled presentation content still consists of integrated
+    content as well as references to external resources, such as online content
+    that will be retrieved when the presentation is visualised. However, it
+    should be noted that the content might have been modified by the compiler
+    and, for example, been converted or extracted from other document formats
+    that the runtime engine cannot process. References to external content may
+    have been dereferenced by the compiler for offline viewing.
 
     A presentation bundle's core runtime engine consists of the three modules
     shown in \figref{roels-1-fig-1}. The \emph{content engine} is responsible
     for processing the content and linking it to the corresponding
-    visualisation plug-ins. The \emph{graphics engine} abstracts all
-    rendering-related functionality. For instance, certain presenters prefer a
-    zoomable user interface in order to provide a better overview of their
-    content \citep{reuss-1}. This graphical functionality is also exposed to
+    visualisation plug-ins. The \emph{graphics engine} provides all
+    rendering-related functionality. For instance, some presenters may prefer a
+    zoomable user interface because it provides a better overview of their
+    content \citep{reuss-1}. This graphical functionality is also available to
     the plug-ins, which can make use of the provided abstractions. The
-    \emph{communication engine} exposes a communication API that can be used by
-    plug-ins. It provides some basic functionality for fetching external
-    content but also offers the possibility to form networks between multiple
-    \mxp presentation instances as well as to connect to third-party hardware
-    such as digital pens or clicker systems.
+    \emph{communication engine} exposes a communication API which can also be
+    used by plug-ins. It implements some basic functionality for fetching
+    external content while also offering the possibility to form networks
+    between multiple \mxp presentation instances as well as to connect to
+    third-party hardware such as digital pens or clicker systems.
 
-    In addition to the presentation content and core modules, the presentation
-    bundle contains a set of \emph{themes} and \emph{plug-ins} that are
-    referenced by the content. Themes may contain visual styling on a global as
-    well as on a plug-in level. When the content engine encounters different
-    content types, they are handed over to the specific plug-in which uses the
-    graphics engine to visualise the content.
+    Finally, the presentation bundle also contains a collection of
+    \emph{themes} and \emph{plug-ins} as referenced by the presentation
+    content. Themes may define visual styling on a global as well as on a
+    plug-in level. The content engine encounters different content types and
+    hands them over to the matching plug-in, which in turn uses the graphics
+    engine to visualise the content.
 
    \subsection{Plug-in Types}
 
     \fig{roels-1-fig-2}{Structure plug-in examples}
 
-    In order to provide the necessary flexibility, all non-core modules are
-    implemented as plug-ins. Even the basic content types such as text, images
-    or bullet lists have been realised via plug-ins and three major categories
-    of plug-ins have to be distinguished:
+    In order to attain the required flexibility, all non-core modules have been
+    implemented as plug-ins. Even the most basic content types including text,
+    images and bullet lists are handled through plug-ins. We distinguish
+    between three major categories of plug-ins:
 
     \begin{itemize}
 
-     \item \emph{Components} form the basic building blocks of a presentation.
-     They are represented by plug-ins that handle the visualisation for
-     specific content types such as text, images, bullet lists, graphs or
-     videos. The content engine invokes the corresponding plug-ins in order to
-     visualise the content.
+     \item \emph{Components} are the smallest elements of a presentation. The
+     component plug-ins handle the visualisation for specific content types
+     such as text, images, bullet lists, graphs or videos. The content engine
+     invokes the corresponding plug-ins in order to visualise the content.
 
-     \item \emph{Containers} are responsible for grouping and organising
-     components of a specific type. An example of such a container is a slide
-     with each slide containing different content but also some reoccurring
-     elements.  Every slide of a presentation may for example contain elements
-     such as a title, a slide number and the author's name, which can be
-     abstracted in a higher level container. Another example is an image
-     container that visualises its content as a horizontally scrollable list of
-     images. Note that we are not restricted to the slide format and content
-     can be laid out in alternative ways.
+     \item \emph{Containers} are used to group and organise components in a
+     specific way. One example of such a container is a slide, where each slide
+     contains different content but also some recurring elements. For instance,
+     every slide of a presentation can contain certain elements such as a
+     title, a slide number and the author's name, all of which can be
+     abstracted at a higher level. Another example is an image container that
+     visualises its content as a horizontally scrollable list of images. It's
+     important to observe that \mxp does not restrict us to the slide format
+     and content can be laid out in many alternative ways.
 
      \item \emph{Structures} are high-level structures and layouts for
-     components and containers. For example, content can be scattered in a
-     graph-like structure or it can be clearly grouped in sections like in a
-     book.  Both are radically different ways of visualising and navigating
-     content but by abstracting them as plug-ins, the user can easily switch
-     between different presentation styles as the ones shown in
-     \figref{roels-1-fig-2}. Structures differ from containers by the fact that
-     they do not impose restrictions on the media types of their child elements
-     and may also influence the default navigational path through the content.
+     components and containers. They may scatter content in a graph-like
+     structure or they may clearly group it in sections like in a book. These
+     are radically different ways of visualising and navigating content but the
+     plug-in abstraction allows the user to easily switch between different
+     presentation styles like the ones shown in \figref{roels-1-fig-2}.
+     Structures differ from containers in that they do not restrict media types
+     of their child elements in any way while they may influence the default
+     navigational path through the content.
 
     \end{itemize}
 
    \subsection{Implementation}
 
-    HTML5 and its related web technologies were chosen as the backbone for
-    the \mxp presentation platform. Other options such as JavaFX, Flash or game
-    engines have also been investigated, but HTML5 seemed to be the best choice.
-    The widely accepted HTML5 standard makes \mxp presentations highly portable and
-    runnable on any device with a recent web browser, including smartphones and
-    tablets. Furthermore, HTML5 provides rich visualisation functionality out of
-    the box and the combination with Cascading Style Sheets
-    (CSS) and third-party JavaScript libraries forms a potent visualisation
-    platform.
+    HTML5 and its related web technologies were chosen as the backbone for the
+    \mxp presentation platform. Alternatives such as JavaFX, Flash or game
+    engines were investigated as well, but HTML5 appeared to be the best
+    option. The widely accepted HTML5 standard makes \mxp presentations highly
+    portable, as any device with a recent web browser can display them,
+    including smartphones and tablets. Moreover, HTML5 offers rich
+    visualisation functionality by design and the inclusion of Cascading Style
+    Sheets (CSS) and third-party JavaScript libraries makes it a powerful
+    visualisation platform.
 
     \subsubsection{Document Format and Authoring Language}
 
-     The \mxp document format which allows us to easily express a
+     The \mxp document format that enables the simple expression of a
      presentation's content, structure and references is based on the
-     eXtensible Markup Language (XML). A simple example of a presentation
-     defined in our XML-based authoring language is shown in \lstref{xml-1}.
-     The set of valid tags and their structure, except the \code{presentation}
-     root tag, is defined by the available plug-ins.
+     eXtensible Markup Language (XML). \lstref{xml-1} shows a simple example
+     of a presentation defined in our XML-based authoring language. The set of
+     valid tags and their structure, apart from the \code{presentation} root
+     tag, consists of what is provided by the available plug-ins.
 
      \begin{figure}[h!]
       \begin{lstxml}{xml-1}{Authoring a simple \mxp presentation}
@@ -467,31 +477,32 @@
 
     \subsubsection{Compiler}
 
-     The compiler has been realised as a Node.js application. This not only
-     allows the compiler to be used via a web interface or as a web service,
-     but projects such as node-webkit also enable the compiler to run as a
-     local offline desktop application. The choice of using server-side
-     JavaScript was influenced by the fact that Node.js is capable of bridging
-     web and desktop technologies. On the one hand, the framework makes it easy
-     to interact with other web services and to work with HTML, JSON, XML and
-     JavaScript visualisation libraries at compile time. On the other hand, the
-     framework can also perform tasks which are usually not suited for web
-     technologies, including video conversion, legacy document format access,
-     file system access or TCP/IP connectivity.
+     The compiler has been implemented as a Node.js application. Not only does
+     this accomodate the use of the compiler via a web interface or as a web
+     service, but projects such as node-webkit also enable the compiler to be
+     executed as a local offline desktop application. The decision to use
+     server-side JavaScript was influenced by the fact that Node.js has the
+     ability to bridge web and desktop technologies. On one hand, the framework
+     facilitates interaction with other web services and allows us to work with
+     HTML, JSON, XML and JavaScript visualisation libraries during compilation.
+     On the other hand, the framework can carry out tasks for which web
+     technologies are usually not suitable, including video conversion, legacy
+     document format access, file system access or TCP/IP connectivity.
 
-     In order to validate a \mxp document in the XML format described above,
-     there is an XML Schema which is augmented with additional constraints
-     provided by the plug-ins. After validation, the document is parsed and
-     discovered tags might trigger preprocessor actions by the plug-ins such as
-     the extraction of data from referenced legacy document formats (e.g.  \ppt
-     or Excel) or the conversion of an unsupported video format. The tag is
-     then converted to HTML5 by simply encoding the information in the
-     attributes of a \code{div} element. The HTML5 standard allows custom
-     attributes if they start with a \code{data-} prefix. \lstref{xml-2} shows
-     parts of the transformed XML document shown in \lstref{xml-1}. Note that
-     the transformation does not include visualisation-specific information but
-     merely results in a valid HTML5 document which is bundled into a
-     self-contained package together with the presentation engine.
+     To enable validation of a \mxp document in the XML format described above,
+     an XML Schema exists which is augmented with additional constraints
+     provided by the plug-ins. After validating the document, it is parsed and
+     any discovered tags might trigger preprocessor actions defined by the
+     plug-ins, such as the extraction of data from referenced legacy document
+     formats (e.g. \ppt or Excel) or the conversion of an unsupported video
+     format. Each tag is then converted to HTML5 and all information is encoded
+     in the attributes of a \code{div} element. The HTML5 standard allows
+     custom attributes that start with a \code{data-} prefix. \lstref{xml-2}
+     hilights converted parts of the original XML document we saw in
+     \lstref{xml-1}. Observe that no visualisation-specific information is
+     included in the transformation, which merely results in a valid HTML5
+     document ready to bundle into a self-contained package together with the
+     presentation engine.
 
      \begin{figure}[h!]
       \begin{lstxml}{xml-2}{Transformed HTML5 presentation content}
@@ -504,111 +515,120 @@
 
     \subsubsection{Presentation Engine}
 
-     The presentation engine's task is to turn the compiled HTML content into a
-     visually appealing and interactive presentation. As highlighted in
-     \figref{roels-1-fig-1}, the presentation engine consists of several
-     smaller components which help plug-ins to implement powerful features with
-     minimal effort. The combination of these components enables the rapid
+     The presentation engine's main purpose is to create a visually appealing
+     and interactive presentation based on the compiled HTML content. As
+     \figref{roels-1-fig-1} shows, the presentation engine consists of several
+     smaller components which enable plug-ins to implement powerful features
+     with minimal effort. The combination of these components allows for rapid
      prototyping and evaluation of innovative visualisation ideas. A resulting
      \mxp presentation combining various structure, container and component
      plug-ins is shown in \figref{roels-1-fig-3}.
 
      \fig{roels-1-fig-3}{A \mxp presentation}
 
-     \paragraph{Content Engine} When a presentation is loaded, the content
-      engine is the first component that is activated. It processes the content
-      of the HTML presentation by making use of the well-known jQuery
-      JavaScript library. Whenever a \code{div} element is discovered, the
+     \paragraph{Content Engine} The content engine is the first component that
+      is activated when a presentation is loaded. It uses the well-known
+      jQuery JavaScript library to process the content of the HTML
+      presentation. Whenever a \code{div} element is discovered, the
       \code{data-type} attribute is read and the corresponding plug-ins are
-      notified in order to visualise the content.
+      triggered in order to visualise the content.
 
-     \paragraph{Graphics Engine} The graphics engine provides support for
-      interesting new visualisation and navigation styles. Next to some basic
-      helper functions, it offers efficient panning, scaling and rotation via
-      CCS3 transformations and supports zoomable user interfaces as well as the
-      more traditional navigation approaches.
+     \paragraph{Graphics Engine} The graphics engine accomodates interesting
+      new visualisation and navigation styles. Apart from some basic helper
+      functions, it provides efficient panning, scaling and rotation via CSS3
+      transformations and supports zoomable user interfaces as well as the more
+      traditional navigation approaches.
 
-     \paragraph{Communication Engine} The communication engine implements
-      abstractions that allow plug-ins to retrieve external content at run
-      time. It further provides the architectural foundation to form networks
-      between different \mxp instances or to integrate third-party hardware
-      \citep{roels-2}. For our \mxp prototype, we used a small Intel Next Unit
-      of Computing Kit (NUC) with high-end WiFi and Bluetooth modules to act as
-      a central access point and provide the underlying network support. \mxp
+     \paragraph{Communication Engine} The communication engine offers
+      abstractions that enable plug-ins to retrieve external content at runtime.
+      It also provides the architectural foundation to form networks
+      between different \mxp instances and to integrate third-party hardware
+      \citep{roels-2}.
+      For the \mxp prototype, a small Intel Next Unit
+      of Computing Kit (NUC) was used with high-end WiFi and Bluetooth modules to act as
+      a central access point and provide the underlying network support. \mxp presentation
       instances use WebSockets to communicate with other \mxp instances via the
-      access point. The access point further acts as a container for data
-      adapters which translate input from third-party input and output devices
+      access point. The access point also acts as a container for data
+      adapters that translate input from third-party devices
       into a generic representation that can be used by the \mxp instances in
-      the network. In order to go beyond simple broadcast-based communication,
-      we have implemented a routing mechanism based on the publish-subscribe
-      pattern where plug-ins can subscribe to specific events or publish
-      information. The communication engine provides the basis for audience
+      the network. In order to transcend simple broadcast-based communication,
+      a routing mechanism was implemented based on the publish-subscribe
+      pattern, allowing plug-ins to subscribe to specific events or publish
+      information. The communication engine supplies the foundation for audience
       response systems \citep{roels-2} or even full classroom communication
-      systems where functionality is only limited by the creativity of plug-in
-      developers.
+      systems where the creativity of plug-in developers is the only limit.
 
-     \paragraph{Plug-ins} Plug-ins are implemented as JavaScript bundles which
-      consist of a folder containing JavaScript files and other resources such
-      as CSS files, images or other JavaScript libraries. As a first
-      convention, a plug-in should provide a manifest file with a predefined
-      name. The manifest provides metadata such as the plug-in name and version
-      but also a list of tags to be used in a presentation. The plug-in claims
-      unique ownership for these tags and is in charge for their visualisation
-      if they are encountered by the content engine. As a second convention, a
-      plug-in must provide at least one JavaScript file implementing certain
-      methods, one of them being the \code{init()} method which is called when
-      the plug-in is loaded by the presentation engine. It is up to the plug-in
-      to load additional JavaScript or CSS via the provided dependency
-      injection functionality. A second method to be implemented is the
-      \code{visualise()} method which is invoked with a pointer to the
-      corresponding DOM node as a parameter when the content engine encounters
-      a tag to be visualised. A plug-in is free to modify the DOM tree and may
-      also register callbacks to handle future interaction with the content.
+     \paragraph{Plug-ins} Plug-ins are implemented as JavaScript bundles
+      consisting of a folder containing JavaScript files and other resources
+      such as CSS files, images or other JavaScript libraries. As a first
+      convention, a plug-in should contain a manifest file with a predefined
+      name. The manifest describes the plug-in using metadata such as the
+      plug-in name and version but also a list of tags it provides and handles
+      to be used in a presentation. The plug-in claims unique ownership for
+      these tags and is solely responsible for their visualisation if the
+      content engine encounters them. As a second convention, a plug-in must
+      implement at least one JavaScript object providing certain methods, one
+      of them being the \code{init()} method which is called when the plug-in
+      is loaded by the presentation engine. The plug-in may decide to load
+      additional JavaScript or CSS via the provided dependency injection
+      functionality. A second method it needs to implement is the
+      \code{process()} method which is invoked with a pointer to the
+      corresponding DOM node as a parameter by the content engine when it
+      encounters a corresponding tag. A plug-in is free to modify the DOM tree
+      and may also register callbacks to enable future interaction with the
+      content.
 
-     \paragraph{Themes} We currently use CSS to provide a basic templating
-      system. These themes offer styling either on a global or on a plug-in
-      level. However, we see this as a temporary solution as it is not
-      well-suited for alternative compiler outputs (e.g. PDF) and a more
-      generic templating scheme is planned for the future.
+     \paragraph{Themes} CSS is currently the driving technology behind a basic
+      templating system. These themes offer styling either on a global or on a
+      plug-in level. It has always been the intention to replace this system
+      with a more advanced layout engine that steers away from templates, and
+      part of that is incidentally one of the goals of this thesis. The
+      intention is to provide layout functionality far beyond what can be
+      attained using templates. However, the styling functionality will still
+      be handled by the current system. In the future this system may still be
+      replaced or enhanced to allow more dynamic styling using JavaScript.
 
    \subsection{Use Cases}
 
-    In order to validate the architectural and technological choices, we
+    To prove the merits of the architectural and technological choices, we
     demonstrate the extensibility and feasibility of \mxp as a rapid
-    prototyping platform by presenting a number of content- and
+    prototyping platform through demonstration of a number of content- and
     navigation-specific plug-ins that have been developed so far. Additional
     plug-ins for audience-driven functionality such as real-time polls, screen
     mirroring and navigational takeover can be found in \citep{roels-2}.
 
     \subsubsection{Structured Overview Plug-in}
 
-     In Section \ref{mxp-platform} we have explained how structure plug-ins may
-     change the way presentations are visualised and navigated. In order to
-     illustrate this, we have implemented a structure plug-in called
-     \emph{structured layout} which combines a zoomable user interface with the
+     In Section \ref{mxp-platform} we described how structure plug-ins may
+     alter and influence the way presentations are visualised and navigated. In
+     order to illustrate this, a structure plug-in called \emph{structured
+     layout} was implemented, to combine a zoomable user interface with the
      ability to group content into sections. The resulting visualisation of the
-     \emph{structured layout} plug-in is shown in \figref{roels-1-fig-3}.
-     Whenever a new section is reached, the view is zoomed out to provide an
-     overview of the content within the section and communicate a sense of
-     progress.
+     \emph{structured layout} plug-in is displayed in \figref{roels-1-fig-3}.
+     Whenever a new section is reached while navigating through the
+     presentation, the view is zoomed out to provide an overview of the content
+     within the section and to convey a sense of progress.
 
     \subsubsection{Slide Plug-in}
 
-     In order to also support the traditional slide concept, we created a
-     slide-like container plug-in. While the benefits and issues of using
-     slides with a fixed size are debatable, we implemented this plug-in as a
-     proof of the framework's versatility. The main function of the slide
-     plug-in is to provide a rectangular styleable component container with a
-     title and some other information. Containers may also offer functionality
-     to layout their content. In this case, the slide plug-in offers a quick
-     and easy layout mechanism which allows the presenter to partition the
-     slide into rows and columns. Content is then assigned to these slots in
-     the order that it is discovered. The use of the slide plug-in together
-     with the resulting visualisation is exemplified in \lstref{roels-1-fig-4}.
-     It also shows the use of the image plug-in (a component plug-in) which
-     enables a simple form of cross-media transclusion. A visualised external
-     image can be cropped and filters (e.g. colour correction) may be applied
-     without duplicating or modifying the original source.
+     Even though one of the main intentions of \mxp is to discard the concept
+     of slides with all their limitations, it was deemed necessary to include
+     support for this concept as well. As such, a slide-like container plug-in
+     was created. While the benefits and issues of using slides with a fixed
+     size are debatable, this plug-in was implemented as a testament to the
+     framework's versatility. The main purpose of the slide plug-in is to
+     produce a rectangular styleable component container with an optional title
+     and some other information. Containers may also contribute functionality
+     to layout their content. In this instance, the slide plug-in implements a
+     quick and easy layout mechanism that allows the presenter to partition the
+     slide into rows and columns. Slide containers are then assigned to these
+     slots in the order that they are discovered. The use of the slide plug-in
+     together with the resulting visualisation is depicted in
+     \lstref{roels-1-fig-4}. This demonstrates the use of the image plug-in (a
+     component plug-in) as well, which introduces a simple form of cross-media
+     transclusion. A visualised external image can be cropped and filters (e.g.
+     colour correction) may be applied without duplicating or modifying the
+     original source.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -641,24 +661,24 @@
 
     \subsubsection{Enhanced Video Plug-in}
 
-     When videos are used in educational settings, we often need more
-     functionality than what is offered by the average video player
-     \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     \lstref{roels-1-fig-5} with the possibility to overlay a video with text
+     When showing a video in an educational setting, we often need more
+     functionality than the average video player can provide
+     \citep{reuss-1}. \mxp offers an enhanced video plug-in as demonstrated in
+     \lstref{roels-1-fig-5}, adding the possibility to overlay a video with text
      or arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
 
-     Furthermore, we added the option to trigger certain events at specified
-     times. One can define that a video should automatically pause at a certain
-     point, highlight an object and continue playing after a specified amount
-     of time. Additional features include the bookmarking of certain positions
-     in a video for direct access or the possibility to display multiple videos
-     in a synchronised manner. Our enhanced video plug-in injects the default
-     HTML5 video player and overlays it with a transparent \code{div} element
-     for augmentation. Currently we make use of the HTML5 video API to
-     synchronise the creation and removal of overlays but a SMIL-based
-     implementation might be used in the future.
+     Furthermore, there is an option to trigger certain events at specified
+     times. One may mark certain points where a video should automatically
+     pause at, highlighting an object and then continuing playback after a
+     specified amount of time. Other features include the bookmarking of
+     certain positions in a video for direct access and the possibility to
+     display multiple videos in a synchronised manner. The enhanced video
+     plug-in leverages the default HTML5 video player and overlays it with a
+     transparent \code{div} element for augmentation. Currently it utilizes the
+     HTML5 video API to synchronise the creation and removal of overlays but a
+     SMIL-based implementation might be used in the future.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -691,15 +711,16 @@
 
     \subsubsection{Source Code Visualisation Plug-in}
 
-     Earlier, we mentioned the difficulty of visualising complex resources such
-     as source code. Our \mxp source code plug-in exports a \code{code} tag
-     which allows the presenter to paste their code into a presentation and
-     have \mxp visualise it nicely by making use of syntax highlighting via the
+     We have previously mentioned the issues involved with visualising complex
+     resources such as source code. Our \mxp source code plug-in exports a
+     \code{code} tag allowing the presenter to paste their code into a
+     presentation and have \mxp visualise it nicely through syntax highlighting
+     using the
      SyntaxHighlighter\footnote{http://alexgorbatchev.com/SyntaxHighlighter/}
      JavaScript library. Whenever the content engine encounters a \code{code}
-     tag, it invokes the code plug-in to beautify the code and automatically
-     adds vertical scrollbars for larger pieces of source code as shown in
-     \lstref{roels-1-fig-6}.
+     tag, this plug-in is invoked to beautify the code. It also automatically
+     adds vertical scrollbars for larger segments of source code as illustrated
+     in \lstref{roels-1-fig-6}.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -732,72 +753,31 @@
 
    \subsection{Discussion and Future Work}
 
-    \mxp currently supports transclusion and cross-media content reuse on the
-    plug-in level. For instance, the image or video plug-in can visualise (and
-    enhance) external resources, a dictionary plug-in might retrieve
+    \mxp currently supports transclusion and cross-media content reuse through
+    the use of plug-ins. For example, the image or video plug-in can visualise
+    (and enhance) external resources, a dictionary plug-in could retrieve
     definitions on demand via a web service or we might create a plug-in that
-    allows us to import content (e.g. \ppt slides) from legacy documents at
-    compile time. Nevertheless, we are currently investigating the introduction
-    of generic reuse tags in our document format which would allow the
-    presenter to transclude arbitrary parts of other \mxp presentations. While
-    our focus has been on the cross-media aspect of resources that can be used
-    in a presentation, we might also investigate the cross-media publishing
-    aspect via alternative compiler output formats.
+    lets us import content (e.g. \ppt slides) from legacy documents at compile
+    time. Nevertheless, the introduction of generic reuse tags in our document
+    format is actively being investigated. This would allow the presenter to
+    transclude arbitrary parts of other \mxp presentations. While the focus has
+    been on the cross-media aspect of resources that can be used in a
+    presentation, the cross-media publishing aspect might also be considered in
+    the future via alternative compiler output formats.
 
-    We are aware that the current authoring of \mxp presentations has some
-    usability issues. The average presenter cannot be expected to construct an
-    XML document or any CSS themes. In order to tackle this issue and further
-    evaluate \mxp in real-life settings, we are currently developing a
-    graphical \mxp authoring tool. We further intend to provide a central
-    plug-in repository which would make it easy for novice users to find,
-    install and use new plug-ins via the authoring tool. In the long run, we
-    intend to revise the use of monolithic documents and move towards
-    repositories of semantically linked information based on the RSL hypermedia
-    metamodel \citep{signer-3}. This would not only promote content reuse and
-    sharing, but also create opportunities for context-aware as well as
-    semi-automated presentation authoring where relevant content is recommended
-    by the authoring tool.
-
-   \subsection{Conclusion}
-
-%    TODO do we need this?
-   
-    We have presented \mxp, an HTML5 and web technology-based presentation
-    platform addressing the lacking extensibility of existing slideware
-    solutions. The extensibility of the \mxp platform heavily relies on a
-    plug-in mechanism and we have outlined how the tool can be extended on the
-    content, visualisation as well as on the interaction level. By providing
-    different forms of cross-media content transclusion, our solution further
-    avoids the redundant storage and replication of slides. The presented \mxp
-    document format in combination with a compiler and the corresponding
-    plug-ins offers the opportunity to have compile- or run-time cross-media
-    content transclusion from third-party resources. At the same time, the
-    flexible and extensible document model in combination with a zoomable user
-    interface allows us to escape the boundaries of traditional slide formats.
-    The presented \mxp solution represents a promising platform for the
-    unification of existing presentation concepts as well as for the rapid
-    prototyping and investigation of new ideas for next generation cross-media
-    presentation solutions.
-   %</TODO rework>
-
-% --- BEGIN my crappy stuff
-%    TODO ... or this?
-
-    \mxp tries to be an alternative unlike other alternatives, stepping away
-    from the classic slide format and introducing a plug-in system to allow
-    literally anything you can think of. The obvious choices are
-    visualisations, animations, layout and the embedding of various media such
-    as video, but it can also provide interaction with the audience, allow
-    different presenters to take control from their own device, arbitrarily and
-    ad-hoc change the way data is presented allowing to play into the
-    audience's reactions unhindered by design decisions made beforehand, and so
-    many other novel ways of presenting that captivate the audience instead of
-    lulling them to sleep.
-
-    \mxp was first created by my advisor, Reinout Roels, in 2012 as part of his
-    Master thesis, and has since been built upon by himself and other students.
-
-% --- END my crappy stuff
+    The creators of \mxp are aware that the current authoring of \mxp
+    presentations faces some usability difficulties. The average presenter
+    cannot be expected to construct an XML document or any CSS themes. In order
+    to address this issue and further evaluate \mxp in real-life settings, a
+    graphical \mxp authoring tool is currently being developed. They further
+    intend to provide a central plug-in repository which would enable novice
+    users to find, install and use new plug-ins via the authoring tool in a
+    simple manner. In the long run, the use of monolithic documents is to be
+    revised and a move towards repositories of semantically linked information
+    based on the RSL hypermedia metamodel will be executed \citep{signer-3}.
+    This will promote content reuse and sharing, while also creating
+    opportunities for context-aware as well as semi-automated presentation
+    authoring where relevant content is suggested by the authoring tool.
 
   \section{Layout}
 
@@ -808,16 +788,16 @@
    design, that --- combined with other decisions --- determines the number and
    nature of the visual representations of the information the creator wants to
    communicate, along with its format\footnote{The way the visual objects are
-   realized (e.g. as text, graphics, UI widgets\ldots), and their attributes
+   realised (e.g. as text, graphics, UI widgets\ldots), and their attributes
    (e.g. color, texture, font\ldots)}. The layout of a presentation can have a
    tremenduous influence on its effectiveness in communicating information to,
    and obtaining information from, the audience it is meant to interact with.
-   The importance of individual objects can be emphasized or minimized, and the
+   The importance of individual objects can be emphasised or minimised, and the
    connection between obects can be clarified or blurred. A well laid out
    presentation can provide a narrative for the viewer to discover, inferring
    correct links between the objects along the way, and to accomplish tasks
    quickly and correctly, increasing the presentation's effectiveness.
-  
+
    Creating a good layout is almost never easy. People often spend more time on
    the layout of their presentation than the content. Most, if not all,
    decisions in layout are made by human beings. Some of them are professional
@@ -845,7 +825,7 @@
    experts. But all of those tools have one thing in common: every aspect of
    every layout they create has, at some point, been designed and decided upon
    by a human being.
-  
+
    Aesthetics are a natural phenomenon, and the creation of aesthetically
    pleasing layouts is therefore a manifestation of our instincts. As with most
    instincts, it has proven difficult to translate this into a concept that can
@@ -885,7 +865,7 @@
    because it can greatly improve both our layout solution as well as the whole
    \mxp experience in general.}.
 
-%   TODO more stuff from papers about automated layout goes here
+% maybe TODO more stuff from papers about automated layout goes here
 
    \subsection{Algorithms}
     \label{related-algorithms}
@@ -894,7 +874,7 @@
     active field of graph layout \citep{battista-1}. We will not go into the
     specifics of this field, as most of the issues with which it is concerned
     are specific to problems caused by the explicit visual representation of
-    graph edges --- for example, the minimization of edge crossing
+    graph edges --- for example, the minimisation of edge crossing
     \citep{battista-2, shahrokhi-1}. The same applies to automated layout as
     referring to automated circuit layout for VLSI chip fabrication
     \citep{hu-1, lengauer-1} as well as automated placement of pieces to be cut
