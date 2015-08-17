@@ -901,23 +901,20 @@
     object.  As such, it becomes possible to create layouts that adapt to
     changes in the container’s size.
 
-% TODO more stuff from papers about automated layout goes here
+    A layout manager dictates the positions and sizes for the objects under its
+    control at run time, guided by a set of constraints defined by a simple
+    layout policy on which the manager was based and parameters specified by
+    the programmer. Strict horizontal (row) or vertical (column) layout,
+    row-major or column-major layout where objects are placed in the next row
+    or column to prevent exceeding their container’s boundaries, border layout
+    that lets objects reside in the north, south, east, west, or center of the
+    container as specified by the programmer, and grid layout in which objects
+    are placed in one position (or straddling multiple positions) in a 2D grid,
+    are some typical layout policies. Programmer-specified parameters indicate
+    preferred, minimum, and maximum widths and heights of objects; and spacing,
+    both between objects and between objects and the container’s edges. 
 
-    A layout manager chooses positions and sizes at run time for the objects
-    that it controls, governed by a set of constraints imposed by a simple
-    layout policy built into the manager and parameters specified by the
-    programmer. Typical layout policies include strict horizontal (row) or
-    vertical (column) layout; row-major or column-major layout in which objects
-    wrap to the next row or column to avoid exceeding the managed container’s
-    bounds; border layout in which objects can be specified to reside in the
-    north, south, east, west, or center of the managed container; and grid
-    layout in which objects are specified to reside at one position (or
-    straddle multiple positions) in a programmer-specified 2D grid.
-    Programmer-specified parameters indicate preferred, minimum, and maximum
-    widths and heights of objects; and spacing, both between objects and
-    between objects and the container’s edges. Managed containers can be nested
-    inside of other managed containers, and treated just like any other
-    objects.
+% TODO more stuff from papers about automated layout goes here
 
     A programmer designs a parameterized layout as a hierarchy of managed
     containers, chosen for their layout policies, and further constrained by
