@@ -498,7 +498,7 @@
      format. Each tag is then converted to HTML5 and all information is encoded
      in the attributes of a \code{div} element. The HTML5 standard allows
      custom attributes that start with a \code{data-} prefix. \lstref{xml-2}
-     shows converted parts of the original XML document we saw in
+     hilights converted parts of the original XML document we saw in
      \lstref{xml-1}. Observe that no visualisation-specific information is
      included in the transformation, which merely results in a valid HTML5
      document ready to bundle into a self-contained package together with the
@@ -515,121 +515,120 @@
 
     \subsubsection{Presentation Engine}
 
-   %<TODO rework>
-     The presentation engine's task is to turn the compiled HTML content into a
-     visually appealing and interactive presentation. As highlighted in
-     \figref{roels-1-fig-1}, the presentation engine consists of several
-     smaller components which help plug-ins to implement powerful features with
-     minimal effort. The combination of these components enables the rapid
+     The presentation engine's main purpose is to create a visually appealing
+     and interactive presentation based on the compiled HTML content. As
+     \figref{roels-1-fig-1} shows, the presentation engine consists of several
+     smaller components which enable plug-ins to implement powerful features
+     with minimal effort. The combination of these components allows for rapid
      prototyping and evaluation of innovative visualisation ideas. A resulting
      \mxp presentation combining various structure, container and component
      plug-ins is shown in \figref{roels-1-fig-3}.
-   %</TODO rework>
 
      \fig{roels-1-fig-3}{A \mxp presentation}
 
-   %<TODO rework>
-     \paragraph{Content Engine} When a presentation is loaded, the content
-      engine is the first component that is activated. It processes the content
-      of the HTML presentation by making use of the well-known jQuery
-      JavaScript library. Whenever a \code{div} element is discovered, the
+     \paragraph{Content Engine} The content engine is the first component that
+      is activated when a presentation is loaded. It uses the well-known
+      jQuery JavaScript library to process the content of the HTML
+      presentation. Whenever a \code{div} element is discovered, the
       \code{data-type} attribute is read and the corresponding plug-ins are
-      notified in order to visualise the content.
+      triggered in order to visualise the content.
 
-     \paragraph{Graphics Engine} The graphics engine provides support for
-      interesting new visualisation and navigation styles. Next to some basic
-      helper functions, it offers efficient panning, scaling and rotation via
-      CCS3 transformations and supports zoomable user interfaces as well as the
-      more traditional navigation approaches.
+     \paragraph{Graphics Engine} The graphics engine accomodates interesting
+      new visualisation and navigation styles. Apart from some basic helper
+      functions, it provides efficient panning, scaling and rotation via CSS3
+      transformations and supports zoomable user interfaces as well as the more
+      traditional navigation approaches.
 
-     \paragraph{Communication Engine} The communication engine implements
-      abstractions that allow plug-ins to retrieve external content at run
-      time. It further provides the architectural foundation to form networks
-      between different \mxp instances or to integrate third-party hardware
-      \citep{roels-2}. For our \mxp prototype, we used a small Intel Next Unit
-      of Computing Kit (NUC) with high-end WiFi and Bluetooth modules to act as
-      a central access point and provide the underlying network support. \mxp
+     \paragraph{Communication Engine} The communication engine offers
+      abstractions that enable plug-ins to retrieve external content at runtime.
+      It also provides the architectural foundation to form networks
+      between different \mxp instances and to integrate third-party hardware
+      \citep{roels-2}.
+      For the \mxp prototype, a small Intel Next Unit
+      of Computing Kit (NUC) was used with high-end WiFi and Bluetooth modules to act as
+      a central access point and provide the underlying network support. \mxp presentation
       instances use WebSockets to communicate with other \mxp instances via the
-      access point. The access point further acts as a container for data
-      adapters which translate input from third-party input and output devices
+      access point. The access point also acts as a container for data
+      adapters that translate input from third-party devices
       into a generic representation that can be used by the \mxp instances in
-      the network. In order to go beyond simple broadcast-based communication,
-      we have implemented a routing mechanism based on the publish-subscribe
-      pattern where plug-ins can subscribe to specific events or publish
-      information. The communication engine provides the basis for audience
+      the network. In order to transcend simple broadcast-based communication,
+      a routing mechanism was implemented based on the publish-subscribe
+      pattern, allowing plug-ins to subscribe to specific events or publish
+      information. The communication engine supplies the foundation for audience
       response systems \citep{roels-2} or even full classroom communication
-      systems where functionality is only limited by the creativity of plug-in
-      developers.
+      systems where the creativity of plug-in developers is the only limit.
 
-     \paragraph{Plug-ins} Plug-ins are implemented as JavaScript bundles which
-      consist of a folder containing JavaScript files and other resources such
-      as CSS files, images or other JavaScript libraries. As a first
-      convention, a plug-in should provide a manifest file with a predefined
-      name. The manifest provides metadata such as the plug-in name and version
-      but also a list of tags to be used in a presentation. The plug-in claims
-      unique ownership for these tags and is in charge for their visualisation
-      if they are encountered by the content engine. As a second convention, a
-      plug-in must provide at least one JavaScript file implementing certain
-      methods, one of them being the \code{init()} method which is called when
-      the plug-in is loaded by the presentation engine. It is up to the plug-in
-      to load additional JavaScript or CSS via the provided dependency
-      injection functionality. A second method to be implemented is the
-      \code{visualise()} method which is invoked with a pointer to the
-      corresponding DOM node as a parameter when the content engine encounters
-      a tag to be visualised. A plug-in is free to modify the DOM tree and may
-      also register callbacks to handle future interaction with the content.
+     \paragraph{Plug-ins} Plug-ins are implemented as JavaScript bundles
+      consisting of a folder containing JavaScript files and other resources
+      such as CSS files, images or other JavaScript libraries. As a first
+      convention, a plug-in should contain a manifest file with a predefined
+      name. The manifest describes the plug-in using metadata such as the
+      plug-in name and version but also a list of tags it provides and handles
+      to be used in a presentation. The plug-in claims unique ownership for
+      these tags and is solely responsible for their visualisation if the
+      content engine encounters them. As a second convention, a plug-in must
+      implement at least one JavaScript object providing certain methods, one
+      of them being the \code{init()} method which is called when the plug-in
+      is loaded by the presentation engine. The plug-in may decide to load
+      additional JavaScript or CSS via the provided dependency injection
+      functionality. A second method it needs to implement is the
+      \code{process()} method which is invoked with a pointer to the
+      corresponding DOM node as a parameter by the content engine when it
+      encounters a corresponding tag. A plug-in is free to modify the DOM tree
+      and may also register callbacks to enable future interaction with the
+      content.
 
-     \paragraph{Themes} We currently use CSS to provide a basic templating
-      system. These themes offer styling either on a global or on a plug-in
-      level. However, we see this as a temporary solution as it is not
-      well-suited for alternative compiler outputs (e.g. PDF) and a more
-      generic templating scheme is planned for the future.
-   %</TODO rework>
+     \paragraph{Themes} CSS is currently the driving technology behind a basic
+      templating system. These themes offer styling either on a global or on a
+      plug-in level. It has always been the intention to replace this system
+      with a more advanced layout engine that steers away from templates, and
+      part of that is incidentally one of the goals of this thesis. The
+      intention is to provide layout functionality far beyond what can be
+      attained using templates. However, the styling functionality will still
+      be handled by the current system. In the future this system may still be
+      replaced or enhanced to allow more dynamic styling using JavaScript.
 
    \subsection{Use Cases}
 
-   %<TODO rework>
-    In order to validate the architectural and technological choices, we
+    To prove the merits of the architectural and technological choices, we
     demonstrate the extensibility and feasibility of \mxp as a rapid
-    prototyping platform by presenting a number of content- and
+    prototyping platform through demonstration of a number of content- and
     navigation-specific plug-ins that have been developed so far. Additional
     plug-ins for audience-driven functionality such as real-time polls, screen
     mirroring and navigational takeover can be found in \citep{roels-2}.
-   %</TODO rework>
 
     \subsubsection{Structured Overview Plug-in}
 
-   %<TODO rework>
-     In Section \ref{mxp-platform} we have explained how structure plug-ins may
-     change the way presentations are visualised and navigated. In order to
-     illustrate this, we have implemented a structure plug-in called
-     \emph{structured layout} which combines a zoomable user interface with the
+     In Section \ref{mxp-platform} we described how structure plug-ins may
+     alter and influence the way presentations are visualised and navigated. In
+     order to illustrate this, a structure plug-in called \emph{structured
+     layout} was implemented, to combine a zoomable user interface with the
      ability to group content into sections. The resulting visualisation of the
-     \emph{structured layout} plug-in is shown in \figref{roels-1-fig-3}.
-     Whenever a new section is reached, the view is zoomed out to provide an
-     overview of the content within the section and communicate a sense of
-     progress.
-   %</TODO rework>
+     \emph{structured layout} plug-in is displayed in \figref{roels-1-fig-3}.
+     Whenever a new section is reached while navigating through the
+     presentation, the view is zoomed out to provide an overview of the content
+     within the section and to convey a sense of progress.
 
     \subsubsection{Slide Plug-in}
 
-   %<TODO rework>
-     In order to also support the traditional slide concept, we created a
-     slide-like container plug-in. While the benefits and issues of using
-     slides with a fixed size are debatable, we implemented this plug-in as a
-     proof of the framework's versatility. The main function of the slide
-     plug-in is to provide a rectangular styleable component container with a
-     title and some other information. Containers may also offer functionality
-     to layout their content. In this case, the slide plug-in offers a quick
-     and easy layout mechanism which allows the presenter to partition the
-     slide into rows and columns. Content is then assigned to these slots in
-     the order that it is discovered. The use of the slide plug-in together
-     with the resulting visualisation is exemplified in \lstref{roels-1-fig-4}.
-     It also shows the use of the image plug-in (a component plug-in) which
-     enables a simple form of cross-media transclusion. A visualised external
-     image can be cropped and filters (e.g. colour correction) may be applied
-     without duplicating or modifying the original source.
-   %</TODO rework>
+     Even though one of the main intentions of \mxp is to discard the concept
+     of slides with all their limitations, it was deemed necessary to include
+     support for this concept as well. As such, a slide-like container plug-in
+     was created. While the benefits and issues of using slides with a fixed
+     size are debatable, this plug-in was implemented as a testament to the
+     framework's versatility. The main purpose of the slide plug-in is to
+     produce a rectangular styleable component container with an optional title
+     and some other information. Containers may also contribute functionality
+     to layout their content. In this instance, the slide plug-in implements a
+     quick and easy layout mechanism that allows the presenter to partition the
+     slide into rows and columns. Slide containers are then assigned to these
+     slots in the order that they are discovered. The use of the slide plug-in
+     together with the resulting visualisation is depicted in
+     \lstref{roels-1-fig-4}. This demonstrates the use of the image plug-in (a
+     component plug-in) as well, which introduces a simple form of cross-media
+     transclusion. A visualised external image can be cropped and filters (e.g.
+     colour correction) may be applied without duplicating or modifying the
+     original source.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -662,15 +661,15 @@
 
     \subsubsection{Enhanced Video Plug-in}
 
-   %<TODO rework>
-     When videos are used in educational settings, we often need more
-     functionality than what is offered by the average video player
-     \citep{reuss-1}. \mxp provides the enhanced video plug-in shown in
-     \lstref{roels-1-fig-5} with the possibility to overlay a video with text
+     When showing a video in an educational setting, we often need more
+     functionality than the average video player can provide
+     \citep{reuss-1}. \mxp offers an enhanced video plug-in as demonstrated in
+     \lstref{roels-1-fig-5}, adding the possibility to overlay a video with text
      or arbitrary shapes. This overlay functionality can be used as a basic
      captioning system as well as to highlight items of interest during
      playback.
 
+   %<TODO rework>
      Furthermore, we added the option to trigger certain events at specified
      times. One can define that a video should automatically pause at a certain
      point, highlight an object and continue playing after a specified amount
