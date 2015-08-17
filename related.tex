@@ -669,18 +669,16 @@
      captioning system as well as to highlight items of interest during
      playback.
 
-   %<TODO rework>
-     Furthermore, we added the option to trigger certain events at specified
-     times. One can define that a video should automatically pause at a certain
-     point, highlight an object and continue playing after a specified amount
-     of time. Additional features include the bookmarking of certain positions
-     in a video for direct access or the possibility to display multiple videos
-     in a synchronised manner. Our enhanced video plug-in injects the default
-     HTML5 video player and overlays it with a transparent \code{div} element
-     for augmentation. Currently we make use of the HTML5 video API to
-     synchronise the creation and removal of overlays but a SMIL-based
-     implementation might be used in the future.
-   %</TODO rework>
+     Furthermore, there is an option to trigger certain events at specified
+     times. One may mark certain points where a video should automatically
+     pause at, highlighting an object and then continuing playback after a
+     specified amount of time. Other features include the bookmarking of
+     certain positions in a video for direct access and the possibility to
+     display multiple videos in a synchronised manner. The enhanced video
+     plug-in leverages the default HTML5 video player and overlays it with a
+     transparent \code{div} element for augmentation. Currently it utilizes the
+     HTML5 video API to synchronise the creation and removal of overlays but a
+     SMIL-based implementation might be used in the future.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
@@ -713,17 +711,16 @@
 
     \subsubsection{Source Code Visualisation Plug-in}
 
-   %<TODO rework>
-     Earlier, we mentioned the difficulty of visualising complex resources such
-     as source code. Our \mxp source code plug-in exports a \code{code} tag
-     which allows the presenter to paste their code into a presentation and
-     have \mxp visualise it nicely by making use of syntax highlighting via the
+     We have previously mentioned the issues involved with visualising complex
+     resources such as source code. Our \mxp source code plug-in exports a
+     \code{code} tag allowing the presenter to paste their code into a
+     presentation and have \mxp visualise it nicely through syntax highlighting
+     using the
      SyntaxHighlighter\footnote{http://alexgorbatchev.com/SyntaxHighlighter/}
      JavaScript library. Whenever the content engine encounters a \code{code}
-     tag, it invokes the code plug-in to beautify the code and automatically
-     adds vertical scrollbars for larger pieces of source code as shown in
-     \lstref{roels-1-fig-6}.
-   %</TODO rework>
+     tag, this plug-in is invoked to beautify the code. It also automatically
+     adds vertical scrollbars for larger segments of source code as illustrated
+     in \lstref{roels-1-fig-6}.
 
      \begin{figure}[h!]
       \begin{subfigure}{0.53\textwidth}
