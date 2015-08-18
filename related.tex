@@ -994,15 +994,14 @@
       placed beneath their associated figures and spacing between a figure and
       surrounding text block should be consistent across the document).
      
+      The way the components are represented may pose some kind of limitation
+      on what types of spatial constraints can be used. The ``Cousins
+      Problem'' is one such issue which may arise if the data structure
+      containing the components does not permit referencing one component’s
+      children from another component’s child.
+
 %<TODO rework>
       \iffalse
-
-      The method by which the components are represented may place some kind of
-      limitation on what kinds of spatial constraints may be used. One such issue
-      that may arise is sometimes referred to as the “Cousins Problem,” an
-      example of which is shown in Figure 3. This problem may arise if the data
-      structure in which the components are being stored does not allow
-      referencing one component’s children from a different component’s child.
 
       It seems intuitive that we would want to use concepts from graphic design
       to create legible and pleasing output. Some systems enforce the
