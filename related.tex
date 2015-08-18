@@ -1038,30 +1038,22 @@
       cities have bigger names), but are generally not used for layout
       directly.
 
-%<TODO rework>
-      \iffalse
+      In some systems, the user may specify abstract data constraints
+      separately from spatial constraints. This enables a logical single
+      presentation to have many different ``skins'', making the step towards
+      displaying a single presentation using different media a trivial one
+      \citep{weitzman-2}. This is particularly useful when trying to maintain a
+      separation between content and layout in interactive layout systems.
+      Another way to leverage this concept is by making the spatial constraints
+      native to the system, thus eliminating any requirement for human
+      intervention. Feiner’s GRIDS is an example of a such system
+      \citep{feiner-1}.
 
-      Some systems allow the user to specify abstract data constraints separately
-      from spatial constraints. This allows for a logical single presentation to
-      have many different “skins,” opening the door for a single presentation to
-      be displayed using different media \citep{weitzman-2}. This is particularly
-      effective for interactive layout systems that might want to maintain a
-      separation between content authors and “layout experts.” A similar approach
-      that leverages this concept is to build the spatial constraints into the
-      system, thereby eliminating the need for human intervention to specify
-      spatial constraints for each layout to be generated. Feiner’s GRIDS is an
-      example of a such system \citep{feiner-1}.
-
-      Spatial constraints are sometimes used to increase the efficiency of the
-      constraint solver. For instance, a constraint might be placed on all
-      objects of a certain type that permits them to be resized in only one
-      direction \citep{linton-1}. Similarly, imposing the constraint of a
-      quantized display permits the use of fast fixed point and integer
-      programming techniques when resolving the set of constraints.
-
-     \fi
-%</TODO rework>
-
+      The efficiency of the constraint solver can sometimes be increase by
+      using spatial constraints. For example, we might place a constraint on
+      all objects of a certain type permitting them to be resized in only one
+      direction \citep{linton-1}.
+     
     \subsubsection{Expressing constraints}
 
      Defining a formal grammar that describes how the constraints are expressed
