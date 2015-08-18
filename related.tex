@@ -981,26 +981,21 @@
       required to read first. Another example of spatial constraints can be
       found in the intention to fit all objects into a space of a certain size.
 
+      There exist several reasons to impose spatial constraints. One of the
+      most common reasons is to enhance the visual quality and aesthetics of
+      the presentation. Many primitive automated layout systems have been
+      created based on computer science and mathematics alone \citep{beach-1}.
+      These systems have a tendency to approach the issue as a purely
+      theoretical question of tiling and use optimization techniques to find a
+      solution \citep{luders-1}. Such systems will frequently not consider
+      simple legibility rules (e.g. text should not be packed onto the screen
+      in blocks of random size but rather be placed into columns that runs down
+      the entire page) and style guidelines (e.g. all captions should be
+      placed beneath their associated figures and spacing between a figure and
+      surrounding text block should be consistent across the document).
+     
 %<TODO rework>
       \iffalse
-
-      There are a number of reasons why we would want to impose spatial
-      constraints. Perhaps the most prevalent reason is to improve upon the
-      visual quality and aesthetics of the presentation. Many early automated
-      layout systems are created from the perspective of computer science and
-      mathematics alone \citep{beach-1}. Such systems tend to treat the problem
-      as a purely theoretical question of tiling and use optimization techniques
-      to find a solution \citep{luders-1}. These kinds of systems will often not
-      take into account simple legibility rules (e.g., text should be placed into
-      columns that run down the entire page rather than having blocks of random
-      size packed onto the screen) and style guidelines (e.g., all captions go
-      beneath their associated figures and spacing between a figure and
-      surrounding text block should be the same everywhere). Figure 2 exemplifies
-      what might happen in a system that employs abstract constraints without
-      spatial constraints. A system that considers only abstract constraints will
-      not be able to generate layouts with the same aesthetic appeal as systems
-      that consider both because the system has no visual restrictions on where
-      components of the layout are placed.
 
       The method by which the components are represented may place some kind of
       limitation on what kinds of spatial constraints may be used. One such issue
