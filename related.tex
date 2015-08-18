@@ -49,9 +49,9 @@
    which could be beneficial for knowledge transfer \citep{holzinger-1}. The
    audience could also be more actively involved in the presentation, through
    audience response and classroom connectivity systems providing multi-device
-   interfaces allowing to share knowledge and results during as well as after a
-   presentation. The evolution of presentations is reminiscent of the Web2.0
-   movements where users have switched roles from purely consuming content to
+   interfaces allowing to share knowledge and results during, as well as after,
+   a presentation. The evolution of presentations is reminiscent of the Web2.0
+   movements, where users have switched roles from purely consuming content to
    contributing as well, content has become more dynamic and interactive, and
    service-oriented architectures (``The Cloud'') have ensured decentralisation
    of content.
@@ -226,58 +226,65 @@
    a review of the more recent presentation solutions discussed in the previous
    section.
 
-     \paragraph{Non-linear Navigation} As we mentioned before, traversing
-      slides in a linear fashion is a remnant of the way early photographic
-      slides worked. Over the years, people have grown used to this form of
-      navigation despite the inconveniences. If the presenter unexpectedly
-      needs to show anything other than the next or previous slide (e.g. to
-      answer a question from the audience), they either need a considerable
-      amount of time to scroll forwards or backwards, or they have to switch to
-      the slide sorter view, to find the desired slide. Also troubling is the
-      lack of any functionality allowing a single slide to be included multiple
-      times throughout the presentation without duplicating the slide in
-      question, meaning if any change has to be made to that slide the same
-      change has to be performed on all copies. This poses the risk of
-      overlooking some copies, introducing inconsistencies and facilitating
-      mistakes. There are several manners in which this lack of flexible
-      navigation might be addressed, including the possibility to define
-      non-linear navigation paths \citep{spicer-1,edge-1} or zoomable user
-      interfaces (ZUIs) \citep{good-1,lichtschlag-1,haller-1}.
+     \paragraph{Non-linear Navigation}
+     
+      As we mentioned before, traversing slides in a linear fashion is a
+      remnant of the way early photographic slides worked. Over the years,
+      people have grown used to this form of navigation despite the
+      inconveniences. If the presenter unexpectedly needs to show anything
+      other than the next or previous slide (e.g. to answer a question from the
+      audience), they either need a considerable amount of time to scroll
+      forwards or backwards, or they have to switch to the slide sorter view,
+      to find the desired slide. Also troubling is the lack of any
+      functionality allowing a single slide to be included multiple times
+      throughout the presentation without duplicating the slide in question,
+      meaning if any change has to be made to that slide the same change has to
+      be performed on all copies. This poses the risk of overlooking some
+      copies, introducing inconsistencies and facilitating mistakes. There are
+      several manners in which this lack of flexible navigation might be
+      addressed, including the possibility to define non-linear navigation
+      paths \citep{spicer-1,edge-1} or zoomable user interfaces (ZUIs)
+      \citep{good-1,lichtschlag-1,haller-1}.
 
-     \paragraph{Separation of Content and Presentation} Similar to the approach
-      of \latex and other professional typesetting systems, content should be
-      written in a standardised way with visualisation being handled
-      automatically by the typesetting system. The clear separation between
-      content and presentation makes the presentation tool handle the
-      visualisation, allowing the authors of a presentation to focus on the
-      content. Additionally, this facilitates experimentation with different
-      visualisations. \latex does have a document class called Beamer which was
-      designed specifically for presentations, but while we were inspired by
-      its structured and content-driven approach, the content-related
-      functionality and the visualisation possibilities are too limited to be
-      considered as a basis for an extensible presentation tool.
+     \paragraph{Separation of Content and Presentation}
+     
+      Similar to the approach of \latex and other professional typesetting
+      systems, content should be written in a standardised way with
+      visualisation being handled automatically by the typesetting system. The
+      clear separation between content and presentation makes the presentation
+      tool handle the visualisation, allowing the authors of a presentation to
+      focus on the content. Additionally, this facilitates experimentation with
+      different visualisations. \latex does have a document class called Beamer
+      which was designed specifically for presentations, but while we were
+      inspired by its structured and content-driven approach, the
+      content-related functionality and the visualisation possibilities are too
+      limited to be considered as a basis for an extensible presentation tool.
 
-     \paragraph{Extensibility} Rapidly prototyping innovative navigation and
-      visualisation techniques, but also new content types and presentation
-      formats, should be easy in order for a presentation tool to be successful
-      as an experimental platform for new presentation concepts. It should be
-      possible to add or replace specific components without requiring changes
-      in the core. A presentation tool should provide a modular architecture
-      with loosely coupled components to be truly extensible. Note that this
-      type of extensibility should be offered on the level of content types as
-      well as for the visualisation engine and content structures.
+     \paragraph{Extensibility}
+     
+      Rapidly prototyping innovative navigation and visualisation techniques,
+      but also new content types and presentation formats, should be easy in
+      order for a presentation tool to be successful as an experimental
+      platform for new presentation concepts. It should be possible to add or
+      replace specific components without requiring changes in the core. A
+      presentation tool should provide a modular architecture with loosely
+      coupled components to be truly extensible. Note that this type of
+      extensibility should be offered on the level of content types as well as
+      for the visualisation engine and content structures.
 
-     \paragraph{Cross-Media Content Reuse} We have previously briefly mentioned
-      the lack of content reuse in existing presentation tools. Even though
-      there is a wealth of open education material available, it is rather
-      difficult to use this content in presentations. However, the concept of
-      transclusion does work well for digital documents and parts of the Web
-      (e.g. via the HTML img tag). The seamless integration of external
-      cross-media content as implemented in these environments should also be
-      supported by any modern presentation tool. This includes several
-      different mechanisms that enable including parts of other presentations
-      (e.g. slides), transcluding content from third-party document formats,
-      and including content from open learning repositories.
+     \paragraph{Cross-Media Content Reuse}
+     
+      We have previously briefly mentioned the lack of content reuse in
+      existing presentation tools. Even though there is a wealth of open
+      education material available, it is rather difficult to use this content
+      in presentations. However, the concept of transclusion does work well for
+      digital documents and parts of the Web (e.g. via the HTML img tag). The
+      seamless integration of external cross-media content as implemented in
+      these environments should also be supported by any modern presentation
+      tool. This includes several different mechanisms that enable including
+      parts of other presentations (e.g. slides), transcluding content from
+      third-party document formats, and including content from open learning
+      repositories.
 
      \paragraph{Connectivity}
 
@@ -526,67 +533,74 @@
 
      \fig{roels-1-fig-3}{A \mxp presentation}
 
-     \paragraph{Content Engine} The content engine is the first component that
-      is activated when a presentation is loaded. It uses the well-known
-      jQuery JavaScript library to process the content of the HTML
-      presentation. Whenever a \code{div} element is discovered, the
-      \code{data-type} attribute is read and the corresponding plug-ins are
-      triggered in order to visualise the content.
+     \paragraph{Content Engine}
+     
+      The content engine is the first component that is activated when a
+      presentation is loaded. It uses the well-known jQuery JavaScript library
+      to process the content of the HTML presentation. Whenever a \code{div}
+      element is discovered, the \code{data-type} attribute is read and the
+      corresponding plug-ins are triggered in order to visualise the content.
 
-     \paragraph{Graphics Engine} The graphics engine accomodates interesting
-      new visualisation and navigation styles. Apart from some basic helper
-      functions, it provides efficient panning, scaling and rotation via CSS3
-      transformations and supports zoomable user interfaces as well as the more
-      traditional navigation approaches.
+     \paragraph{Graphics Engine}
+     
+      The graphics engine accomodates interesting new visualisation and
+      navigation styles. Apart from some basic helper functions, it provides
+      efficient panning, scaling and rotation via CSS3 transformations and
+      supports zoomable user interfaces as well as the more traditional
+      navigation approaches.
 
-     \paragraph{Communication Engine} The communication engine offers
-      abstractions that enable plug-ins to retrieve external content at runtime.
-      It also provides the architectural foundation to form networks
-      between different \mxp instances and to integrate third-party hardware
-      \citep{roels-2}.
-      For the \mxp prototype, a small Intel Next Unit
-      of Computing Kit (NUC) was used with high-end WiFi and Bluetooth modules to act as
-      a central access point and provide the underlying network support. \mxp presentation
-      instances use WebSockets to communicate with other \mxp instances via the
-      access point. The access point also acts as a container for data
-      adapters that translate input from third-party devices
-      into a generic representation that can be used by the \mxp instances in
-      the network. In order to transcend simple broadcast-based communication,
-      a routing mechanism was implemented based on the publish-subscribe
-      pattern, allowing plug-ins to subscribe to specific events or publish
-      information. The communication engine supplies the foundation for audience
-      response systems \citep{roels-2} or even full classroom communication
-      systems where the creativity of plug-in developers is the only limit.
+     \paragraph{Communication Engine}
+     
+      The communication engine offers abstractions that enable plug-ins to
+      retrieve external content at runtime. It also provides the architectural
+      foundation to form networks between different \mxp instances and to
+      integrate third-party hardware \citep{roels-2}. For the \mxp prototype, a
+      small Intel Next Unit of Computing Kit (NUC) was used with high-end WiFi
+      and Bluetooth modules to act as a central access point and provide the
+      underlying network support. \mxp presentation instances use WebSockets to
+      communicate with other \mxp instances via the access point. The access
+      point also acts as a container for data adapters that translate input
+      from third-party devices into a generic representation that can be used
+      by the \mxp instances in the network. In order to transcend simple
+      broadcast-based communication, a routing mechanism was implemented based
+      on the publish-subscribe pattern, allowing plug-ins to subscribe to
+      specific events or publish information. The communication engine supplies
+      the foundation for audience response systems \citep{roels-2} or even full
+      classroom communication systems where the creativity of plug-in
+      developers is the only limit.
 
-     \paragraph{Plug-ins} Plug-ins are implemented as JavaScript bundles
-      consisting of a folder containing JavaScript files and other resources
-      such as CSS files, images or other JavaScript libraries. As a first
-      convention, a plug-in should contain a manifest file with a predefined
-      name. The manifest describes the plug-in using metadata such as the
-      plug-in name and version but also a list of tags it provides and handles
-      to be used in a presentation. The plug-in claims unique ownership for
-      these tags and is solely responsible for their visualisation if the
-      content engine encounters them. As a second convention, a plug-in must
-      implement at least one JavaScript object providing certain methods, one
-      of them being the \code{init()} method which is called when the plug-in
-      is loaded by the presentation engine. The plug-in may decide to load
-      additional JavaScript or CSS via the provided dependency injection
-      functionality. A second method it needs to implement is the
-      \code{process()} method which is invoked with a pointer to the
-      corresponding DOM node as a parameter by the content engine when it
-      encounters a corresponding tag. A plug-in is free to modify the DOM tree
-      and may also register callbacks to enable future interaction with the
-      content.
+     \paragraph{Plug-ins}
+     
+      Plug-ins are implemented as JavaScript bundles consisting of a folder
+      containing JavaScript files and other resources such as CSS files, images
+      or other JavaScript libraries. As a first convention, a plug-in should
+      contain a manifest file with a predefined name. The manifest describes
+      the plug-in using metadata, such as the plug-in name and version, as well
+      as a list of tags it provides and handles to be used in a presentation.
+      The plug-in claims unique ownership for these tags and is solely
+      responsible for their visualisation if the content engine encounters
+      them. As a second convention, a plug-in must implement at least one
+      JavaScript object providing certain methods, one of them being the
+      \code{init()} method which is called when the plug-in is loaded by the
+      presentation engine. The plug-in may decide to load additional JavaScript
+      or CSS via the provided dependency injection functionality. A second
+      method it needs to implement is the \code{process()} method which is
+      invoked with a pointer to the corresponding DOM node as a parameter by
+      the content engine when it encounters a corresponding tag. A plug-in is
+      free to modify the DOM tree and may also register callbacks to enable
+      future interaction with the content.
 
-     \paragraph{Themes} CSS is currently the driving technology behind a basic
-      templating system. These themes offer styling either on a global or on a
-      plug-in level. It has always been the intention to replace this system
-      with a more advanced layout engine that steers away from templates, and
-      part of that is incidentally one of the goals of this thesis. The
-      intention is to provide layout functionality far beyond what can be
-      attained using templates. However, the styling functionality will still
-      be handled by the current system. In the future this system may still be
-      replaced or enhanced to allow more dynamic styling using JavaScript.
+     \paragraph{Themes}
+     
+      CSS is currently the driving technology behind a basic templating system.
+      These themes offer styling either on a global or on a plug-in level. It
+      has always been the intention to replace this system with a more advanced
+      layout engine that steers away from templates, and part of that is
+      incidentally one of the goals of this thesis. The intention is to provide
+      layout functionality far beyond what can be attained using templates.
+      However, the styling functionality will still be handled by the current
+      system. In the future this system may still be replaced or enhanced to
+      allow more dynamic styling using JavaScript.
 
    \subsection{Use Cases}
 
@@ -793,7 +807,7 @@
    tremenduous influence on its effectiveness in communicating information to,
    and obtaining information from, the audience it is meant to interact with.
    The importance of individual objects can be emphasised or minimised, and the
-   connection between obects can be clarified or blurred. A well laid out
+   connection between objects can be clarified or blurred. A well laid out
    presentation can provide a narrative for the viewer to discover, inferring
    correct links between the objects along the way, and to accomplish tasks
    quickly and correctly, increasing the presentation's effectiveness.
@@ -865,8 +879,6 @@
    because it can greatly improve both our layout solution as well as the whole
    \mxp experience in general.}.
 
-% maybe TODO more stuff from papers about automated layout goes here
-
    \subsection{Algorithms}
     \label{related-algorithms}
 
@@ -880,11 +892,336 @@
     \citep{hu-1, lengauer-1} as well as automated placement of pieces to be cut
     from a bolt of cloth used to produce clothing \citep{milenkovic-1}.
     Contrary to presentation layouts (including graph layouts), these layouts
-    are designed to meet the requirements of a fabrication process, rather than
-    to make them understandable to humans. While some techniques used therein
-    definitely apply to our more general problem of automated presentation
-    layout (e.g. general constraint solvers) others decidedly do not (e.g.
-    bin-packing techniques \citep{hofri-1} that result in minimal area layouts
-    at the expense of maintaining visually obvious relationships between
-    objects).
+    do not attempt to make themselves understandable to the human mind, but
+    rather are designed to meet the requirements of a fabrication process.
+    While some techniques used therein definitely apply to our more general
+    problem of automated presentation layout (e.g. general constraint solvers)
+    others decidedly do not (e.g. bin-packing techniques \citep{hofri-1} that
+    result in minimal area layouts at the expense of maintaining visually
+    obvious relationships between objects).
+
+   \subsection{Simple techniques}
+    \label{simple-techniques}
+
+    Most modern user interfaces are built with a UI toolkit (e.g., Sun
+    JFC/Swing \citep{sun-1}, Microsoft Foundation Classes \citep{microsoft-1},
+    and their predecessors, such as Xtk \citep{mccormack-1} or Tk
+    \citep{ousterhout-1}) which provide some basic functionality such as
+    creating buttons and windows. Toolkits usually include layout managers to
+    assist the user interface designer in deciding how objects should be places
+    inside a managed container. Layout managers allow the programmer to add
+    objects to a container and optionally specify additional constraints while
+    forgoing the need to specify the absolute position and size of every
+    object. As such, it becomes possible to create layouts that adapt to
+    changes in the container’s size.
+
+    A layout manager dictates the positions and sizes for the objects under its
+    control at run time, guided by a set of constraints defined by a simple
+    layout policy on which the manager was based and parameters specified by
+    the programmer. Strict horizontal (row) or vertical (column) layout,
+    row-major or column-major layout where objects are placed in the next row
+    or column to prevent exceeding their container’s boundaries, border layout
+    that lets objects reside in the north, south, east, west, or center of the
+    container as specified by the programmer, and grid layout in which objects
+    are placed in one position (or straddling multiple positions) in a 2D grid,
+    are some typical layout policies. Programmer-specified parameters indicate
+    preferred, minimum, and maximum widths and heights of objects; and spacing,
+    both between objects and between objects and the container’s edges. 
+
+    A layout may be designed as a hierarchy of managed containers, each with
+    their specific layout policies, on which additional constraints can be
+    placed through programmer-specified parameters. Thus, a layout manager
+    does not actually design the layout. It actually only instantiates the
+    layout at run time based on the structure and parameters specified by the
+    programmer. Designing a simple layout (e.g., four pictures lined up in
+    row-major order) is easy for most programmers, but complex hierarchical
+    layouts, while possible, are much more tedious and difficult, especially if
+    any robustness is desired when resized.
+
+    Commercial presentation systems intended primarily for sequential
+    presentations (e.g. \ppt, Keynote, and \latex Beamer) offer a set of
+    preauthored style “templates” (and the ability to create new ones) that can
+    be applied to existing material. Compared to the parameterized layouts of
+    UI toolkit layout managers, most of these template-based systems are
+    simpler. However, users of these systems often move floating objects
+    around by hand to guide or overrule simplistic placement policies.
+
+   \subsection{Constraint satisfaction}
+    \label{constraint-satisfaction}
+
+    The vast majority of research in automated layout to date heavily
+    emphasises constraint-based methods
+    \citep{vanderzanden-1,borning-1,graf-1,hudson-3,kochhar-1,hudson-2,weitzman-2,myers-2}.
+    Describing layouts as a set of constraints is very intuitive. The goal of a
+    constraint-based automated layout system is to take a constraint network
+    defining relations between objects, and generate the positions and sizes
+    for each of the objects in the network. Any constraint-based automated
+    layout system can be characterized by the kinds of constraints it observes;
+    their description and the manner in which they are obtained, and resolved;
+    and the way the system deals with constraint inconsistencies, loops and
+    other hazards that might prevent the solution from converging.
+
+    \subsubsection{Types of constraints}
+
+     \paragraph{Abstract constraints}
+
+      Abstract constraints describe high-level relationships between the
+      components that are part of the layout. Abstract constraints such as
+      \code{EXT1 REFERENCES PIC1} and \code{TITLE IS IMPORTANT} are adequately
+      high-level that content authors can easily specify them, and are
+      remarkably effective when used in interactive systems since the author
+      needs no additional technical or artistic skill to specify them.
+
+      While it may seem like \code{TEXT1 REFERENCES PIC1} implies that
+      \code{TEXT1} and \code{PIC1} should be relatively close to each other in
+      the generated layout, abstract constraints by themselves do not specify
+      the position and size of the components of a layout.
+     
+      The reason for this is that a translation component performs the mapping
+      between abstract constraints and spatial constraints before spatial
+      constraints are passed to the numeric constraint solver. The
+      abstract–spatial constraint translator may decide to translate the
+      abstract constraint \code{TEXT1 REFERENCES PIC1} into a combination of spatial
+      constraints. The outcome of this operation could be that \code{PIC1} is placed
+      right next to text \code{TEXT1}, or that \code{PIC1} is put on a different page with
+      some visual cue to guide the audience to it from \code{TEXT1}.
+
+     \paragraph{Spatial constraints}
+      \label{spatialcon}
+
+      The geometric structure of the presentation can be expressed directly
+      using spatial constraints . For instance, we may wish for a certain block
+      of text to be placed below another block of text that the user is
+      required to read first. Another example of spatial constraints can be
+      found in the intention to fit all objects into a space of a certain size.
+
+      There exist several reasons to impose spatial constraints. One of the
+      most common reasons is to enhance the visual quality and aesthetics of
+      the presentation. Many primitive automated layout systems have been
+      created based on computer science and mathematics alone \citep{beach-1}.
+      These systems have a tendency to approach the issue as a purely
+      theoretical question of tiling and use optimization techniques to find a
+      solution \citep{luders-1}. Such systems will frequently not consider
+      simple legibility rules (e.g. text should not be packed onto the screen
+      in blocks of random size but rather be placed into columns that runs down
+      the entire page) and style guidelines (e.g. all captions should be
+      placed beneath their associated figures and spacing between a figure and
+      surrounding text block should be consistent across the document).
+     
+      The way the components are represented may pose some kind of limitation
+      on what types of spatial constraints can be used. The ``Cousins
+      Problem'' is one such issue which may arise if the data structure
+      containing the components does not permit referencing one component’s
+      children from another component’s child.
+
+      Using concepts from graphic design to create legible and pleasing output
+      seems like an obvious approach. Some tools restrict the presentation
+      content to a grid system, comparable to the layout of newspapers
+      \citep{muller-1,hurlburt-1}. A grid system divides every screen or page
+      of the presentation into an array of upright rectangles. Each component
+      must cover one or more complete rectangles. One challenge when applying
+      grid systems is that a picture may be cropped, padded with a border or
+      have its aspect ratio changed in order to fit into the grid. This is
+      because uniform scaling of the object may not be sufficient to make the
+      object occupy an integral number of grid rectangles; for example, a very
+      wide picture scaled to fit the grid's column width could become a single
+      line of pixels.
+
+      Well-defined environments, like network diagrams or label placement, have
+      automated layout systems that often employ spatial constraints
+      exclusively \citep{kosak-1,christensen-1}. These systems are designed to
+      resolve issues such as the proximity between components being placed, the
+      distance between a label and its target, and the contingency of confusing
+      the audience by placing multiple labels close enough to the same target
+      that the audience can't tell which label actually belongs to that target.
+      Abstract constraints may be employed when formatting labels (larger
+      cities have bigger names), but are generally not used for layout
+      directly.
+
+      In some systems, the user may specify abstract data constraints
+      separately from spatial constraints. This enables a logical single
+      presentation to have many different ``skins'', making the step towards
+      displaying a single presentation using different media a trivial one
+      \citep{weitzman-2}. This is particularly useful when trying to maintain a
+      separation between content and layout in interactive layout systems.
+      Another way to leverage this concept is by making the spatial constraints
+      native to the system, thus eliminating any requirement for human
+      intervention. Feiner’s GRIDS is an example of a such system
+      \citep{feiner-1}.
+
+      The efficiency of the constraint solver can sometimes be increase by
+      using spatial constraints. For example, we might place a constraint on
+      all objects of a certain type permitting them to be resized in only one
+      direction \citep{linton-1}.
+     
+    \subsubsection{Expressing constraints}
+
+     Defining a formal grammar that describes how the constraints are expressed
+     would appear to be a great idea at first sight. One advantage of this
+     approach is the ability to leverage a rich body of existing research for
+     manipulating and parsing constraints. A rich grammar might be very
+     flexible and expressive and result in better layouts \citep{weitzman-1}.
+     However, powerful and expressive grammars may not be easy to operate with.
+     This often becomes obvious when using grammars or ontologies that are
+     designed in an extremely general and all-encompassing philosophy.
+     Additionally, such a system may require a very complex solver to process
+     the information it holds. One can imagine how difficult it is to create a
+     system that can describe all possible high-level relationships between a
+     presentation's components, although this Zhou has investigated this path
+     to use in automatic graphics generation \citep{zhou-1}.
+
+    \subsubsection{Obtaining constraints}
+
+     Establishing where to obtain the constraints is one of the most critical
+     practical issues when designing a constraint-based automated layout
+     system. Examined approaches range from fully automated to the computer
+     making suggestions.
+
+     Many automated layout systems gather abstract constraints from structured
+     input data \citep{mackinlay-1,casner-1,borning-1,beach-1}. These systems
+     convert tables of numeric data into presentations. All relationships
+     required to generate the layout are provided by the structure of the data.
+     Other multimedia layout systems have languages to explicitly stipulate the
+     abstract constraints to describe relationships such as “author-of,”
+     “description-of” and “precedes” between the components
+     \citep{weitzman-2,graf-1}. As the information we create is increasingly
+     being stored in more structured formats \citep{bray-1}, the assumption
+     that input data is readily available in a structured form is becoming ever
+     more valid.
+
+     \paragraph{Interactive specification}
+
+      Interactive constraint specification systems are very popular as well,
+      even with the obvious limitation that they require user input. Some
+      systems aim to permit graphically naive content authors to create
+      professional quality layouts. Others are aimed at reducing the amount of
+      time a graphic designer needs to spend on a layout.
+
+      Systems that take interactive input often do so for spatial constraints
+      \citep{singh-2,hudson-2,borning-1}. The reason for this is that creating
+      graphical user interfaces that let the user interactively place or adjust
+      objects on the screen is easy. While graphical user interfaces to specify
+      abstract constraints have been devised, abstract constraints do not
+      usually need adjustment. Roth’s SAGE system \citep{roth-1} enables a user
+      to link visual elements to database records.
+
+      There are some interactive systems that automatically generate the final
+      result based on the high-level design of the document provided by the
+      user \citep{kim-1}. This is an advantageous approach when trying to
+      empower the content author to design layouts without the need for a
+      ``layout expert''. Other systems exist that take the opposite approach,
+      making the system produce an initial layout and letting the user refine
+      it \citep{singh-1}. These systems are more convenient in situations where
+      the goal is to save the amount of time a graphic designer would need to
+      create the layout.
+
+     \paragraph{Automated extraction}
+
+      Fully automated constraint extraction is the least explored method of
+      obtaining constraints. There has been some work on combining natural
+      language techniques with automated layout \citep{roth-2}. This is
+      especially interesting if natural language generation is being used to
+      create the content. If the content generators are computer programs,
+      having the generator send abstract constraints that describe
+      relationships between components, as well as annotating the text with
+      flags marking which parts are particularly important, becomes an obvious
+      solution
+
+      Another examined method tries to extract abstract constraints from the
+      entity relationships found in SQL databases \citep{pizano-1}. In this
+      approach abstract constraints are deduced from data structures originally
+      intended for use elsewhere, unlike the natural language generation
+      system that passes additional information to the layout system.
+
+    \subsubsection{Constraint solvers}
+
+     An automated layout system based on constraints must somehow be able to
+     resolve the constraints presented to it. Formally, the problem posed here
+     is a form of the constraint satisfaction problem (CSP)
+     \citep{mackworth-2,mackworth-1}. Solving the problems in this field has
+     been approached using both randomized and deterministic algorithms.
+     Generally, constraint solvers can be categorized as applying either a
+     local or a global methodology.
+
+     \paragraph{Local techniques}
+
+      Local constraint solvers take a bottom-up approach to the constraint
+      satisfaction problem. This is comparable to inductive reasoning, meaning
+      a small subset of the universe is first solved. Two paths exist to solve
+      the rest of the constraints and generate the final presentation. The
+      first entails solving many small subsets of the constraints independently
+      and subsequently running a second resolution phase, combining the
+      results. The second involves iteratively resolving constraints at the
+      border between the constraints that have already been solved and those
+      that have yet to be considered \citep{nilsson-1}.
+
+      Local-resolution techniques can pose some issues if the solver encounters
+      local minima \citep{borning-2}. By resolving small subsets first, the
+      solver may make decisions that cause the system to reach a suboptimal
+      final solution. The advantage, however, is that local-resolution
+      techniques generally deliver results much faster than global techniques.
+
+     \paragraph{Global techniques}
+
+      Global constraint solvers approach the constraint satisfaction problem
+      from the top down. Global techniques are not ordinarily affected by the
+      problem of local minima, but they require more computation time. To
+      counteract this issue, numeric solvers that use iterative approximation
+      techniques have been employed \citep{kurlander-1}. Randomized computation
+      techniques (e.g., genetic algorithms and simulated annealing) have also
+      been utilized for label placement \citep{christensen-2}.
+
+    \subsubsection{Inconsistency policies}
+
+     The size of the set of constraints is proportional to the possibility that
+     there will be some problems. Specifically, some constraints may contradict
+     others and possibly make the set of constraints unsolvable. In order to
+     generate a layout in such cases, a resolution policy must be specified.
+
+     The simplest approach to resolving inconsistencies is to avoid them.
+     Instead of bloating the system with inconsistency handling, the grammar
+     used to specify the constraints is designed in such a way that cycles
+     cannot occur \citep{weitzman-2}.
+
+     Another popular method for dealing with inconsistency is to prioritize the
+     constraints \citep{graf-1}. By assigning an inherent priority to each
+     constraint, the system can intelligently decide which constraints to drop
+     should a contradiction be encountered. Problem may still arise here if two
+     conflicting constraints have the same priority. When this happens, the
+     system can apply a tie-breaking strategy (e.g., first-come first-served or
+     pick one randomly) \citep{nilsson-1}. Priorities are essential for
+     generating effective layouts in systems with complex networks of both
+     abstract and spatial constraints.
+
+   \subsection{Learning techniques}
+    \label{learning-techniques}
+
+    Researchers have applied machine learning to many automated multimedia
+    authoring systems. This includes speech synthesis \citep{pan-1} and natural
+    language generation \citep{kamimura-1}, as well as to graph layout
+    \citep{masui-1}. However, most automated layout systems do not leverage the
+    large body of existing work by the AI community in machine learning. Those
+    that do tend to use learning only during the interactive specification of
+    constraints \citep{myers-1,borning-1}. They try to “learn” by interacting
+    with the user. The Marquise system \citep{myers-1} lets a user set the
+    system into a training mode that demonstrates the relative locations of
+    components to the system. Spatial constraints are then extracted from this
+    interaction with the user. If no constraints can be extracted, the system
+    falls back to asking the user to specify the position explicitly. Borning’s
+    \citep{borning-1} ThingLab adds the ability to demonstrate animation, but
+    is otherwise similar to Myer's Marquise.
+
+    The use
+    of learning techniques
+    was also explored recently through some work in automated graphics generation
+    \citep{zhou-3}. Zhou categorizes the space of rules that
+    need to be acquired to generate a presentation into three groups:
+    information learning space, visual learning space and rule learning space.
+
+    Visual learning space relates directly to spatial constraints, and thus
+    is similar to Myer’s and Borning’s work. Contrary to Marquise and ThingLab
+    however, Zhou’s system applies full-strength machine learning that can be
+    fully automated by providing the system with a large dataset of
+    presentations designed by a “layout expert” in addition to the interactive
+    methods.
 
