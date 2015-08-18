@@ -959,32 +959,30 @@
       needs no additional technical or artistic skill to specify them.
 
       While it may seem like “TEXT1 REFERENCES PIC1” implies that B and C
-      should be relatively close to each other in the generated layout, abstract
-      constraints by themselves do not specify the position and size of
-      the components of a layout.
+      should be relatively close to each other in the generated layout,
+      abstract constraints by themselves do not specify the position and size
+      of the components of a layout.
      
-%<TODO rework>
-      \iffalse
-
-      This is because the mapping between abstract
-      constraints and spatial constraints is performed by a translation component
-      before spatial constraints are passed to the numeric constraint solver.
-      The
-      abstract–spatial constraint translator can choose to map the abstract
-      constraint “TEXT1 REFERENCES PIC1” into any set of spatial constraints.
-      This might mean that the PIC1 is placed right next to text TEXT1, or that
-      PIC1 is placed on a different page and some visual cue is left to guide the
-      end user to it from TEXT1.
+      The reason for this is that a translation component performs the mapping
+      between abstract constraints and spatial constraints before spatial
+      constraints are passed to the numeric constraint solver. The
+      abstract–spatial constraint translator may decide to translate the
+      abstract constraint “TEXT1 REFERENCES PIC1” into a combination of spatial
+      constraints. The outcome of this operation could be that PIC1 is placed
+      right next to text TEXT1, or that PIC1 is put on a different page with
+      some visual cue to guide the audience to it from TEXT1.
 
      \paragraph{Spatial constraints}
       \label{spatialcon}
 
-      Spatial constraints are relations that directly express the geometric
-      structure of the presentation. For instance, we may wish to force a certain
-      block of text to appear beneath another block of text that the user is
-      assumed to have read first. Another instance of spatial constraints would
-      be to force all objects to occupy a space that is of a certain size or an
-      integral multiple of that size.
+      The geometric structure of the presentation can be expressed directly
+      using spatial constraints . For instance, we may wish for a certain block
+      of text to be placed below another block of text that the user is
+      required to read first. Another example of spatial constraints can be
+      found in the intention to fit all objects into a space of a certain size.
+
+%<TODO rework>
+      \iffalse
 
       There are a number of reasons why we would want to impose spatial
       constraints. Perhaps the most prevalent reason is to improve upon the
