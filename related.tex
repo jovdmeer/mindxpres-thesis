@@ -1138,7 +1138,7 @@
       Another examined method tries to extract abstract constraints from the
       entity relationships found in SQL databases \citep{pizano-1}. In this
       approach abstract constraints are deduced from data structures originally
-      intended for use elsewhere, as opposed to the natural language generation
+      intended for use elsewhere, unlike the natural language generation
       system that passes additional information to the layout system.
 
     \subsubsection{Constraint solvers}
@@ -1171,20 +1171,13 @@
 
      \paragraph{Global techniques}
 
-%<TODO rework>
-      \iffalse
-
-      Global constraint solvers attack the constraint satisfaction problem from
-      the top down. Unlike local techniques, global techniques generally do not
-      suffer from the problem of local minima, but require more computation time.
-      To address the issue of additional computation time, numeric solvers that
-      use iterative approximation techniques have been applied
-      \citep{kurlander-1}. Randomized computation techniques (e.g., genetic
-      algorithms and simulated annealing) have also been applied for label
-      placement \citep{christensen-2}.
-
-     \fi
-%</TODO rework>
+      Global constraint solvers approach the constraint satisfaction problem
+      from the top down. Global techniques are not ordinarily affected by the
+      problem of local minima, but they require more computation time. To
+      counteract this issue, numeric solvers that use iterative approximation
+      techniques have been employed \citep{kurlander-1}. Randomized computation
+      techniques (e.g., genetic algorithms and simulated annealing) have also
+      been utilized for label placement \citep{christensen-2}.
 
     \subsubsection{Inconsistency policies}
 
