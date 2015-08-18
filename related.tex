@@ -1183,25 +1183,15 @@
      used to specify the constraints is designed in such a way that cycles
      cannot occur \citep{weitzman-2}.
 
-%<TODO rework>
-      \iffalse
-
-     Another popular method for dealing with inconsistency is to prioritize
-     the constraints \citep{graf-1}. By assigning an inherent priority to each constraint,
-     the system can intelligently decide which
-     constraints to drop should a contradiction be encountered.
-     A problem can
-     still occur here if two conflicting constraints have the same priority. In
-     this case, the system can use the AI technique of applying a tie-breaking
-     strategy (e.g., first-come first-served or pick one randomly) so that the
-     layout can be generated \citep{nilsson-1}. Priorities are critical for
-     generating effective layouts in systems where there are complex networks of
-     both abstract and spatial constraints. For example, the enforcement of the
-     grid in a system that employs design grids must take precedence over all
-     other constraints.
-
-     \fi
-%</TODO rework>
+     Another popular method for dealing with inconsistency is to prioritize the
+     constraints \citep{graf-1}. By assigning an inherent priority to each
+     constraint, the system can intelligently decide which constraints to drop
+     should a contradiction be encountered. Problem may still arise here if two
+     conflicting constraints have the same priority. When this happens, the
+     system can apply a tie-breaking strategy (e.g., first-come first-served or
+     pick one randomly) \citep{nilsson-1}. Priorities are essential for
+     generating effective layouts in systems with complex networks of both
+     abstract and spatial constraints.
 
    \subsection{Learning techniques}
     \label{learning-techniques}
