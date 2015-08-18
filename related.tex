@@ -953,24 +953,24 @@
 
       Abstract constraints describe high-level relationships between the
       components that are part of the layout. Abstract constraints such as
-      “TEXT1 REFERENCES PIC1” and “TITLE IS IMPORTANT” are adequately
+      \code{EXT1 REFERENCES PIC1} and \code{TITLE IS IMPORTANT} are adequately
       high-level that content authors can easily specify them, and are
       remarkably effective when used in interactive systems since the author
       needs no additional technical or artistic skill to specify them.
 
-      While it may seem like “TEXT1 REFERENCES PIC1” implies that B and C
-      should be relatively close to each other in the generated layout,
-      abstract constraints by themselves do not specify the position and size
-      of the components of a layout.
+      While it may seem like \code{TEXT1 REFERENCES PIC1} implies that
+      \code{TEXT1} and \code{PIC1} should be relatively close to each other in
+      the generated layout, abstract constraints by themselves do not specify
+      the position and size of the components of a layout.
      
       The reason for this is that a translation component performs the mapping
       between abstract constraints and spatial constraints before spatial
       constraints are passed to the numeric constraint solver. The
       abstract–spatial constraint translator may decide to translate the
-      abstract constraint “TEXT1 REFERENCES PIC1” into a combination of spatial
-      constraints. The outcome of this operation could be that PIC1 is placed
-      right next to text TEXT1, or that PIC1 is put on a different page with
-      some visual cue to guide the audience to it from TEXT1.
+      abstract constraint \code{TEXT1 REFERENCES PIC1} into a combination of spatial
+      constraints. The outcome of this operation could be that \code{PIC1} is placed
+      right next to text \code{TEXT1}, or that \code{PIC1} is put on a different page with
+      some visual cue to guide the audience to it from \code{TEXT1}.
 
      \paragraph{Spatial constraints}
       \label{spatialcon}
@@ -1045,22 +1045,27 @@
       quantized display permits the use of fast fixed point and integer
       programming techniques when resolving the set of constraints.
 
+     \fi
+%</TODO rework>
+
     \subsubsection{Expressing constraints}
 
-     Intuitively it would seem best to define a formal grammar to describe the
-     method by which the constraints are expressed. This approach benefits from
-     being able to leverage a rich body of existing research for manipulating
-     and parsing constraints. A rich grammar might be very flexible and
-     expressive and translate into better layouts \citep{weitzman-1}. An example
-     of a grammar for use in a layout system is shown in Figure 6. However,
-     powerful and expressive grammars may also be difficult to use. This is
-     especially true of grammars or ontologies that attempt to be extremely
-     general and all-encompassing. In addition, a very complex solver may be
-     necessary to process the information present in such a system. As one might
-     imagine, it is extremely difficult to create a system that describes the
-     set of all possible high-level relationships between components of a
-     presentation, although this has been explored for the use of automatic
-     graphics generation \citep{zhou-1}.
+     Defining a formal grammar that describes how the constraints are expressed
+     would appear to be a great idea at first sight. One advantage of this
+     approach is the ability to leverage a rich body of existing research for
+     manipulating and parsing constraints. A rich grammar might be very
+     flexible and expressive and result in better layouts \citep{weitzman-1}.
+     However, powerful and expressive grammars may not be easy to operate with.
+     This often becomes obvious when using grammars or ontologies that are
+     designed in an extremely general and all-encompassing philosophy.
+     Additionally, such a system may require a very complex solver to process
+     the information it holds. One can imagine how difficult it is to create a
+     system that can describe all possible high-level relationships between a
+     presentation's components, although this Zhou has investigated this path
+     to use in automatic graphics generation \citep{zhou-1}.
+
+%<TODO rework>
+      \iffalse
 
      Another extremely powerful approach is to express the constraints in terms
      of Boolean predicates \citep{graf-1}. This approach alleviates some of the
@@ -1070,7 +1075,13 @@
      as the input needs little or no translation before being passed to the
      solver.
 
+     \fi
+%</TODO rework>
+
     \subsubsection{Obtaining constraints}
+
+%<TODO rework>
+      \iffalse
 
      One of the most important practical issues in implementing a
      constraint-based automated layout system is determining where to obtain the
@@ -1135,7 +1146,13 @@
       derived from data structures that were originally intended for use
       elsewhere.
 
+     \fi
+%</TODO rework>
+
     \subsubsection{Constraint solvers}
+
+%<TODO rework>
+      \iffalse
 
      A constraint-based automatic layout system must have some way to resolve
      the constraints with which it is presented. Formally, automated layout
@@ -1174,7 +1191,13 @@
       algorithms and simulated annealing) have also been applied for label
       placement \citep{christensen-2}.
 
+     \fi
+%</TODO rework>
+
     \subsubsection{Inconsistency policies}
+
+%<TODO rework>
+      \iffalse
 
      If the set of constraints is sufficiently large, there is a strong
      likelihood that there will be some problems. In particular, some
