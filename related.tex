@@ -1242,22 +1242,18 @@
     authoring systems. This includes speech synthesis \citep{pan-1} and natural
     language generation \citep{kamimura-1}, as well as to graph layout
     \citep{masui-1}. However, most automated layout systems do not leverage the
-    large body of existing work by the AI community in machine learning.
+    large body of existing work by the AI community in machine learning. Those
+    that do tend to use learning only during the interactive specification of
+    constraints \citep{myers-1,borning-1}. They try to “learn” by interacting
+    with the user. The Marquise system \citep{myers-1} lets a user set the
+    system into a training mode that demonstrates the relative locations of
+    components to the system. Spatial constraints are then extracted from this
+    interaction with the user. If no constraints can be extracted, the system
+    falls back to asking the user to specify the position explicitly. Borning’s
+    \citep{borning-1} ThingLab adds the ability to demonstrate animation, but
+    is otherwise similar to Myer's system.
 
 %<TODO rework>
-
-    Automated layout systems that do have some form of learning tend to use it
-    during the interactive specification of constraints
-    \citep{myers-1,borning-1}. These systems do not implement full machine
-    learning systems. Rather, they try to “learn” based on interacting with the
-    user. The Marquise system \citep{myers-1} allows a user to set the system
-    into a training mode where the relative locations of components are
-    demonstrated to the system. Spatial constraints that will be used to
-    generate the layout are then extracted from this interaction with the user.
-    If the constraints cannot be extracted, the system falls back to having the
-    user specify the position explicitly as a LISP function. Borning’s
-    \citep{borning-1} ThingLab is similar in that it allows for demonstration
-    of constraints, but also adds the ability to demonstrate animation.
 
     Some recent work in automated graphics generation has also explored the use
     of learning techniques \citep{zhou-3}. Zhou divides the space of rules that
