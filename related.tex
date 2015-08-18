@@ -1013,18 +1013,19 @@
       wide picture scaled to fit the grid's column width could become a single
       line of pixels.
 
+      Well-defined environments, like network diagrams or label placement, have
+      automated layout systems that often employ spatial constraints
+      exclusively \citep{kosak-1,christensen-1}. These systems are designed to
+      resolve issues such as the proximity between components being placed, the
+      distance between a label and its target, and the contingency of confusing
+      the audience by placing multiple labels close enough to the same target
+      that the audience can't tell which label actually belongs to that target.
+      Abstract constraints may be employed when formatting labels (larger
+      cities have bigger names), but are generally not used for layout
+      directly.
+
 %<TODO rework>
       \iffalse
-
-      Automated layout systems for well-defined environments, such as network
-      diagrams or label placement, often employ spatial constraints exclusively
-      \citep{kosak-1,christensen-1}. These systems consider issues such as the
-      proximity of the components being placed, the distance between a label and
-      its target, and the possibility of confusing the end user by placing
-      multiple labels that are sufficiently near the same target that the end
-      user doesn’t know which label is associated with it. Abstract constraints
-      are often used for formatting labels (larger cities have bigger names), but
-      are generally not used for layout directly.
 
       Some systems allow the user to specify abstract data constraints separately
       from spatial constraints. This allows for a logical single presentation to
