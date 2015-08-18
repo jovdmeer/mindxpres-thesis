@@ -925,31 +925,30 @@
     any robustness is desired when resized.
 
     Commercial presentation systems intended primarily for sequential
-    presentations (e.g. PowerPoint, Keynote, and LaTeX Beamer) offer a set of
+    presentations (e.g. \ppt, Keynote, and \latex Beamer) offer a set of
     preauthored style “templates” (and the ability to create new ones) that can
     be applied to existing material. Compared to the parameterized layouts of
     UI toolkit layout managers, most of these template-based systems are
     simpler. However, users of these systems often move floating objects
     around by hand to guide or overrule simplistic placement policies.
 
-% TODO more stuff from papers about automated layout goes here
-
    \subsection{Constraint satisfaction}
     \label{constraint-satisfaction}
 
-    The vast majority of research in automated layout to date focuses on
-    constraint-based methods (e.g.,
-    \citep{vanderzanden-1,borning-1,graf-1,hudson-3,kochhar-1,hudson-2,weitzman-2,myers-2}).
-    The idea that layouts can be represented as a set of constraints is very
-    intuitive. For instance, consider the constraint relationships depicted in
-    Figure 1. The goal of a constraint-based automated layout system is to take
-    such a constraint network and generate a set of positions and sizes for
-    each of the components in the network. Any constraint-based automated
-    layout system can be characterized by the kinds of constraints it uses; how
-    they are described, obtained, and resolved; and how the system addresses
-    constraint inconsistencies, loops and other hazards that might prevent the
-    solution from converging. In the rest of this section, we explore these
-    issues.
+% TODO more stuff from papers about automated layout goes here
+
+    The vast majority of research in automated layout to date heavily emphasises
+    constraint-based methods
+    \citep{vanderzanden-1,borning-1,graf-1,hudson-3,kochhar-1,hudson-2,weitzman-2,myers-2}.
+
+    Presenting layouts as a set of constraints is very intuitive. The goal of a
+    constraint-based automated layout system is to take a constraint network
+    defining relations between objects, and generate the positions and sizes
+    for each of the objects in the network. Any constraint-based automated
+    layout system can be characterized by the kinds of constraints it observes;
+    their description and the manner in which they are obtained, and resolved;
+    and the way the system deals with constraint inconsistencies, loops and
+    other hazards that might prevent the solution from converging.
 
     \subsubsection{Types of constraints}
 
