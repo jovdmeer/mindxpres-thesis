@@ -1105,47 +1105,41 @@
       professional quality layouts. Others are aimed at reducing the amount of
       time a graphic designer needs to spend on a layout.
 
-%<TODO rework>
-      \iffalse
+      Systems that take interactive input often do so for spatial constraints
+      \citep{singh-2,hudson-2,borning-1}. The reason for this is that creating
+      graphical user interfaces that let the user interactively place or adjust
+      objects on the screen is easy. While graphical user interfaces to specify
+      abstract constraints have been devised, abstract constraints do not
+      usually need adjustment. Roth’s SAGE system \citep{roth-1} enables a user
+      to link visual elements to database records.
 
-      Most systems that take interactive input do so for spatial constraints
-      \citep{singh-2,hudson-2,borning-1}. This is because it is easy to create
-      graphical user interfaces that allow the user to interactively place or
-      adjust components on the screen. Although providing a graphical user
-      interface to specify abstract constraints is not unheard of, abstract
-      constraints tend not to need adjustment. Roth’s SAGE system \citep{roth-1}
-      allows a user to associate database records with visual elements.
-
-      Some of the interactive systems require the user to specify the high-level
-      design of the document and then automatically generate the final result
-      \citep{kim-1}. This approach is very useful in situations where the goal is
-      to enable a content author to create layouts without the need for
-      intervention by a “layout expert.” Some other systems take the opposite
-      approach where the system produces the initial layout and allows the user
-      to refine it \citep{singh-1}. These systems are more applicable in
-      situations where the goal is to save the amount of time that a graphic
-      designer needs to spend to create the layout.
+      There are some interactive systems that automatically generate the final
+      result based on the high-level design of the document provided by the
+      user \citep{kim-1}. This is an advantageous approach when trying to
+      empower the content author to design layouts without the need for a
+      ``layout expert''. Other systems exist that take the opposite approach,
+      making the system produce an initial layout and letting the user refine
+      it \citep{singh-1}. These systems are more convenient in situations where
+      the goal is to save the amount of time a graphic designer would need to
+      create the layout.
 
      \paragraph{Automated extraction}
 
       Fully automated constraint extraction is the least explored method of
-      obtaining constraints. Some work has been done in integrating natural
+      obtaining constraints. There has been some work on combining natural
       language techniques with automated layout \citep{roth-2}. This is
-      particularly effective if natural language generation is being employed to
-      create the content. Since the content generators are computer programs, it
-      is much easier to have the generator send abstract that describes
-      relationships between components as well as markup the text with flags
-      denoting which parts are particularly important.
+      especially interesting if natural language generation is being used to
+      create the content. If the content generators are computer programs,
+      having the generator send abstract constraints that describe
+      relationships between components, as well as annotating the text with
+      flags marking which parts are particularly important, becomes an obvious
+      solution
 
-      Another method that has been explored is to extract abstract constraints
-      from the entity relationships found in SQL databases \citep{pizano-1}.
-      Unlike the natural language generation system that passes additional
-      information to the layout system, in this approach abstract constraints are
-      derived from data structures that were originally intended for use
-      elsewhere.
-
-     \fi
-%</TODO rework>
+      Another examined method tries to extract abstract constraints from the
+      entity relationships found in SQL databases \citep{pizano-1}. In this
+      approach abstract constraints are deduced from data structures originally
+      intended for use elsewhere, as opposed to the natural language generation
+      system that passes additional information to the layout system.
 
     \subsubsection{Constraint solvers}
 
