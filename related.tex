@@ -1000,22 +1000,21 @@
       containing the components does not permit referencing one component’s
       children from another component’s child.
 
+      Using concepts from graphic design to create legible and pleasing output
+      seems like an obvious approach. Some tools restrict the presentation
+      content to a grid system, comparable to the layout of newspapers
+      \citep{muller-1,hurlburt-1}. A grid system divides every screen or page
+      of the presentation into an array of upright rectangles. Each component
+      must cover one or more complete rectangles. One challenge when applying
+      grid systems is that a picture may be cropped, padded with a border or
+      have its aspect ratio changed in order to fit into the grid. This is
+      because uniform scaling of the object may not be sufficient to make the
+      object occupy an integral number of grid rectangles; for example, a very
+      wide picture scaled to fit the grid's column width could become a single
+      line of pixels.
+
 %<TODO rework>
       \iffalse
-
-      It seems intuitive that we would want to use concepts from graphic design
-      to create legible and pleasing output. Some systems enforce the
-      presentation to conform to a grid system, similar to those used to lay out
-      newspapers \citep{muller-1,hurlburt-1}. In a grid system, every screen or
-      page of the presentation is divided into an array of upright rectangles.
-      Each object must occupy one or more complete rectangles. Figure 4 is an
-      example of output from Feiner’s GRIDS system \citep{feiner-1} which designs
-      layout grids that enforce a consistency between screens or pages of a
-      presentation. One complication with employing grid systems is that a
-      graphical component may need to be cropped, padded with a border or have
-      its aspect ratio changed This is because uniform scaling of the object may
-      not be sufficient to make the object occupy an integral number of grid
-      rectangles.
 
       Automated layout systems for well-defined environments, such as network
       diagrams or label placement, often employ spatial constraints exclusively
