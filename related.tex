@@ -1173,24 +1173,24 @@
 
     \subsubsection{Inconsistency policies}
 
+     The size of the set of constraints is proportional to the possibility that
+     there will be some problems. Specifically, some constraints may contradict
+     others and possibly make the set of constraints unsolvable. In order to
+     generate a layout in such cases, a resolution policy must be specified.
+
+     The simplest approach to resolving inconsistencies is to avoid them.
+     Instead of bloating the system with inconsistency handling, the grammar
+     used to specify the constraints is designed in such a way that cycles
+     cannot occur \citep{weitzman-2}.
+
 %<TODO rework>
       \iffalse
 
-     If the set of constraints is sufficiently large, there is a strong
-     likelihood that there will be some problems. In particular, some
-     constraints may contradict others and possibly make the system of
-     constraints unsolvable. A resolution policy must be specified to generate a
-     layout in these cases.
-
-     Some systems take a very simple approach to inconsistency by avoiding it.
-     Rather than bogging the system down with inconsistency handling, the
-     grammar used to articulate the constraints is designed in such a way that
-     cycles cannot occur \citep{weitzman-2}.
-
-     Another popular method for handling inconsistency is to apply priorities to
-     the constraints \citep{graf-1}. By permitting each constraint to have an
-     inherent priority, the system can make intelligent decisions about which
-     constraints to drop should a contradiction be encountered. A problem can
+     Another popular method for dealing with inconsistency is to prioritize
+     the constraints \citep{graf-1}. By assigning an inherent priority to each constraint,
+     the system can intelligently decide which
+     constraints to drop should a contradiction be encountered.
+     A problem can
      still occur here if two conflicting constraints have the same priority. In
      this case, the system can use the AI technique of applying a tie-breaking
      strategy (e.g., first-come first-served or pick one randomly) so that the
