@@ -882,7 +882,7 @@
     rather are designed to meet the requirements of a fabrication process.
     While some techniques used therein definitely apply to our more general
     problem of automated presentation layout (e.g. general constraint solvers)
-    others decidedly do not (e.g.  bin-packing techniques \citep{hofri-1} that
+    others decidedly do not (e.g. bin-packing techniques \citep{hofri-1} that
     result in minimal area layouts at the expense of maintaining visually
     obvious relationships between objects).
 
@@ -895,10 +895,10 @@
     \citep{ousterhout-1}) which provide some basic functionality such as
     creating buttons and windows. Toolkits usually include layout managers to
     assist the user interface designer in deciding how objects should be places
-    inside a managed container.  Layout managers allow the programmer to add
+    inside a managed container. Layout managers allow the programmer to add
     objects to a container and optionally specify additional constraints while
     forgoing the need to specify the absolute position and size of every
-    object.  As such, it becomes possible to create layouts that adapt to
+    object. As such, it becomes possible to create layouts that adapt to
     changes in the container’s size.
 
     A layout manager dictates the positions and sizes for the objects under its
@@ -916,7 +916,7 @@
 
     A layout may be designed as a hierarchy of managed containers, each with
     their specific layout policies, on which additional constraints can be
-    placed through programmer-specified parameters.  Thus, a layout manager
+    placed through programmer-specified parameters. Thus, a layout manager
     does not actually design the layout. It actually only instantiates the
     layout at run time based on the structure and parameters specified by the
     programmer. Designing a simple layout (e.g., four pictures lined up in
@@ -924,30 +924,15 @@
     layouts, while possible, are much more tedious and difficult, especially if
     any robustness is desired when resized.
 
+    Commercial presentation systems intended primarily for sequential
+    presentations (e.g. PowerPoint, Keynote, and LaTeX Beamer) offer a set of
+    preauthored style “templates” (and the ability to create new ones) that can
+    be applied to existing material. Compared to the parameterized layouts of
+    UI toolkit layout managers, most of these template-based systems are
+    simpler. However, users of these systems often move floating objects
+    around by hand to guide or overrule simplistic placement policies.
+
 % TODO more stuff from papers about automated layout goes here
-
-    Commercial word-processing and presentation systems intended primarily for
-    sequential presentations (e.g., Microsoft Word, Publisher, and PowerPoint,
-    Quark Express, and LaTeX), provide a set of preauthored style “templates”
-    (and the ability to create new ones) that can be applied to existing
-    material; for example, by matching “markup” tags present in the material to
-    be processed with corresponding tags in the template. In comparison with
-    the parameterized layouts of UI toolkit layout managers, most of these
-    template-based systems are simpler. They emphasize the format of the
-    material to be presented, relying on the order in which objects are
-    specified as input to directly determine the order in which formatted
-    objects appear in the presentation, with the exception of their handling of
-    floating objects. Floating objects, such as tables or figures, can move
-    relative to surrounding objects (typically text). Typically, a set of rules
-    is used to determine the final position of the floating object; for
-    example, “If the height of the object is more than 60\% of the height of
-    the page, then put the object on a separate page; otherwise, put the object
-    at the nearest paragraph break.” However, users of these systems often move
-    floating objects around by hand to guide or overrule simplistic placement
-    policies.
-
-    In the following sections, we discuss the two techniques that have been
-    explored in automated layout systems: constraint satisfaction and learning.
 
    \subsection{Constraint satisfaction}
     \label{constraint-satisfaction}
