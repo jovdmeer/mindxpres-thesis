@@ -1153,26 +1153,26 @@
 
      \paragraph{Local techniques}
 
-%<TODO rework>
-      \iffalse
+      Local constraint solvers take a bottom-up approach to the constraint
+      satisfaction problem. This is comparable to inductive reasoning, meaning
+      a small subset of the universe is first solved. Two paths exist to solve
+      the rest of the constraints and generate the final presentation. The
+      first entails solving many small subsets of the constraints independently
+      and subsequently running a second resolution phase, combining the
+      results. The second involves iteratively resolving constraints at the
+      border between the constraints that have already been solved and those
+      that have yet to be considered \citep{nilsson-1}.
 
-      Local constraint solvers attack the constraint satisfaction problem
-      bottom-up. This might be compared to inductive reasoning, where a small
-      subset of the universe is first solved. Two routes can be taken to solv the
-      rest of the constraints and create the final presentation. The first
-      approach is to solve many small subsets of the constraints independently
-      and then run a second resolution phase to combine the results. An
-      alternative approach is to iteratively resolve constraints at the border
-      between the constraints that have already been solved and those that have
-      yet to be considered \citep{nilsson-1}.
-
-      Using a local-resolution technique can be problematic if the solver
-      encounters local minima \citep{borning-2}. By resolving small subsets
-      first, the solver may make decisions that bring the system to a suboptimal
-      final solution. The advantage, however, is that local-resolution techniques
-      usually execute much faster than global techniques.
+      Local-resolution techniques can pose some issues if the solver encounters
+      local minima \citep{borning-2}. By resolving small subsets first, the
+      solver may make decisions that cause the system to reach a suboptimal
+      final solution. The advantage, however, is that local-resolution
+      techniques generally deliver results much faster than global techniques.
 
      \paragraph{Global techniques}
+
+%<TODO rework>
+      \iffalse
 
       Global constraint solvers attack the constraint satisfaction problem from
       the top down. Unlike local techniques, global techniques generally do not
