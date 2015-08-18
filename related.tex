@@ -958,15 +958,19 @@
       remarkably effective when used in interactive systems since the author
       needs no additional technical or artistic skill to specify them.
 
+      While it may seem like “TEXT1 REFERENCES PIC1” implies that B and C
+      should be relatively close to each other in the generated layout, abstract
+      constraints by themselves do not specify the position and size of
+      the components of a layout.
+     
 %<TODO rework>
+      \iffalse
 
-      Although one might think that “TEXT1 REFERENCES PIC1” implies that B and C
-      are relatively close to each other in the generated layout, abstract
-      constraints in and of themselves do not specify the position and size of
-      the components of a layout. This is because the mapping between abstract
+      This is because the mapping between abstract
       constraints and spatial constraints is performed by a translation component
-      before spatial constraints are passed to the numeric constraint solver. The
-      abstract– spatial constraint translator can choose to map the abstract
+      before spatial constraints are passed to the numeric constraint solver.
+      The
+      abstract–spatial constraint translator can choose to map the abstract
       constraint “TEXT1 REFERENCES PIC1” into any set of spatial constraints.
       This might mean that the PIC1 is placed right next to text TEXT1, or that
       PIC1 is placed on a different page and some visual cue is left to guide the
@@ -1204,6 +1208,7 @@
      grid in a system that employs design grids must take precedence over all
      other constraints.
 
+     \fi
 %</TODO rework>
 
    \subsection{Learning techniques}
