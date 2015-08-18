@@ -914,23 +914,17 @@
     preferred, minimum, and maximum widths and heights of objects; and spacing,
     both between objects and between objects and the container’s edges. 
 
-% TODO more stuff from papers about automated layout goes here
+    A layout may be designed as a hierarchy of managed containers, each with
+    their specific layout policies, on which additional constraints can be
+    placed through programmer-specified parameters.  Thus, a layout manager
+    does not actually design the layout. It actually only instantiates the
+    layout at run time based on the structure and parameters specified by the
+    programmer. Designing a simple layout (e.g., four pictures lined up in
+    row-major order) is easy for most programmers, but complex hierarchical
+    layouts, while possible, are much more tedious and difficult, especially if
+    any robustness is desired when resized.
 
-    A programmer designs a parameterized layout as a hierarchy of managed
-    containers, chosen for their layout policies, and further constrained by
-    programmer-specified parameters. Thus, a layout manager does not actually
-    design a layout, but rather instantiates a layout at run time from the
-    structure and parameters specified by the programmer. Designing a simple
-    layout (e.g., four buttons displayed in row-major order) is easy for a
-    programmer, but designing a complex hierarchical layout, while possible, is
-    tedious and difficult, especially if it needs to behave robustly when
-    resized. The popularity of the layout-manager approach stems primarily from
-    the ease of implementing the managers themselves and the relative ease with
-    which they can be used by programmers to define simple parameterized
-    layouts. In addition, because the final layout is determined at run time,
-    the presentation can work well under a wide range of possible window sizes,
-    with lower bounds on usability imposed by the minimum effective sizes of
-    the objects being laid out.
+% TODO more stuff from papers about automated layout goes here
 
     Commercial word-processing and presentation systems intended primarily for
     sequential presentations (e.g., Microsoft Word, Publisher, and PowerPoint,
