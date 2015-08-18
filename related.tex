@@ -949,45 +949,16 @@
 
     \subsubsection{Types of constraints}
 
-%<TODO rework>
-
-     Most constraints in a constraint-based automated layout system can be
-     classified as either abstract or spatial. By abstract, we mean that the
-     constraint describes a high-level relationship between two components that
-     are to be included in the layout (e.g., “TEXT1 REFERENCES PIC1”). In
-     contrast, spatial constraints enforce position or size restrictions on the
-     components (e.g., “CAPTION1 BELOW PIC1”). Spatial constraints can be fed
-     directly into a constraint solver for resolution, whereas abstract
-     constraints must be processed and reduced to spatial constraints before the
-     layout can be realized. The process of generating spatial constraints from
-     the abstract constraints is often the most challenging part of creating an
-     automated layout system.
-
-     The choice of employing abstract or spatial constraints depends on the
-     nature of the layout that the system is designed to generate. Many research
-     systems employ both abstract and spatial constraints because they are
-     general multimedia presentation tools \citep{feiner-1,weitzman-2,graf-1}.
-     Other research initiatives are embodied in the form of libraries such as
-     subArctic \citep{hudson-3,hudson-1} and the Garnet toolkit \citep{myers-2}
-     that include extensions of “layout manager” type functionality with simple
-     spatial constraints. Although automated layout systems for more limited
-     environments can create effective layouts using only spatial constraints
-     \citep{kosak-1}, the same can not be said for attempting to employ abstract
-     constraints without spatial constraints. Figure 2 depicts what the
-     difference in output might be between a system that considers only abstract
-     constraints versus a system that takes into account both abstract and and
-     spatial constraints. This issue is discussed further in Section
-     \ref{spatialcon}.
-
      \paragraph{Abstract constraints}
 
-      Abstract constraints are descriptions of high-level relationships between
-      the various components that are to be placed into the layout. Abstract
-      constraints such as “TEXT1 REFERENCES PIC1” and “TITLE IS IMPORTANT” are
-      sufficiently high-level that content authors can easily specify them and
-      are particularly effective for use in interactive systems because the
-      author of the content needs no additional technical or artistic skill to
-      specify them.
+      Abstract constraints describe high-level relationships between the
+      components that are part of the layout. Abstract constraints such as
+      “TEXT1 REFERENCES PIC1” and “TITLE IS IMPORTANT” are adequately
+      high-level that content authors can easily specify them, and are
+      remarkably effective when used in interactive systems since the author
+      needs no additional technical or artistic skill to specify them.
+
+%<TODO rework>
 
       Although one might think that “TEXT1 REFERENCES PIC1” implies that B and C
       are relatively close to each other in the generated layout, abstract
