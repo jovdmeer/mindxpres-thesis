@@ -106,7 +106,7 @@
    However, in \mxp we are not limited to the rigid hierarchy of sections and
    slides, so at this point we can actually start manipulating our tree and
    improve upon it, for example by moving parts around, nesting components in
-   different ways, grouping them in other ways than they originally were, etc.
+   different ways, grouping them in other ways than they originally were, and so on.
    In compilation terms, this is the optimization phase, where the compiler can
    manipulate the program to run more efficiently, to replace parts of it with
    other functionality, or to add features the source did not explicitly specify
@@ -177,7 +177,7 @@
    relative to its size. We could also specify a certain relation between
    components, ensuring components stay in each others vicinity, one should
    always be left of the other, no other components may be placed between them,
-   etc. Using these rules, we would then programmatically calculate the best
+   et cetera. Using these rules, we would then programmatically calculate the best
    layout using those components, but without any other bias. These constraints
    would be based only on the original situation, never on any suggestions from
    us or other developers or authors, which makes all the difference with
@@ -224,7 +224,7 @@
     \label{mxp-plug-in}
 
     We did this by creating an invisible container plug-in. Containers are a
-    way of grouping components, other containers, etc. in \mxp. This means they
+    way of grouping components and other containers in \mxp. This means they
     have control over their child elements, which gives us the opportunity to
     override the layout of those elements. A container plug-in thus allows us
     to implement our own layout system. Since it is a new element, it does not
@@ -308,8 +308,8 @@
     makes it disadvantaged --- almost by definition, just like we are severely
     handicapped when we try to perform typically automatable, repetitive and/or
     math-intensive tasks. A computer's true power only shows when you let it do
-    what it is good at, which is the repetitive stuff, the mathematically
-    complex stuff, etc. Trying to make it generate presentation layouts like a
+    what it is good at, which is mostly the repetitive and the mathematically
+    complex stuff. Trying to make it generate presentation layouts like a
     human would, is asking for subpar results.
 
     If we approach this problem keeping in mind a computer's strength and
