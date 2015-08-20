@@ -35,9 +35,9 @@
 
    Converting these other formats into \mxp remains an important goal in the
    endeavour to raise awareness and increase popularity of \mxp's features and
-   possibilities. Our implementation provides a way to convert \ppt .ppt
+   possibilities. Our implementation provides a way to convert \ppt\ .ppt
    presentations, but \ppt* has switched to using the Office Open XML-based
-   .pptx format in recent years, so newer \ppt presentations cannot currently
+   \ .pptx format in recent years, so newer \ppt presentations cannot currently
    be imported into the \mxp system.
 
    Our implementation is written in a way that should make it straightforward
@@ -57,7 +57,7 @@
    creating traditional slideware, as well as using more advanced and modern
    presentation tools, layout remains a problem that for many presenters
    becomes the biggest timesink in their work. On top of that, the layout they
-   create isn't always a good one, and bad layout has been proven to have
+   create is not always a good one, and bad layout has been proven to have
    negative impact on the effectiveness of a presentation. As such, having a
    way to automatically generate a layout would save a lot of time while also
    improving the information transfer effectiveness of presentations.
@@ -95,16 +95,16 @@
 
    \subsection{Other formats}
 
-    Our conversion tool currently allows to convert \ppt .ppt files into \mxp
+    Our conversion tool currently allows to convert \ppt\ .ppt files into \mxp
     presentations, bypassing the \mxp compiler. The tool internally uses an
     intermediary structure to store the presentation's content, and this
     facilitates the implementation of conversion tools for other formats. As
     such, it might be a good idea to extend the tool to convert other popular
-    formats like \ppt .pptx files, Apple Keynote presentations and many others.
+    formats like \ppt\ .pptx files, Apple Keynote presentations and many others.
 
     It would also be a good idea to change the output of the conversion tool to
     generate \mxp XML files to compile further using the \mxp compiler. In and
-    of itself this would not seem advantageous, but with \mxp IDE's and other
+    of itself this would not seem advantageous, but with \mxp IDEs and other
     editing tools in mind it would be better to have XML files which would be
     editable using those tools, rather than raw HTML5 which presumably would
     not be readily available in any IDE.

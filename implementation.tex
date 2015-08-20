@@ -9,7 +9,7 @@
   interesting, more compelling, more fun languages, several reasons pushed us
   towards Java, the least of them being its ease of use. Of course, Java
   \emph{is} easy to use --- it would not have become as popular as it is
-  nowadays if it wasn't. It has a fairly clear and logical syntax, a consistent
+  nowadays if it was not. It has a fairly clear and logical syntax, a consistent
   structure, and an extensive standard library. At conception in 1995, its
   performance was abysmal, but throughout the years it has steadily improved
   and somewhere between Java 5 (then still called 1.5) and 6 (when they dropped
@@ -24,7 +24,7 @@
   comes to Java is currently IntelliJ. The way IntelliJ practically writes more
   than half of the code automatically for you is something no other IDE has
   been able to match. Naturally, this is the author's personal opinion and
-  should not be seen as fact, but if you're looking for a new Java IDE, it's
+  should not be seen as fact, but if you are looking for a new Java IDE, it is
   definitely worth checking out. The prospect of using IntelliJ for this thesis
   has definitely contributed to the decision of using Java. It should be noted
   that, had another Java IDE been required, this thesis might never have seen
@@ -33,7 +33,7 @@
   The vast and extensive amount of libraries available for Java was obviously
   one of the more important reasons to make this choice. The existence of the
   Apache POI library (see section \ref{poi}) was a huge help in reaching our
-  goal; without it, we would have had to figure out the very obfuscated .ppt
+  goal; without it, we would have had to figure out the very obfuscated\ .ppt
   file format structure, which undoubtedly would have taken up more time than
   was available to us. Other libraries like Spring, which allows the programmer
   to use and reuse components without writing complex systems to instantiate
@@ -57,12 +57,12 @@
    very complicated, as some --- usually proprietary --- file formats are
    deliberately designed to discourage this. They obfuscate data, encrypt it,
    and structure it in illogical and unexpected ways, amongst other techniques.
-   The \ppt file format unfortunately is such a format, as Microsoft wouldn't
+   The \ppt file format unfortunately is such a format, as Microsoft would not
    want to risk other companies making software that would work with \ppt
    files. Of course, over the years people have managed to crack the format,
    enabling the conversion of \ppt presentations into other formats, although
    the conversion does not usually guarantee to yield results that mimic the
-   original version perfectly. Luckily, we don't want a perfect conversion, we
+   original version perfectly. Luckily, we do not want a perfect conversion, we
    want a better one.
 
    We found Apache POI library very helpful in this part of the implementation.
@@ -155,7 +155,7 @@ return ul;
     the indentation level, a new bullet list is started and added as an item on
     the existing bullet list. When indentation decreases, we go back to the
     parent list and continue there. This can go down several levels, and all
-    the way back up of course. Since the objects don't have a direct link to
+    the way back up of course. Since the objects do not have a direct link to
     their parent, we use a stack to keep track of this at all times.
 
    \subsection{Animations}
@@ -189,7 +189,7 @@ return ul;
     With this in mind, we now render the components in the order we get them
     from HSLF, hoping that this resembles the original order closely. The
     automated layout takes care of any overlapping that might have occurred
-    originally, so we don't have to worry about that.
+    originally, so we do not have to worry about that.
 
   \section{Generating \mxp}
 
@@ -216,7 +216,7 @@ return ul;
     compiler would, including the \mxp JavaScript library and plug-ins. This
     required us to first learn how \mxp works on the inside, which proved to be
     a steep learning curve but gave us more insight into the software than we
-    would've gotten if we only had to generate \mxp XML and leave the rest to
+    would have gotten if we only had to generate \mxp XML and leave the rest to
     the compiler.
 
     \subsubsection{Improving the ZUI}
@@ -225,9 +225,9 @@ return ul;
      the CSS3 \code{transform: scale()} property to enlarge or reduce the whole
      view, giving the impression of zooming in or out. This is an obvious
      approach, simple in its execution and quite foolproof. However, the
-     downside is that you can't zoom in very much, because currently browsers
+     downside is that you can not zoom in very much, because currently browsers
      do not leverage the advantage of vector graphics and fonts even if you do
-     use them, and obviously raster-based content doesn't scale much anyway.
+     use them, and obviously raster-based content does not scale much anyway.
      Instead, browsers render the content at its initial scale, and then treat
      the result as one big image when scaled or otherwise transformed
      afterwards. This means you get extremely pixelated content when zooming in
@@ -237,7 +237,7 @@ return ul;
      \code{transform: translateZ()} property instead, along with the
      \code{transform: perspective()}\footnote{Not to be confused with the
      \code{perspective: <number>} property, which yields different results} and
-     the \code{transform-style: preserve-3d} properties. This means we're now
+     the \code{transform-style: preserve-3d} properties. This means we are now
      effectively rendering the presentation in 3D, and moving our viewpoint
      around in the 3D space to center each slide or component in turn.
 
@@ -251,7 +251,7 @@ return ul;
      be useful to group slides together in this way, when there is too much
      content to show on one slide but creating a second, separate slide may
      break the flow of the presentation. In any case, our automated layout
-     plugin won't currently generate slides positioned this way.
+     plugin will not currently generate slides positioned this way.
 
     \subsubsection{Plain HTML5}
 
@@ -288,8 +288,8 @@ return ul;
     \subsubsection{\mxp XML}
 
      Generating \mxp XML should be simpler than the HTML5 output, although in
-     the end there is probably not much difference. We won't have to generate
-     unique ID's for every component, and we won't have to generate the
+     the end there is probably not much difference. We will not have to generate
+     unique IDs for every component, and we will not have to generate the
      preamble content (which includes the \mxp library itself), but the
      structure and content should remain pretty much the same. Instead of
      \code{<div>} tags we can now use \mxp-specific tags. All that adds up to a
@@ -306,12 +306,12 @@ return ul;
    Implementing an automated layout is not an easy task. At any point in the
    process opportunities arise to use some kind of template, some sort of
    design choice that would appear to make things easier, but turn out to be
-   restrictive when applied to edge cases. There's also not always a clear
+   restrictive when applied to edge cases. There is also not always a clear
    distinction between implementing a template and implementing an automated
    layout. If you decide to put all of your components in a row next to each
    other, have you just implemented a template or not? What if you make them
    all the same height, so the row will look aesthetically pleasing when
-   looking at it as a whole? What if you don't?
+   looking at it as a whole? What if you do not?
 
    It becomes more clear when we have to work within a defined area, such as a
    slide container. In this case, we have to fit our content within the slide;
@@ -333,7 +333,7 @@ return ul;
    not yield ideal results. Scaling an image down and then zooming in on it
    will show you a blurred version at best, and a great big coloured blob at
    worst. Using the \code{perspective()} and \code{translateZ()} properties
-   yields much better results, but this isn't easily usable within a slide
+   yields much better results, but this is not easily usable within a slide
    container as the content would be rendered \emph{behind} the slide, making
    the slide seem empty as seen from the front. If we want the content to be
    visible on the slide, we need to render it within the size limits of the
