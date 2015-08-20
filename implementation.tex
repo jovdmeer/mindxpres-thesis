@@ -123,7 +123,7 @@ for (RichTextRun run : textShape.getTextRun().getRichTextRuns()) {
     }
   } else {
     while (listStack.size() > 0) {
-  //  Current component is not a bulletlist or bullet, go to the top bullet level
+//  Current component is not a bulletlist or bullet, go to the top bullet level
       ul = listStack.pop();
     }
   }
@@ -207,7 +207,7 @@ return ul;
    our conversion tool without affecting the rest of the conversion process,
    and on a per-component basis.
 
-%   maybe TODO generating
+% maybe TODO generating
 
    \subsection{Playing \mxp compiler}
 
@@ -278,11 +278,11 @@ return ul;
      be better if this functionality was separated from the components and
      gathered in a distinct \code{Writer} class instead. Switching formats
      would then be as easy as dropping in a new \code{Writer} class that
-     generates a different format.  Since we initially did not expect to switch
+     generates a different format. Since we initially did not expect to switch
      outputs, and because we started implementing the conversion of one
      component and then added components as we needed them, the current
      implementation --- focused on simplifying addition of new components ---
-     was easier for us to work with.  Perhaps the refactoring of this
+     was easier for us to work with. Perhaps the refactoring of this
      implementation is an option for future work.
 
     \subsubsection{\mxp XML}
