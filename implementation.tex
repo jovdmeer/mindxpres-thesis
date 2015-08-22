@@ -173,7 +173,7 @@ return ul;
     automated layout takes care of any overlapping that might have occurred
     originally, so we do not have to worry about that.
 
-  \section{Generating \mxp}
+  \section{Generating \mxp content}
 
    Generating \mxp presentations was the final goal of the first phase of this
    thesis. This seemed a fairly easy task at first, until we learned that the
@@ -189,9 +189,7 @@ return ul;
    our conversion tool without affecting the rest of the conversion process,
    and on a per-component basis.
 
-% maybe TODO generating
-
-   \subsection{Playing \mxp compiler}
+   \subsection{Emulating the \mxp compiler}
 
     Since the \mxp compiler was not functional during most of this thesis'
     implementation, we decided to generate an HTML5 file much like the \mxp
@@ -372,9 +370,9 @@ return ul;
     specify to retain the original proportions and only scale everything up or
     down equally to fit the area.
    
-   \subsection{Other ways}
+   \subsection{Alternative approaches}
 
-    During implementation, we tried several other ways to improve upon the
+    During implementation, we tried several other approaches to improve upon the
     automated layout, all of which we ultimately decided to abandon in favor of
     the current approach. There were various reasons for abandoning these
     paths. Often the reason was that we realized we were influencing the
