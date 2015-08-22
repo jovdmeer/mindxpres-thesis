@@ -68,8 +68,8 @@
    improve it. Certain patterns in the parse tree may be replaceable by
    different patterns with the same outcome, but with more optimal execution.
    This part of the compilation process is optional, and is called compiler
-   optimization. Optimizations can consist of many things, depending on the
-   language. For example, some languages guarantee tail call optimization,
+   optimisation. Optimisations can consist of many things, depending on the
+   language. For example, some languages guarantee tail call optimisation,
    where infinite loops can be constructed by letting a function call itself as
    its last statement without causing a stack overflow. This is something the
    compiler (or interpreter) can optimize during this part of the compilation
@@ -107,16 +107,16 @@
    slides, so at this point we can actually start manipulating our tree and
    improve upon it, for example by moving parts around, nesting components in
    different ways, grouping them in other ways than they originally were, and so on.
-   In compilation terms, this is the optimization phase, where the compiler can
+   In compilation terms, this is the optimisation phase, where the compiler can
    manipulate the program to run more efficiently, to replace parts of it with
    other functionality, or to add features the source did not explicitly specify
    (e.g. garbage collection, but also spyware components \citep{scahill-1}). 
 
-   As we discuss in section \ref{compiler-optimizations}, this seemed like the
+   As we discuss in section \ref{compiler-optimisations}, this seemed like the
    right time to incorporate automated layout generation into the conversion
    process. As we see later in section \ref{mxp-plug-in}, it turned out it
-   was not. In the end, no significant `optimizations' or manipilation of the
-   tree structure were implemented. Later on we would utilize this optimization
+   was not. In the end, no significant `optimisations' or manipilation of the
+   tree structure were implemented. Later on we would utilize this optimisation
    phase to enable automated layout in another way, without actually performing
    the layout here, but at this point it would not affect the end result in any
    way.
@@ -137,16 +137,16 @@
    which was a lot simpler since we would rely on \mxp to provide our layout
    and other things for us through the \mxp compiler. This approach allowed us
    to use the full power of \mxp, including our own plug-in for automated
-   layout. At this point, the optimization phase was also revisited, and
+   layout. At this point, the optimisation phase was also revisited, and
    leveraged to introduce specific XML tags around component groups that would
    trigger our automated layout plug-in.
 
-  \section{Compiler optimizations}
-   \label{compiler-optimizations}
+  \section{Compiler optimisations}
+   \label{compiler-optimisations}
 
    Since the conversion process resembles that of a compiler, it seemed logical
    at first to make automated layout a part of that process, as some kind of
-   `compiler optimization'. During this phase in the process, the component
+   `compiler optimisation'. During this phase in the process, the component
    tree would be manipulated and altered, with the express purpose to improve
    upon its structure and properties, so as to get a better end result. Our
    improvements in this case would then consist of the automated layout.
@@ -184,7 +184,7 @@
    traditional template-based layouts.
  
    While this is clearly a better method, it turned out the compiler
-   optimization phase was not the best place in the process to take care of
+   optimisation phase was not the best place in the process to take care of
    this. While we had the necessary data to calculate the layout, we would have
    had to generate the layout along with the \mxp presentation, after which the
    presentation could not be altered anymore without breaking the layout. This
