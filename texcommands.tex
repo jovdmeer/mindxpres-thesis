@@ -93,6 +93,15 @@
  \csname lst@SaveFirstLabel\endcsname
 }
 
+\lstnewenvironment{lstxmlnoref}[0]
+{
+  \csname lst@SetFirstLabel\endcsname
+  \lstset{language=XML}
+}
+{
+  \csname lst@SaveFirstLabel\endcsname
+}
+
 \newcommand\fignl[1]{
  \centering
  \includegraphics[width=\textwidth]{img/#1.png}
