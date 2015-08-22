@@ -2,9 +2,10 @@
 
  \chapter{Slideware and the importance of layout}
 
+% TODO wtf is this shit
   Computers, software and digital content are everywhere. Everything we use
-  nowadays is somehow related to computers and electronics, and if it isn't, it
-  probably will be soon. This may be a bit of hyperbole, but there's a core of
+  nowadays is somehow related to computers and electronics, and if it is not, it
+  probably will be soon. This may be a bit of hyperbole, but there is a core of
   truth in it. If you think about it, more and more things have become and are
   becoming some kind of computer. Coffee machines used to be simple machines
   that heated water and let it drip over coffee grounds; now there are coffee
@@ -18,16 +19,16 @@
   be `developed' onto special paper through a proces involving a dark room and
   several chemicals. Movies existed on a projection film, newspapers were
   actually made of paper and music was available on vinyl disks with grooves
-  that matched the sound waves. All of this content has been digitized since.
+  that matched the sound waves. All of this content has been digitised since.
   This means of course that you can see or hear it using a computer, like you
-  would've seen it without a computer before, but on top of that it means the
+  would have seen it without a computer before, but on top of that it means the
   content can be much more dynamic. You can link it to other content, you can
   make it respond to your actions, you can discuss it with people around the
-  world. Digitized content allows for interactivity, so that the audience is no
+  world. Digitised content allows for interactivity, so that the audience is no
   longer a passive onlooker but an active participant.
 
   It is no surprise, then, that slideshow presentations have evolved from the
-  original dia's or overhead projection slides into a digital form as well.
+  original dias or overhead projection slides into a digital form as well.
   Except, until recently the evolution stopped there. Slideshows did not become
   interactive, and the audience remained passive onlookers watching a series of
   images projected on a screen or a wall. The presenter told a story, and the
@@ -54,13 +55,13 @@
   arranging data in a certain way to letting the audience control the
   slideshow. Virtually anything is possible if you only implement it, and
   implementing it is fairly simple if you know a bit about web development as
-  the whole thing is written in HTML5. Other software packages have plug-ins
+  the platform is based on HTML5. Other software packages have plug-ins
   too of course, but they have a limited set of functionality available to
-  them, they're not as easy to implement, and most importantly: they're bound
+  them, they are not as easy to implement, and most importantly: they are bound
   by the same slide format used since overhead projections.
 
   However, even with the new alternatives, \ppt* remains the most-used slideshow
-  software. People keep using it because it's familiar, they've used it
+  software. People keep using it because it is familiar, they have used it
   hundreds of times before and as such all their existing work is viewable only
   through \ppt. Switching to a new software package is hard. This thesis aims
   to make the transition easier, by providing a way to convert existing \ppt
@@ -71,7 +72,7 @@
 
   \section{Terminology}
 
-%   maybe TODO use fancy words to explain other fancy words
+% maybe TODO use fancy words to explain other fancy words
 
    The words \emph{slideshow} and \emph{presentation} are often used
    interchangeably throughout this report, although they do not quite cover the
@@ -86,8 +87,10 @@
    position and size of each visual object that is to be displayed in a
    presentation, and the result of that process.
 
-   \emph{Slideware} is a contraction of the words `slideshow' and `software',
-   referring to software packages used to create slideshow presentations.
+   \emph{Slideware} is a portmanteau of `slideshow' and `software', referring
+   to software packages used to create slide-based presentations. This includes
+   the most common and popular presentation tools such as \ppt, Keynote and
+   OpenOffice Impress.
 
   \section{Problem statement}
 
@@ -105,8 +108,6 @@
    most of their time not on the \emph{content} of their presentation, but on the
    \emph{layout} \citep{lok-1}.
 
-   % TODO converting ppt is also a problem.
-
    The layout of a presentation can have a significant impact on how well it
    communicates information to and obtains information from those who interact
    with it. The vast majority of layouts created today are done ``by hand'': a
@@ -121,6 +122,19 @@
    task, letting the presenter focus on the content of the presentation and
    providing a proper layout fit for the content provided through software.
 
+   It would be na\"ive to think that providing automated layouts in \mxp will
+   convince avid \ppt users to abandon their favorite presentation software in
+   favor of the unfamiliar \mxp. We have to assume that people looking for
+   alternatives have found them by now. This means the people we have to
+   convince are presumably the most loyal \ppt users, people who have made
+   dozens or hundreds of presentations in Microsoft's popular format. Aside
+   from having to learn how to use this new tool, they would also suffer the
+   inconvenience of losing access to all of their existing content. As such, it
+   would be a good idea to alleviate this inconvenience, by offering a way to
+   import their content into the \mxp system. Therefore we also propose a tool
+   to convert \ppt presentations into \mxp presentations, in a way that they
+   can be further authored using the available \mxp tools.
+
    \subsection{Real-life slideware problems}
     \label{nasa}
 
@@ -133,7 +147,7 @@
     Corporation engineers delivered three reports to {NASA} totalling 28 \ppt
     slides, to help them assess the damage caused by a piece of debris hitting
     the wing of the shuttle during launch, and the threat this damage might have
-    posed.  As Edward Tufte beautifully describes in his article ``\ppt Does
+    posed. As Edward Tufte beautifully describes in his article ``\ppt Does
     Rocket Science'' \citep{tufte-2}, the reports existed only in those slides,
     and the slides were woefully inadequate for the task at hand. Although Tufte
     likes to suggest this proves that \ppt is an inherently bad tool, what it

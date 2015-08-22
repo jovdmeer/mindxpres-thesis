@@ -11,19 +11,28 @@
   and on average 30 million \ppt presentations are created every day
   \citep{parker-1, drucker-1, bajaj-1}.
 
+  % TODO Currently, at the time of writing, up to now ?
   In this time, \ppt* has gotten many new features, and certainly improved and
   grew with every new version, but it never really changed its core approach.
   It started out mimicking the then-popular and widespread use of dia and
-  overhead projection slides, which was at the time a good way to convince
-  people of its purpose, allowing them to feel comfortable with a familiar
-  format instead of alienating potential customers with a new and potentially
-  confusing interface.
+  overhead projection slides. This technique where digital media imitates
+  physical objects and actions is known as skeuomorphism, and it is often used
+  as a way to make people who are new to digital media feel more familiar with
+  the interface, the content, and the behaviour of software. However, when
+  many people of the current generation have never seen the physical object or
+  action because the digital version has almost completely replaced it, this
+  skeuomorphism no longer makes sense (e.g. the `save' button in many
+  applications still showing a floppy disk).
 
-  However, this interface is quite restricting, and in recent years different
-  approaches have seen the light of day. The zoomable user interface of Prezi
-  is probably the most well-known, but apart from abandoning the traditional
-  slide format it does little to improve or extend the concept of presenting
-  information to an audience.
+  % TODO ask is this ok
+  In \ppt, this was at the time a good way to convince people of its merits and
+  purpose, allowing them to feel comfortable with a familiar format instead of
+  alienating potential customers with a new and potentially confusing
+  interface.  However, this interface is quite restricting, and in recent years
+  different approaches have seen the light of day. The zoomable user interface
+  of Prezi is probably the most well-known, but apart from abandoning the
+  traditional slide format it does little to improve or extend the concept of
+  presenting information to an audience.
 
   This is where \mxp comes in. Its extensible plug-in system allows anyone with
   some knowledge of programming to create new functionality to use in
@@ -33,13 +42,13 @@
   audience.
 
   While this is obviously a big improvement on the traditional presentation
-  model of \ppt* and the likes, it remains hard to convince the general public
-  of its merits. People are generally afraid of change, and it is important to
-  make the transition as smooth as possible. On top of that, people are often
-  worried that the work they did in the past may be lost --- or worse,
-  irrelevant --- after switching to something new. This alone may be a huge
-  factor in deciding wether or not to start using new software, or to stick
-  with what they know.
+  model of \ppt* and related tools, it remains hard to convince the general
+  public of its merits. People are generally afraid of change, and it is
+  important to make the transition as smooth as possible. On top of that,
+  people are often worried that the work they did in the past may be lost ---
+  or worse, irrelevant --- after switching to a new tool. This alone may be
+  a huge factor in deciding wether or not to start using new software, or to
+  stick with what they know.
 
   That is where the subject of this thesis comes in. We aim to provide a way
   for people to convert their existing \ppt presentations into \mxp
@@ -72,14 +81,14 @@
   size, shape or nature. In the end, everyone who has ever used \latex knows
   that sooner or later you will struggle to get a certain image incorporated in
   the text correctly, ending up doing the layout yourself anyway, because the
-  predefined template just doesn't work properly for your specific content.
+  predefined template just does not work properly for your specific content.
 
   Our goal is to eradicate those situations. Automated layout should
   dynamically adjust to any content it is given, no matter the size or aspect
   ratio. This may seem hard, if you consider the limits of slides and the fact
   that you can only fit so much content on them before they are full. This is
   where another important aspect of \mxp comes into play: we are not
-  necessarily bound to the limits of slides. If we don't have to consider the
+  necessarily bound to the limits of slides. If we do not have to consider the
   boundaries of traditional slides, we can fit content together in an
   aesthetically pleasing way much easier, without having to scale anything.
 
@@ -95,7 +104,7 @@
   audience. Providing an overview of the information in a presentation becomes
   easier and more effective too: where traditional presentations rely on a
   boring table of contents, in which the presenter announces the subjects
-  they'll be talking about one by one while the audience forgets the first
+  they will be talking about one by one while the audience forgets the first
   thing in the list by the time they get to the last, \mxp allows the presenter
   to just show all of the presentation's content at once just by zooming out.
   Here automated layout can help as well: content can be arranged in such a way
@@ -112,3 +121,11 @@
   this problem by taking control over the layout away from the presenter and
   instead providing them with a programatically generated layout that presents
   the information provided by the presenter in the best, clearest way possible.
+
+  In summary, we determined how to take the\ .ppt file format apart to harvest
+  a \ppt presentation's content, in order to transform the components into a
+  \mxp presentation. Then we compared different layout algorithms and
+  approaches, and finally we created a new \mxp plug-in to apply this knowledge
+  to the content of \mxp presentations. In this manner, we attenuated the user
+  migration process from \ppt to \mxp and tempered the pitfalls of content
+  layout in presentations.

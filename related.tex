@@ -23,7 +23,16 @@
    issues might involve creating minimalistic presentations or introducing some
    structure via a table of contents. Sadly, when complex knowledge or other
    pieces of rich information need to be presented “as is” \citep{farkas-1} ---
-   as in the domain of learning --- this does not work.
+   as in the domain of education --- this does not work.
+
+   Consider for example a course on the finer concepts of mathematics, or
+   programming algorithms, where we have to understand the separate parts in no
+   specific order, before understanding the whole. Some people may grasp one
+   part's concept immediately, while others need more detailed explanation and
+   yet others want to see the bigger picture to understand the purposeof the
+   parts. While a sequence of slides may help to illustrate certain aspects, it
+   is necessary to return to the overview regularly, which cannot be done
+   without duplicating one or several slides.
 
    One of the main issues with traditional slideware presentations is their
    monolithic nature, especially when content is spread over many
@@ -69,7 +78,7 @@
 
    A specific issue with slideware we'd like to focus on in this thesis, is the
    trouble with layout in presentations. It can be hard to display the content
-   you want in a way that's clear, informative and nice to look at. The vast
+   you want in a way that is clear, informative and nice to look at. The vast
    majority of layouts created today is mostly done by hand: a human graphic
    designer or ``layout expert'' makes most, if not all, of the decisions about
    the position and size of the objects to be presented \citep{lok-1}. Most
@@ -83,11 +92,11 @@
    dynamic layout algorithms, rather sticking to predefined ways to put text
    and pictures on slides. But as \mxp does not constrain us to the limits of
    slides, this should be seen as an opportunity to offer dynamic layout as
-   well. After all, if we're not limited to a certain area within which our
+   well. After all, if we are not limited to a certain area within which our
    content should fit, it should be much easier to put content next to each
    other in a way that makes sense.
 
-  \section{Existing solutions}
+  \section{Existing presentation solutions}
 
    Since digital slideware was first introduced, their influence, advantages
    and disadvantages have been studied extensively. There have been studies
@@ -195,7 +204,7 @@
 
    The tools and projects discussed in this section mostly focus on
    distinguishing novel ideas for presentations. Nevertheless, the different
-   concepts introduced in these tools don't offer interoperability between
+   concepts introduced in these tools do not offer interoperability between
    them. One project may focus on the authoring, another one fixates on novel
    content types and a third solution supplies radically new navigation
    mechanisms. Slideware tools may often allow third-party extensions but the
@@ -219,7 +228,7 @@
    enormous amounts of tiny text crammed onto one slide, or pictures strewn
    across a slide overwhelming the audience with too much information at once.
 
-  \section{New solutions}
+  \section{Requirements for a new era of presentation tools}
 
    Here we propose a set of requirements to establish a wide range of
    presentation styles and visualisations. This set has been compiled based on
@@ -431,7 +440,7 @@
      every slide of a presentation can contain certain elements such as a
      title, a slide number and the author's name, all of which can be
      abstracted at a higher level. Another example is an image container that
-     visualises its content as a horizontally scrollable list of images. It's
+     visualises its content as a horizontally scrollable list of images. It is
      important to observe that \mxp does not restrict us to the slide format
      and content can be laid out in many alternative ways.
 
@@ -845,7 +854,7 @@
    instincts, it has proven difficult to translate this into a concept that can
    be understood by a computer. Moreover, it is still difficult to explain it
    in human terms, which --- according to a popular quote often attributed to
-   Albert Einstein --- proves we don't fully understand it ourselves.
+   Albert Einstein --- proves we do not fully understand it ourselves.
 
    When we look to other technologies, we do find some automated layout
    implementations. For example, the web has had to adapt to mobile devices
@@ -869,7 +878,7 @@
    may hinder this approach: if a user decides to put more content on a slide
    than there is physical room available, the algorithm could either make the
    content smaller or split it across several slides, but either solution may
-   bring its own problems up. An advantage of ZUI's is that no matter how small
+   bring its own problems up. An advantage of ZUIs is that no matter how small
    the content gets, we can still zoom in to make it clear again\footnote{It
    should be noted that \mxp in its current form does not support this level of
    zooming. While the software can zoom out to provide an overview of the
@@ -939,12 +948,13 @@
     any robustness is desired when resized.
 
     Commercial presentation systems intended primarily for sequential
-    presentations (e.g. \ppt, Keynote, and \latex Beamer) offer a set of
-    preauthored style “templates” (and the ability to create new ones) that can
-    be applied to existing material. Compared to the parameterized layouts of
-    UI toolkit layout managers, most of these template-based systems are
-    simpler. However, users of these systems often move floating objects
-    around by hand to guide or overrule simplistic placement policies.
+    presentations --- so-called \emph{slideware}, including \ppt, Keynote and
+    OpenOffice Impress --- offer a set of preauthored style “templates” (and
+    the ability to create new ones) that can be applied to existing material.
+    Compared to the parameterized layouts of UI toolkit layout managers, most
+    of these template-based systems are simpler. However, users of these
+    systems often move floating objects around by hand to guide or overrule
+    simplistic placement policies.
 
    \subsection{Constraint satisfaction}
     \label{constraint-satisfaction}
@@ -1000,7 +1010,7 @@
       the presentation. Many primitive automated layout systems have been
       created based on computer science and mathematics alone \citep{beach-1}.
       These systems have a tendency to approach the issue as a purely
-      theoretical question of tiling and use optimization techniques to find a
+      theoretical question of tiling and use optimisation techniques to find a
       solution \citep{luders-1}. Such systems will frequently not consider
       simple legibility rules (e.g. text should not be packed onto the screen
       in blocks of random size but rather be placed into columns that runs down
@@ -1033,7 +1043,7 @@
       resolve issues such as the proximity between components being placed, the
       distance between a label and its target, and the contingency of confusing
       the audience by placing multiple labels close enough to the same target
-      that the audience can't tell which label actually belongs to that target.
+      that the audience can not tell which label actually belongs to that target.
       Abstract constraints may be employed when formatting labels (larger
       cities have bigger names), but are generally not used for layout
       directly.
@@ -1067,7 +1077,7 @@
      Additionally, such a system may require a very complex solver to process
      the information it holds. One can imagine how difficult it is to create a
      system that can describe all possible high-level relationships between a
-     presentation's components, although this Zhou has investigated this path
+     presentation's components, although Zhou et al.\ has investigated this path
      to use in automatic graphics generation \citep{zhou-1}.
 
     \subsubsection{Obtaining constraints}

@@ -16,6 +16,7 @@
             bookmarksnumbered=false,
             bookmarksopen=false,
             colorlinks=false,
+            hidelinks=true,
 %            colorlinks=true,
             linkcolor=webred]{hyperref}
 \definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
@@ -23,13 +24,14 @@
 \definecolor{webred}{rgb}{0.5, 0, 0} % less intense red
 \usepackage[round,comma,authoryear]{natbib}
 
-%\setcounter{secnumdepth}{3}
+\usepackage{titlesec}
+\titleformat*{\subsubsection}{\normalfont\itshape\bfseries}
+
 
 \usepackage{vubtitlepage}
 \author{Joris Vandermeersch}
 \title{Content Migration and Layout for the \mxp Presentation Tool}
 
-%\promotortitle{Promotor/Promotors}
 \promotor{Prof. Dr. Beat Signer}
 \advisors{Reinout Roels}
 \advisortitle{Begeleider}
@@ -48,6 +50,8 @@
 
 % First dutch TitlePage
  \maketitlepage
+
+\promotortitle{Promoter}
 
  \faculty{Faculty of Science}
  \advisortitle{Advisor}

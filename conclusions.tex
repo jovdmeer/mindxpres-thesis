@@ -15,13 +15,13 @@
   \section{Contribution}
 
    We proposed an approach for converting existing \ppt presentations into \mxp
-   presentations, along with a way to take control over layout away from the
-   author and improve upon flawed human design by programmatically calculating
-   ideal content placement and size. We delivered a proof of concept
-   implementation that puts this approach into practice, first letting us show
-   a \ppt presentation's content in \mxp, then showing us the possibility of
-   applying an automated layout algorithm to that an any other \mxp content at
-   will.
+   presentations, along with a way for the author to relinquish control over
+   layout to the computer and improve upon flawed human design by
+   programmatically calculating ideal content placement and size. We delivered
+   a proof of concept implementation that puts this approach into practice,
+   first letting us show a \ppt presentation's content in \mxp, then showing us
+   the possibility of applying an automated layout algorithm to that an any
+   other \mxp content at will.
 
    Considering the first part of this thesis, which consists of the conversion
    between \ppt and \mxp, we can conclude that conversion from any other
@@ -35,9 +35,9 @@
 
    Converting these other formats into \mxp remains an important goal in the
    endeavour to raise awareness and increase popularity of \mxp's features and
-   possibilities. Our implementation provides a way to convert \ppt .ppt
+   possibilities. Our implementation provides a way to convert \ppt\ .ppt
    presentations, but \ppt* has switched to using the Office Open XML-based
-   .pptx format in recent years, so newer \ppt presentations cannot currently
+   \ .pptx format in recent years, so newer \ppt presentations cannot currently
    be imported into the \mxp system.
 
    Our implementation is written in a way that should make it straightforward
@@ -57,7 +57,7 @@
    creating traditional slideware, as well as using more advanced and modern
    presentation tools, layout remains a problem that for many presenters
    becomes the biggest timesink in their work. On top of that, the layout they
-   create isn't always a good one, and bad layout has been proven to have
+   create is not always a good one, and bad layout has been proven to have
    negative impact on the effectiveness of a presentation. As such, having a
    way to automatically generate a layout would save a lot of time while also
    improving the information transfer effectiveness of presentations.
@@ -70,9 +70,9 @@
    content and surrounding limits in the form of slides and other fixed-size
    containers are respected.
 
-   The implementation of this mechanism is far from complete, and may still be
+   In the future, the implementation of this layout mechanism may still be
    improved upon in several ways, which will be discussed in section
-   \ref{future}. It does however provide the most basic form of automated
+   \ref{future}. However, it currently does provide the most basic form of automated
    layout, which may not always succeed in generating an aesthetically pleasing
    layout but at least attempts to combine content in a way that makes the
    content easy to focus on, thus increasing effectiveness of the presentation.
@@ -88,33 +88,33 @@
    tool to convert \ppt presentations into \mxp, and an algorithm for
    generating an objectively effective layout. Due to the limited time
    available for this thesis, we were not able to go into the finer details of
-   these tools, and the result can seem rather unpolished. However, within this
+   these tools, and the results of our tools could still be improved. However, within this
    limited timeframe we did deliver a solid core containing the most important
    features, in a way that allows future research to improve upon it and easily
    add any missing details.
 
    \subsection{Other formats}
 
-    Our conversion tool currently allows to convert \ppt .ppt files into \mxp
+    Our conversion tool currently allows to convert \ppt\ .ppt files into \mxp
     presentations, bypassing the \mxp compiler. The tool internally uses an
     intermediary structure to store the presentation's content, and this
     facilitates the implementation of conversion tools for other formats. As
     such, it might be a good idea to extend the tool to convert other popular
-    formats like \ppt .pptx files, Apple Keynote presentations and many others.
+    formats like \ppt\ .pptx files, Apple Keynote presentations and many others.
 
     It would also be a good idea to change the output of the conversion tool to
     generate \mxp XML files to compile further using the \mxp compiler. In and
-    of itself this would not seem advantageous, but with \mxp IDE's and other
+    of itself this would not seem advantageous, but with \mxp IDEs and other
     editing tools in mind it would be better to have XML files which would be
     editable using those tools, rather than raw HTML5 which presumably would
     not be readily available in any IDE.
 
    \subsection{Integration}
 
-    Speaking of editors, it would be interesting to integrate the conversion
-    tool into such an editor. This would allow \mxp users to just open their
+    While on the subject of IDEs, it would be interesting to integrate the conversion
+    tool into a \mxp editor. This would allow \mxp users to just open their
     \ppt files in the \mxp editor, immediately providing access to its contents
-    and letting the user edit the presentation as if it had always been an \mxp
+    and letting the user edit the presentation as if it had always been a \mxp
     presentation. This would greatly improve usability of the conversion tool
     as well, since it currently does not have a graphical user interface and
     thus needs to be invoked from the command line.
